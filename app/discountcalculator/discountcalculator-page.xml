@@ -1,0 +1,31 @@
+<Page
+    class="page"
+    navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!-- 
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!-- 
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu" 
+            android:visibility="collapsed" 
+            tap="onDrawerButtonTap"
+            ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="Discount calculator"></Label>
+    </ActionBar>
+
+        <GridLayout columns="*" rows="*,*,*" width="100%" height="100%" backgroundColor="white" class="page-content">
+		<TextField row="0" column="1" hint="Full price" keyboardType="number" returnKeyType="done" returnPress="FullPriceReturn" maxLength="10" class="input input-border" tap="FullPriceSelected" id="FullPrice"></TextField>
+		<ListPicker row="1" column="0" items="{{DiscountPercentages}}" selectedIndex="{{DiscountPercentIndex}}" loaded="onListPickerLoaded" selectedIndexChange="PercentageSelected" class="p-15 picker"  id="Percentage" />
+		<TextField row="2" column="0" hint="Discounted price" keyboardType="number" returnKeyType="done" returnPress="DiscountedPriceReturn" maxLength="10" class="input input-border" tap="DiscountedPriceSelected" id="DiscountedPrice"></TextField>
+	</GridLayout>
+</Page>

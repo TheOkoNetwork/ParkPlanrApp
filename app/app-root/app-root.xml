@@ -1,0 +1,137 @@
+<!--
+RadSideDrawer is a UI component part of the Progress NativeScript UI set of components.
+Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
+https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-started
+-->
+<nsDrawer:RadSideDrawer id="sideDrawer" xmlns:nsDrawer="nativescript-ui-sidedrawer" loaded="onLoaded">
+    <nsDrawer:RadSideDrawer.drawerTransition>
+        <nsDrawer:SlideInOnTopTransition/>
+    </nsDrawer:RadSideDrawer.drawerTransition>
+
+    <nsDrawer:RadSideDrawer.drawerContent>
+        <GridLayout rows="auto, *" class="sidedrawer sidedrawer-left">
+            <StackLayout class="sidedrawer-header">
+		<Image class="sidedrawer-header-image" src="~/images/logo_name.png" visibility="{{ user ? 'collapsed' : 'visible' }}"  />
+		<Image class="sidedrawer-header-image" src="{{user.photoURL}}" visibility="{{ user ? 'visible' : 'collapsed' }}"  />
+                <Label class="sidedrawer-header-brand" text="{{user.displayName}}" visibility="{{ user ? 'visible' : 'collapsed' }}" />
+                <Label class="sidedrawer-header-brand" text="Welcome to ParkPlanr" visibility="{{ user ? 'collapsed' : 'visible' }}" />
+                <Label class="footnote" text="{{user.email}}" visibility="{{ user ? 'visible' : 'collapsed' }}" />
+            </StackLayout>
+
+            <ScrollView row="1" class="sidedrawer-content" visibility="{{ user ? 'visible' : 'collapsed' }}">
+                <StackLayout>
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Home' ? ' selected': '') }}"
+                        route="home/home-page" title="Home" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf015;" class="fa" />
+                        <Label row="0" col="1" text="Home" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Queuetimes' ? ' selected': '') }}"
+                        route="queuetimes/queuetimes-page" title="Queue times" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf017;" class="fa" />
+                        <Label row="0" col="1" text="Queue times" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Ridecount' ? ' selected': '') }}"
+                        route="ridecount/ridecount-page" title="Ride count" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf0cb;" class="fa" />
+                        <Label row="0" col="1" text="Ride count" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Maps' ? ' selected': '') }}"
+                        route="maps/maps-page" title="Maps" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf279;" class="fa" />
+                        <Label row="0" col="1" text="Maps" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Discountcalculator' ? ' Discountcalculator': '') }}"
+                        route="discountcalculator/discountcalculator-page" title="Discount Calculator" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf1ec;" class="fa" />
+                        <Label row="0" col="1" text="Discount calculator" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Tickets' ? ' Tickets': '') }}"
+                        route="ticketPkpass/ticketPkpass-page" title="Tickets" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf3ff;" class="fa" />
+                        <Label row="0" col="1" text="Tickets" class="p-r-10" />
+                    </GridLayout>
+
+                    <StackLayout class="hr-light"></StackLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Settings' ? ' selected': '') }}"
+                        route="settings/settings-page" title="Settings" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf013;" class="fa" />
+                        <Label row="0" col="1" text="Settings" class="p-r-10" />
+                    </GridLayout>
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'About' ? ' selected': '') }}"
+                        route="about/about-page" title="About" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf128;" class="fa" />
+                        <Label row="0" col="1" text="About" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Signout' ? ' selected': '') }}"
+                        route="signout/signout-page" title="Sign out" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf2f5;" class="fa" />
+                        <Label row="0" col="1" text="Sign out" class="p-r-10" />
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>
+
+
+
+            <ScrollView row="1" class="sidedrawer-content" visibility="{{ user ? 'collapsed' : 'visible' }}">
+                <StackLayout>
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Home' ? ' selected': '') }}"
+                        route="home/home-page" title="Home" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf015;" class="fa" />
+                        <Label row="0" col="1" text="Home" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Queuetimes' ? ' selected': '') }}"
+                        route="queuetimes/queuetimes-page" title="Queue times" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf017;" class="fa" />
+                        <Label row="0" col="1" text="Queue times" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Maps' ? ' selected': '') }}"
+                        route="maps/maps-page" title="Maps" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf279;" class="fa" />
+                        <Label row="0" col="1" text="Maps" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Discountcalculator' ? ' Discountcalculator': '') }}"
+                        route="discountcalculator/discountcalculator-page" title="Discount Calculator" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf1ec;" class="fa" />
+                        <Label row="0" col="1" text="Discount calculator" class="p-r-10" />
+                    </GridLayout>
+
+                    <StackLayout class="hr-light"></StackLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Settings' ? ' selected': '') }}"
+                        route="settings/settings-page" title="Settings" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf013;" class="fa" />
+                        <Label row="0" col="1" text="Settings" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'About' ? ' selected': '') }}"
+                        route="about/about-page" title="About" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf128;" class="fa" />
+                        <Label row="0" col="1" text="About" class="p-r-10" />
+                    </GridLayout>
+
+                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Signin' ? ' selected': '') }}"
+                        route="signin/signin-page" title="Sign in" tap="onNavigationItemTap">
+                        <Label row="0" col="0" text="&#xf2f6;" class="fa" />
+                        <Label row="0" col="1" text="Sign in" class="p-r-10" />
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>
+
+
+        </GridLayout>
+    </nsDrawer:RadSideDrawer.drawerContent>
+
+    <nsDrawer:RadSideDrawer.mainContent>
+        <Frame defaultPage="home/home-page"></Frame>
+    </nsDrawer:RadSideDrawer.mainContent>
+</nsDrawer:RadSideDrawer>

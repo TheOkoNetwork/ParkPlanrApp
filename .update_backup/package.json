@@ -1,0 +1,32 @@
+{
+  "nativescript": {
+    "id": "uk.org.okonetwork.parkplanr",
+    "tns-android": {
+      "version": "6.0.2"
+    },
+    "tns-ios": {
+      "version": "6.0.2"
+    }
+  },
+  "description": "The one app you need for theme parks!",
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "repository": "<fill-your-repository-here>",
+  "scripts": {
+    "lint": "eslint \"app/**/*.js\""
+  },
+  "dependencies": {
+    "@nstudio/nativescript-loading-indicator": "^1.0.0",
+    "nativescript-theme-core": "~1.0.6",
+    "nativescript-ui-sidedrawer": "~7.0.0",
+    "rxjs": "^6.4.0",
+    "tns-core-modules": "~6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "~5.8.0",
+    "nativescript-dev-webpack": "~1.1.0",
+    "node-sass": "^4.7.1"
+  },
+  "gitHead": "42f2a6a9c94eaf9c68d2a41e0daaa1a2544bc28f",
+  "readme": "NativeScript Application",
+  "author": "The Oko network"
+}

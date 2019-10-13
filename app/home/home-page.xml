@@ -1,0 +1,42 @@
+<Page
+    class="page"
+    navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!-- 
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!-- 
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu" 
+            android:visibility="collapsed" 
+            tap="onDrawerButtonTap"
+            ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="ParkPlanr"></Label>
+    </ActionBar>
+
+    <GridLayout class="page-content">
+		<GridLayout columns="*,*" rows="*,*,*,*,*,*" width="100%" height="100%" backgroundColor="white"  visibility="{{ user ? 'visible' : 'collapsed' }}">
+	        	<Button row="0" col="0" text="&#xf017; &nbsp;Queue times" class="fa btn btn-primary" route="queuetimes/queuetimes-page" tap="pageJump"/>
+	        	<Button row="0" col="1" text="&#xf0cb; &nbsp;Ride count" class="fa btn btn-primary" route="ridecount/ridecount-page" tap="pageJump"/>
+	        	<Button row="1" col="0" text="&#xf1ec; &nbsp;Discounts" class="fa btn btn-primary" route="discountcalculator/discountcalculator-page" tap="pageJump" />
+	        	<Button row="1" col="1" text="&#xf279; &nbsp;Maps" class="fa btn btn-primary" route="maps/maps-page" tap="pageJump" />
+		</GridLayout>
+
+		<!-- N.B visiblity is swapped around so this is visible when the previous grid is not -->
+		<GridLayout columns="*,*" rows="*,*,*,*,*,*" width="100%" height="100%" backgroundColor="white"  visibility="{{ user ? 'collapsed' : 'visible' }}">
+	        	<Button row="0" col="0" text="&#xf017; &nbsp;Queue times" class="fa btn btn-primary" route="queuetimes/queuetimes-page" tap="pageJump"/>
+	        	<Button row="0" col="1" text="&#xf1ec; &nbsp;Discounts" class="fa btn btn-primary" route="discountcalculator/discountcalculator-page" tap="pageJump" />
+	        	<Button row="1" col="0" colSpan="2" text="&#xf2f6; &nbsp;Sign in" class="fa btn btn-primary" route="signin/signin-page" tap="pageJump" />
+		</GridLayout>
+
+	    </GridLayout>
+</Page>

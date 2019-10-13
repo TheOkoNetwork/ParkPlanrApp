@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "996445637278",
+    "firebase_url": "https://parkplanr-dev.firebaseio.com",
+    "project_id": "parkplanr-dev",
+    "storage_bucket": "parkplanr-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996445637278:android:d38122f504c9f8f1",
+        "android_client_info": {
+          "package_name": "uk.org.okonetwork.parkplanr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996445637278-c4ov6lrcdgrvhrprb577lu3juca540re.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmgTsjFELUEOx7IYIPn09nEppYHv2BN7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996445637278-c4ov6lrcdgrvhrprb577lu3juca540re.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

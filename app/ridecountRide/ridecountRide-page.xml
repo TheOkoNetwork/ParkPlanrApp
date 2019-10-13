@@ -1,0 +1,53 @@
+<Page
+    class="page"
+    navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!-- 
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!-- 
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu" 
+            android:visibility="collapsed" 
+            tap="onDrawerButtonTap"
+            ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="{{PageTitle}}" id="PageTitle" textWrap="true"></Label>
+    </ActionBar>
+
+       	<GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*,*,*">
+		<StackLayout row="1" column="0" colSpan="3" verticalAlignment="center" horizontalAlignment="center">
+		  <Label text="{{Count}}" style="font-size: 50" />
+		</StackLayout>
+		<StackLayout row="2" column="0" colSpan="3" class="hr-light m-10"></StackLayout>
+		<Button row="3" column="0" colSpan="3" text="&#xf067;" tap="AddEditCountAdd" class="fa btn btn-primary"></Button>
+		<StackLayout row="4" column="0" colSpan="3" verticalAlignment="center" horizontalAlignment="center">
+			<Label text="{{AddEditCount}}" style="font-size: 50" />
+		</StackLayout>
+		<Button row="5" column="0" colSpan="3" text="&#xf068;" tap="AddEditCountSubtract" class="fa btn btn-primary"></Button>
+		<Button row="6" column="0" colSpan="3" text="&#xf0c7; Save" tap="AddEditCountSave" class="fa btn btn-primary"></Button>
+		<StackLayout row="7" column="0" colSpan="3" class="hr-light m-10"></StackLayout>
+
+		<ListView items="{{Counts}}" 
+                  loaded="{{ onListViewLoaded }}" 
+                  separatorColor="orangered" height="100"
+                  class="list-group" id="listView" row="8" column="0" colSpan="3">
+                        <ListView.itemTemplate>
+                                <!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
+                                <GridLayout rows="*" columns="*,*,*" verticalAlignment="middle" class="list-group-item" tap="onTripSelect">
+					<Label row="0" column="0" text="{{Count}}" style="font-size: 25" />
+					<Label row="0" column="1" text="{{TimeHuman}}" style="font-size: 25" />
+					<Button row="0" column="2" text="&#xf2ed;" class="fa btn btn-danger" tap="DeleteTripCount" CountId="{{Id}}"></Button>
+                                </GridLayout>
+                        </ListView.itemTemplate>
+                </ListView>
+	</GridLayout>
+</Page>

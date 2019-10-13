@@ -1,0 +1,110 @@
+const app = require("tns-core-modules/application");
+
+const RidecountCountViewModel = require("./ridecountCount-view-model");
+const fromObject = require("tns-core-modules/data/observable").fromObject;
+
+const firebaseApp = require("nativescript-plugin-firebase/app");
+firebaseApp.initializeApp();
+
+var FeedbackPlugin = require("nativescript-feedback");
+var feedback = new FeedbackPlugin.Feedback();
+
+frameModule = require("tns-core-modules/ui/frame");
+var color = require("color");
+
+const moment = require("moment");
+
+function onNavigatingTo(args) {
+	const page = args.object;
+	page.bindingContext = new RidecountCountViewModel();
+
+	TripId=page.navigationContext.TripId;
+        UserId=page.bindingContext.user.uid;
+
+        console.log(`Loading trip: ${TripId} for user: ${UserId}`);
+
+        firebaseApp.firestore().collection("Users").doc(UserId).collection("RideCount").doc(TripId).get().then(function(TripSnapshot) {
+		if (!TripSnapshot.exists) {
+			console.log("Trip not found");
+	                frameModule.topmost().navigate({
+	                        moduleName: "home/home-page",
+	                        transition: {
+	                                name: "fade"
+	                        }
+	                });
+	                setTimeout(function() {
+	                        feedback.error({
+	                                title: "Trip not found",
+	                                message: "Please check your internet connection and try again",
+	                                titleColor: new color.Color("black")
+	                        });
+	                }, 125);
+			return;
+		};
+		DataPromises=[
+		        firebaseApp.firestore().collection("Parks").doc(TripSnapshot.data().Park).get(),
+		        firebaseApp.firestore().collection("Users").doc(UserId).collection("RideCount").doc(TripId).collection("Rides").get()
+		];
+		Promise.all(DataPromises).then(function(PromiseResults) {
+			PromiseResults.forEach(function(PromiseResult) {
+				console.log(PromiseResult);
+				if (PromiseResult.id) {
+					console.log("Doc found");
+					console.log(PromiseResult.data());
+				} else {
+				};
+			});
+		}).catch(function(error) {
+                	console.log(`Error fetching trip rides/park info for trip: ${TripId}`);
+                	console.log(error);
+
+			frameModule.topmost().navigate({
+	                        moduleName: "home/home-page",
+	                        transition: {
+	                                name: "fade"
+	                        }
+	                });
+	                setTimeout(function() {
+	                        feedback.error({
+	                                title: "Unable to load trip",
+	                                message: "Please check your internet connection and try again",
+	                                titleColor: new color.Color("black")
+	                        });
+	                }, 125);
+		});
+	}).catch(function(error) {
+                console.log(`Error fetching trip: ${TripId}`);
+                console.log(error);
+
+                frameModule.topmost().navigate({
+                        moduleName: "home/home-page",
+                        transition: {
+                                name: "fade"
+                        }
+                });
+                setTimeout(function() {
+                        feedback.error({
+                                title: "Unable to load trip",
+                                message: "Please check your internet connection and try again",
+                                titleColor: new color.Color("black")
+                        });
+                }, 125);
+        });
+}
+
+function onLoaded(args) {
+	AuthenticatedPageState();
+};
+
+function onDrawerButtonTap(args) {
+    const sideDrawer = app.getRootView();
+    sideDrawer.showDrawer();
+}
+
+exports.onNavigatingTo = onNavigatingTo;
+exports.onDrawerButtonTap = onDrawerButtonTap;
+exports.pageJump = require("../shared/pageJump")
+AuthenticatedPageState = require("../shared/AuthenticatedPageState")
+exports.cmsPage = require("../shared/cmsPage")
+exports.AuthenticatedPageState = AuthenticatedPageState;
+exports.onLoaded = onLoaded;

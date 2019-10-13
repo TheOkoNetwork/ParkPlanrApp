@@ -1,0 +1,42 @@
+<Page
+    class="page"
+    navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!-- 
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!-- 
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu" 
+            android:visibility="collapsed" 
+            tap="onDrawerButtonTap"
+            ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="Loading queue times for park" id="PageTitle"></Label>
+    </ActionBar>
+
+	<ListView items="{{Rides}}" 
+	          itemTap="onItemTap" 
+	          loaded="{{ onListViewLoaded }}" 
+	          separatorColor="orangered" rowHeight="100"
+	          class="list-group" id="listView" row="2">
+	    <ListView.itemTemplate>
+	        <!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
+		<GridLayout rows="*" columns="*,*,*,*" verticalAlignment="middle" class="list-group-item" tap="ParkSelected" ParkId="{{id}}">
+			<Image row="0" column="0" colSpan="1" src="{{Logo || '~/images/logo_name.png' }}" visibility="{{ HasLogo ? 'visible' : 'collapsed' }}" />
+	        	<Label row="0" column="1" colSpan="2" text="{{Name}}" textWrap="true" class="title" />
+	        	<Label row="0" column="3" colSpan="1" text="&#xf05e; closed" textWrap="true" class="fa" visibility="{{ Open ? 'collapsed' : 'visible' }}" style="font-size: 25" />
+	        	<Label row="0" column="3" colSpan="1" text="{{QueueTime}}" textWrap="true" visibility="{{ Open ? 'visible' : 'collapsed' }}" style="font-size: 50" />
+			
+	        </GridLayout>
+	    </ListView.itemTemplate>
+	</ListView>
+</Page>

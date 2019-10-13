@@ -1,0 +1,31 @@
+<Page
+    class="page"
+    navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!-- 
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!-- 
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu" 
+            android:visibility="collapsed" 
+            tap="onDrawerButtonTap"
+            ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="New trip"></Label>
+    </ActionBar>
+
+    <FlexboxLayout class="page-content" width="100%" height="100%" flexDirection="column">
+	<ListPicker items="{{Parks}}" selectedIndex="{{ParkIndex}}" class="p-15 picker" id="Park" />
+	<DatePicker loaded="onDatePickerLoaded" date="{{Date}}" minDate="{{MinDate}}" maxDate="{{Today}}"></DatePicker>
+        <Button text="&#xf067; &nbsp;Start trip" class="fa btn btn-primary" tap="CreateTrip"/>	
+    </FlexboxLayout>
+</Page>
