@@ -1,11 +1,11 @@
 {
   "nativescript": {
     "id": "uk.org.okonetwork.parkplanr",
-    "tns-ios": {
-      "version": "6.1.0"
-    },
     "tns-android": {
       "version": "6.1.0"
+    },
+    "tns-ios": {
+      "version": "6.1.1"
     }
   },
   "description": "The one app you need for theme parks!",

@@ -1,6 +1,6 @@
 {
     "external_push_client_only": false,
-    "using_ios": false,
+    "using_ios": true,
     "using_android": true,
     "firestore": true,
     "realtimedb": false,
@@ -9,7 +9,7 @@
     "performance_monitoring": false,
     "messaging": true,
     "in_app_messaging": false,
-    "crashlytics": false,
+    "crashlytics": true,
     "storage": true,
     "functions": true,
     "facebook_auth": true,
