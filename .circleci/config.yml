@@ -37,7 +37,7 @@ jobs:
           command: |
             export GIT_COMMIT_MESSAGE="$(git log --format=%B -n 1 $CIRCLE_SHA1)"
             echo ${APP_DIST_ANDROID_GROUP}|base64;
-	    echo $GIT_COMMIT_MESSAGE;
+            echo $GIT_COMMIT_MESSAGE;
             firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups ${APP_DIST_ANDROID_GROUP} --token ${FIREBASE_TOOLS_TOKEN}
 
 #      - run:
