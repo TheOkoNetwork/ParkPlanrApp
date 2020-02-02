@@ -4,6 +4,7 @@ const pkg = require('../package.json');
 
 var path = require('path');
 var AndroidManifest = require('manifest-android');
+const semver = require('semver')
 
 var android = new AndroidManifest();
 android.load({ file: path.join(__dirname, "../app/App_Resources/Android/src/main/AndroidManifest.xml") }, function(err){
@@ -12,13 +13,9 @@ android.load({ file: path.join(__dirname, "../app/App_Resources/Android/src/main
 		console.log(err);
 		process.exit(1);
 	};
-	major=android.version.major;
-	minor=android.version.minor;
-	patch=android.version.patch;
-
 	CurrentVersionName=major+"."+.minor+"."+.patch;
-	NewPatch=patch+1;
-	NewVersionName=major+"."+.minor+"."+.NewPatch;
+	NewVersionName=semver.inc(CurrentVersionName, 'prerelease', 'alpha');
+
 	console.log(`Updating version from :${versionName} to ${NewVersionName}`);
 
 
