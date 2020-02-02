@@ -1,24 +1,17 @@
-// @ts-check
+const fs = require('fs');
+const pkg = require('../package.json');
+console.log(pkg);
 
-(function() {
-  const fs = require('fs');
-  // @ts-ignore
-  const pkg = require('../package.json');
+var path = require('path');
+var AndroidManifest = require('manifest-android');
 
-  console.log('updating version numbers in AndroidManifest.xml...');
-
-  const versionCodeRegex = /android:versionCode=\".*\"/;
-  const versionNameRegex = /android:versionName=\".*\"/;
-  const file = 'app/App_Resources/Android/AndroidManifest.xml';
-
-  let manifest = fs.readFileSync(file, 'utf8').toString();
-  manifest = manifest.replace(versionNameRegex, `android:versionName="${pkg.version}"`);
-
-  const found = manifest.match(versionCodeRegex);
-  const versionCode = parseInt(found[0].split('"')[1], 10) + 1;
-  manifest = manifest.replace(versionCodeRegex, `android:versionCode="${versionCode}"`);
-  console.log(manifest);
-
-  fs.writeFileSync(file, manifest, 'utf-8');
-  console.log('AndroidManifest.xml updated!');
-})();
+var android = new AndroidManifest();
+android.load({ file: path.join(__dirname, "../app/App_Resources/Android/src/main/AndroidManifest.xml") }, function(err){
+	if (err) {
+		console.log("Error reading manifest");
+		console.log(err);
+		process.exit(1);
+	};
+	console.log(android.version);
+	console.log(android);
+})
