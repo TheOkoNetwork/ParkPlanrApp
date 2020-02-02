@@ -12,8 +12,14 @@ android.load({ file: path.join(__dirname, "../app/App_Resources/Android/src/main
 		console.log(err);
 		process.exit(1);
 	};
-	versionName=android.version.major+"."+android.version.minor+"."+android.version.patch;
-	console.log(versionName);
+	major=android.version.major;
+	minor=android.version.minor;
+	patch=android.version.patch;
+
+	CurrentVersionName=major+"."+.minor+"."+.patch;
+	NewPatch=patch+1;
+	NewVersionName=major+"."+.minor+"."+.NewPatch;
+	console.log(`Updating version from :${versionName} to ${NewVersionName}`);
 
 
 	process.exit(1);
