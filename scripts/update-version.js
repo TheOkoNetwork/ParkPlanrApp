@@ -1,6 +1,6 @@
 const fs = require('fs');
 const pkg = require('../package.json');
-console.log(pkg);
+//console.log(pkg);
 
 var path = require('path');
 var AndroidManifest = require('manifest-android');
@@ -12,6 +12,9 @@ android.load({ file: path.join(__dirname, "../app/App_Resources/Android/src/main
 		console.log(err);
 		process.exit(1);
 	};
-	console.log(android.version);
-	console.log(android);
+	versionName=android.version.major+"."+android.version.minor+"."+android.version.patch;
+	console.log(versionName);
+
+
+	process.exit(1);
 })
