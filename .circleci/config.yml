@@ -36,12 +36,12 @@ jobs:
       - run:
           name: Publish apk to firebase app distribution
           command: |
-            firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups "${APP_DIST_ANDROID_GROUP}"
+            firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups "${APP_DIST_ANDROID_GROUP}" --token ${FIREBASE_TOOLS_TOKEN}
 
-      - run:
-          name: Publish app to internal track on Google Play
-          command: |
-            node ./scripts/upload-package.js
+#      - run:
+#          name: Publish app to internal track on Google Play
+#          command: |
+#            node ./scripts/upload-package.js
 
       - store_artifacts:
           path: ./dist
