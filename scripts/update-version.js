@@ -13,9 +13,13 @@ android.load({ file: path.join(__dirname, "../app/App_Resources/Android/src/main
 		console.log(err);
 		process.exit(1);
 	};
-	NewVersionName=semver.inc(CurrentVersionName, 'prerelease', 'alpha');
 
-	console.log(`Updating version from :${versionName} to ${NewVersionName}`);
+	major=android.version.major;
+	minor=android.version.minor;
+	patch=android.version.patch;
+	CurrentVersionName=`${major}.${major}.${patch}`;
+
+	console.log(`Updating version from :${versionName} to ${pkg.version}`);
 
 
 	process.exit(1);
