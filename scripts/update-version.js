@@ -1,6 +1,6 @@
 const fs = require('fs');
 const pkg = require('../package.json');
-//console.log(pkg);
+console.log(`Version from package.json: ${pkg.version}`);
 
 var path = require('path');
 var AndroidManifest = require('manifest-android');
@@ -13,7 +13,6 @@ android.load({ file: path.join(__dirname, "../app/App_Resources/Android/src/main
 		console.log(err);
 		process.exit(1);
 	};
-	CurrentVersionName=major+"."+.minor+"."+.patch;
 	NewVersionName=semver.inc(CurrentVersionName, 'prerelease', 'alpha');
 
 	console.log(`Updating version from :${versionName} to ${NewVersionName}`);
