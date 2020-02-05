@@ -1,4 +1,5 @@
 {
+  "version": 1.0.0",
   "nativescript": {
     "id": "uk.org.okonetwork.parkplanr",
     "tns-android": {
