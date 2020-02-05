@@ -18,9 +18,12 @@ android.load({ file: path.join(__dirname, "../app/App_Resources/Android/src/main
 	minor=android.version.minor;
 	patch=android.version.patch;
 	CurrentVersionName=`${major}.${major}.${patch}`;
-
-	console.log(`Updating version from :${versionName} to ${pkg.version}`);
-
-
-	process.exit(1);
+	BuildNumber=process.env.CIRCLE_BUILD_NUM;
+	NewVersionCode=`${pkg.version}.${BuildNumber}`;
+	console.log(`Updating version from: ${CurrentVersionName} to: ${NewVersionCode}`);
+	android.version=NewVersionCode;
+	android.save({ file: path.join(__dirname, "../app/App_Resources/Android/src/main/AndroidManifest.xml") }, function(err) {
+        	console.log("Updated android manifest version");
+		process.exit(0);
+	});
 })
