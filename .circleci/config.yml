@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/${WORKING_DIRECTORY}
+    working_directory: ~/NativescriptAppBuild
     docker:
       - image: circleci/android:api-28-node
     steps:
