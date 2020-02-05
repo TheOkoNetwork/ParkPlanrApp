@@ -30,6 +30,9 @@ npm install
 echo "Downgrading @nativescript/core to 6.2.3 (iOS compileC oidauth bug fix hopefully)"
 npm install @nativescript/core@6.2.3 --save
 
+echo "Updating webpack"
+./node_modules/.bin/update-ns-webpack --configs
+
 #echo "Preparing android"
 #tns prepare android
 
