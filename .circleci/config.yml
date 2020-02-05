@@ -24,6 +24,7 @@ jobs:
           command: |
             ./UpdateAll.sh;
             echo $ANDROID_KEY_BASE64 | base64 -d > ./key.jks;
+            getge
             echo $PLAY_STORE_JWT > ./jwt.json;
             rm -rf platforms;
             tns platform add android;
