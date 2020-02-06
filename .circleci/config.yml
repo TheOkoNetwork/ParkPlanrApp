@@ -2,9 +2,9 @@ version: 2
 
 executors:
   NodeAndroidDocker:
-    working_directory: ~/NativescriptAppBuild
     docker:
       - image: circleci/android:api-28-node
+    working_directory: ~/NativescriptAppBuild
 
 jobs:
   PrepareProject:
