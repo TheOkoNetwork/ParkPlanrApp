@@ -137,12 +137,13 @@ workflows:
             requires:
                   - BuildReleaseAndroid
 
-      - PrepareIOS:
-            requires:
-                  - PrepareProject
-      - BuildReleaseIOS:
-            requires:
-                  - PrepareIOS
+#      - PrepareIOS:
+#            requires:
+#                  - PrepareProject
+#      - BuildReleaseIOS:
+#            requires:
+#                  - PrepareIOS
+
 #          filters:
 #            branches:
 #              ignore: /.*/
