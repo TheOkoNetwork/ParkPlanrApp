@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  PrepareProject:
     working_directory: ~/NativescriptAppBuild
     docker:
       - image: circleci/android:api-28-node
@@ -29,6 +29,11 @@ jobs:
             tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
 
+  BuildReleaseAndroid:
+    working_directory: ~/NativescriptAppBuild
+    docker:
+      - image: circleci/android:api-28-node
+    steps:
       - run:
           name: Build signed app
           environment:
@@ -37,6 +42,11 @@ jobs:
           command: |
             tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
 
+  DistributeAndroid:
+    working_directory: ~/NativescriptAppBuild
+    docker:
+      - image: circleci/android:api-28-node
+    steps:
       - run:
           name: Publish apk to firebase app distribution
           command: |
@@ -55,9 +65,15 @@ jobs:
 
 workflows:
   version: 2
-  build_release:
+  BuildAndDistributeAndroid:
     jobs:
-      - build
+      - PrepareProject
+      - BuildAndroid
+		requires:
+		      - PrepareProject
+      - DistributeAndroid
+		requires:
+		      - BuildAndroid
 #          filters:
 #            branches:
 #              ignore: /.*/
