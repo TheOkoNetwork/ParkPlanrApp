@@ -15,11 +15,12 @@ jobs:
       - run:
           name: Install npm modules
           command: |
+            mkdir ../workspace
+            NPM_CONFIG_PREFIX=~/workspace/npmglobal
             node -v
             sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
             npm i --no-progress;
             tns usage-reporting disable && tns error-reporting disable;
-            whereis tns
 
       - run:
           name: Update version in manifest
@@ -36,15 +37,25 @@ jobs:
             tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
 
+      - persist_to_workspace:
+            root: ../workspace
+            paths:
+                - npmglobal
+
   BuildReleaseAndroid:
     executor: nodeandroiddocker
     steps:
+      - attach_workspace:
+          at: ../workspace
+
       - run:
           name: Build signed app
           environment:
             ANDROID_KEY_BASE64: ""
             PLAY_STORE_JWT: ""
+            NPM_CONFIG_PREFIX: "~/workspace/npmglobal"
           command: |
+            find ~/workspace/npmglobal/
             tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
 
   DistributeAndroid:
