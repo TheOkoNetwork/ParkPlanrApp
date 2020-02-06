@@ -69,11 +69,11 @@ workflows:
     jobs:
       - PrepareProject
       - BuildAndroid
-		requires:
-		      - PrepareProject
+            requires:
+                  - PrepareProject
       - DistributeAndroid
-		requires:
-		      - BuildAndroid
+            requires:
+                  - BuildAndroid
 #          filters:
 #            branches:
 #              ignore: /.*/
