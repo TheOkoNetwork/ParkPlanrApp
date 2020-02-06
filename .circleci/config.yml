@@ -1,9 +1,14 @@
 version: 2
-jobs:
-  PrepareProject:
+
+executors:
+  NodeAndroidDocker:
     working_directory: ~/NativescriptAppBuild
     docker:
       - image: circleci/android:api-28-node
+
+jobs:
+  PrepareProject:
+    executor: NodeAndroidDocker
     steps:
       - checkout
 
@@ -35,6 +40,7 @@ jobs:
 
 
   BuildReleaseAndroid:
+    executor: NodeAndroidDocker
     steps:
       - attach_workspace:
             at: workspace
@@ -48,6 +54,7 @@ jobs:
             tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
 
   DistributeAndroid:
+    executor: NodeAndroidDocker
     steps:
       - attach_workspace:
             at: workspace
@@ -60,6 +67,7 @@ jobs:
             firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups ${APP_DIST_ANDROID_GROUP} --token ${FIREBASE_TOOLS_TOKEN}
 
   BuildReleaseIOS:
+    executor: NodeAndroidDocker
     steps:
       - attach_workspace:
             at: workspace
