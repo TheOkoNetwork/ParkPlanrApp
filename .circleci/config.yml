@@ -68,10 +68,10 @@ workflows:
   BuildAndDistributeAndroid:
     jobs:
       - PrepareProject
-      - BuildAndroid
+      - BuildAndroid:
             requires:
                   - PrepareProject
-      - DistributeAndroid
+      - DistributeAndroid:
             requires:
                   - BuildAndroid
 #          filters:
