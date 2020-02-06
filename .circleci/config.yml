@@ -69,6 +69,15 @@ jobs:
             echo $GIT_COMMIT_MESSAGE;
             firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups ${APP_DIST_ANDROID_GROUP} --token ${FIREBASE_TOOLS_TOKEN}
 
+
+  PrepareIOS:
+    executor: nodeandroiddocker
+    steps:
+      - run:
+          name: Preparing IOS Platform
+          command: |
+            echo "Nothing to prepare for IOS"
+
   BuildReleaseIOS:
     executor: nodeandroiddocker
     steps:
@@ -100,9 +109,13 @@ workflows:
       - DistributeAndroid:
             requires:
                   - BuildReleaseAndroid
-      - BuildReleaseIOS:
+
+      - PrepareIOS:
             requires:
                   - PrepareProject
+      - BuildReleaseIOS:
+            requires:
+                  - PrepareIOS
 #          filters:
 #            branches:
 #              ignore: /.*/
