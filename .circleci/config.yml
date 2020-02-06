@@ -13,7 +13,6 @@ fast-checkout: &fast-checkout
 jobs:
   CheckoutCode:
     executor: nodeandroiddocker
-
     steps:
         - checkout
         - run: rm -rf .git
@@ -124,6 +123,7 @@ workflows:
   version: 2
   BuildAndDistribute:
     jobs:
+      - CheckoutCode
       - PrepareProject:
             requires:
                   - CheckoutCode
