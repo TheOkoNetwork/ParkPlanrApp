@@ -124,7 +124,7 @@ workflows:
   version: 2
   BuildAndDistribute:
     jobs:
-      - PrepareProject
+      - PrepareProject:
             requires:
                   - CheckoutCode
       - PrepareAndroid:
