@@ -19,7 +19,7 @@ jobs:
         - persist_to_workspace:
             root: /root
             paths:
-                - project
+                - ~/NativescriptAppBuild
 
   PrepareProject:
     executor: nodeandroiddocker
