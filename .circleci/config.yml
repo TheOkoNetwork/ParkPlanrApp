@@ -55,6 +55,16 @@ jobs:
             echo $GIT_COMMIT_MESSAGE;
             firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups ${APP_DIST_ANDROID_GROUP} --token ${FIREBASE_TOOLS_TOKEN}
 
+  BuildReleaseIOS:
+    working_directory: ~/NativescriptAppBuild
+    docker:
+      - image: circleci/android:api-28-node
+    steps:
+      - run:
+          name: Build signed app
+          command: |
+            tns build ios
+
 #      - run:
 #          name: Publish app to internal track on Google Play
 #          command: |
@@ -68,12 +78,18 @@ workflows:
   BuildAndDistributeAndroid:
     jobs:
       - PrepareProject
-      - BuildAndroid:
+      - BuildReleaseAndroid:
             requires:
                   - PrepareProject
       - DistributeAndroid:
             requires:
-                  - BuildAndroid
+                  - BuildReleaseAndroid
+  BuildAndDistributeIOS:
+    jobs:
+      - PrepareProject
+      - BuildReleaseIOS:
+            requires:
+                  - PrepareProject
 #          filters:
 #            branches:
 #              ignore: /.*/
