@@ -46,6 +46,11 @@ jobs:
             echo $PLAY_STORE_JWT > ./jwt.json;
             rm -rf platforms;
 
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
+
   PrepareAndroid:
     executor: nodeandroiddocker
     steps:
