@@ -97,9 +97,6 @@ workflows:
       - DistributeAndroid:
             requires:
                   - BuildReleaseAndroid
-  BuildAndDistributeIOS:
-    jobs:
-      - PrepareProject
       - BuildReleaseIOS:
             requires:
                   - PrepareProject
