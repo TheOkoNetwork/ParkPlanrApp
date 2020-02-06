@@ -13,7 +13,8 @@ fast-checkout: &fast-checkout
 jobs:
   CheckoutCode:
     executor: nodeandroiddocker
-      steps:
+
+    steps:
         - checkout
         - run: rm -rf .git
         - persist_to_workspace:
