@@ -6,11 +6,25 @@ executors:
       - image: circleci/android:api-28-node
     working_directory: ~/NativescriptAppBuild
 
+fast-checkout: &fast-checkout
+  attach_workspace:
+    at: /root
+
 jobs:
+  CheckoutCode:
+    executor: nodeandroiddocker
+      steps:
+        - checkout
+        - run: rm -rf .git
+        - persist_to_workspace:
+            root: /root
+            paths:
+                - project
+
   PrepareProject:
     executor: nodeandroiddocker
     steps:
-      - checkout
+      - *fast-checkout
 
       - run:
           name: Install npm modules
@@ -35,6 +49,8 @@ jobs:
   PrepareAndroid:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
       - run:
           name: Adding platform
           command: |
@@ -46,6 +62,8 @@ jobs:
   BuildReleaseAndroid:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
       - run:
           name: Build signed app
           environment:
@@ -60,6 +78,8 @@ jobs:
   DistributeAndroid:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
       - run:
           name: Publish apk to firebase app distribution
           command: |
@@ -73,6 +93,8 @@ jobs:
   PrepareIOS:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
       - run:
           name: Preparing IOS Platform
           command: |
@@ -81,6 +103,8 @@ jobs:
   BuildReleaseIOS:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
       - run:
           name: Build signed iOS app
           command: |
@@ -100,6 +124,8 @@ workflows:
   BuildAndDistribute:
     jobs:
       - PrepareProject
+            requires:
+                  - CheckoutCode
       - PrepareAndroid:
             requires:
                   - PrepareProject
