@@ -36,8 +36,9 @@ jobs:
     executor: nodeandroiddocker
     steps:
       - run:
-          name: Build setup
+          name: Adding platform
           command: |
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
 
@@ -53,6 +54,8 @@ jobs:
           command: |
             sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
+      - store_artifacts:
+          path: ./dist
 
   DistributeAndroid:
     executor: nodeandroiddocker
@@ -85,7 +88,7 @@ jobs:
 
 workflows:
   version: 2
-  BuildAndDistributeAndroid:
+  BuildAndDistribute:
     jobs:
       - PrepareProject
       - PrepareAndroid:
