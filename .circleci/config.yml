@@ -15,9 +15,6 @@ jobs:
       - run:
           name: Install npm modules
           command: |
-            mkdir ../workspace
-            NPM_CONFIG_PREFIX=~/workspace/npmglobal
-            node -v
             sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
             npm i --no-progress;
             tns usage-reporting disable && tns error-reporting disable;
@@ -34,29 +31,27 @@ jobs:
             echo $ANDROID_KEY_BASE64 | base64 -d > ./key.jks;
             echo $PLAY_STORE_JWT > ./jwt.json;
             rm -rf platforms;
+
+  PrepareAndroid:
+    executor: nodeandroiddocker
+    steps:
+      - run:
+          name: Build setup
+          command: |
             tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
-            ls ../workspace
 
-      - persist_to_workspace:
-            root: ../workspace
-            paths:
-                - npmglobal
 
   BuildReleaseAndroid:
     executor: nodeandroiddocker
     steps:
-      - attach_workspace:
-          at: ../workspace
-
       - run:
           name: Build signed app
           environment:
             ANDROID_KEY_BASE64: ""
             PLAY_STORE_JWT: ""
-            NPM_CONFIG_PREFIX: "~/workspace/npmglobal"
           command: |
-            find ~/workspace/npmglobal/
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
 
   DistributeAndroid:
@@ -65,6 +60,7 @@ jobs:
       - run:
           name: Publish apk to firebase app distribution
           command: |
+            sudo npm i -g firebase-tools --ignore-scripts --unsafe-perm --no-progress;
             export GIT_COMMIT_MESSAGE="$(git log --format=%B -n 1 $CIRCLE_SHA1)"
             echo ${APP_DIST_ANDROID_GROUP}|base64;
             echo $GIT_COMMIT_MESSAGE;
@@ -74,8 +70,9 @@ jobs:
     executor: nodeandroiddocker
     steps:
       - run:
-          name: Build signed app
+          name: Build signed iOS app
           command: |
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             tns build ios
 
 #      - run:
@@ -91,9 +88,12 @@ workflows:
   BuildAndDistributeAndroid:
     jobs:
       - PrepareProject
-      - BuildReleaseAndroid:
+      - PrepareAndroid:
             requires:
                   - PrepareProject
+      - BuildReleaseAndroid:
+            requires:
+                  - PrepareAndroid
       - DistributeAndroid:
             requires:
                   - BuildReleaseAndroid
