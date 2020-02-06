@@ -8,7 +8,7 @@ executors:
 
 fast-checkout: &fast-checkout
   attach_workspace:
-    at: /root
+    at: ~/
 
 jobs:
   CheckoutCode:
@@ -17,7 +17,7 @@ jobs:
         - checkout
         - run: rm -rf .git
         - persist_to_workspace:
-            root: /root
+            root: ~/
             paths:
                 - ~/NativescriptAppBuild
 
