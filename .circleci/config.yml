@@ -36,6 +36,7 @@ jobs:
             rm -rf platforms;
             tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
+            ls ../workspace
 
       - persist_to_workspace:
             root: ../workspace
