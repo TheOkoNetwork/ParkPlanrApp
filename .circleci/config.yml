@@ -58,6 +58,11 @@ jobs:
             tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
 
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
+
 
   BuildReleaseAndroid:
     executor: nodeandroiddocker
