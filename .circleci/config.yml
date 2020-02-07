@@ -159,26 +159,26 @@ workflows:
       - PrepareProject:
             requires:
                   - CheckoutCode
-#      - PrepareAndroid:
-#            requires:
-#                  - PrepareProject
-#      - BuildReleaseAndroid:
-#            requires:
-#                  - PrepareAndroid
-#      - DistributeAndroid:
-#            requires:
-#                  - BuildReleaseAndroid
-
-      - PrepareiOS:
+      - PrepareAndroid:
             requires:
                   - PrepareProject
-      - BuildReleaseiOS:
+      - BuildReleaseAndroid:
             requires:
-                  - PrepareiOS
+                  - PrepareAndroid
+      - DistributeAndroid:
+            requires:
+                  - BuildReleaseAndroid
+
+#      - PrepareiOS:
+#            requires:
+#                  - PrepareProject
+#      - BuildReleaseiOS:
+#            requires:
+#                  - PrepareiOS
 
       - Completed:
             requires:
-#                  - DistributeAndroid
+                  - DistributeAndroid
                   - BuildReleaseiOS
 
 #          filters:
