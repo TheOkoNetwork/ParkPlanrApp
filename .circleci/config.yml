@@ -34,7 +34,7 @@ jobs:
             tns usage-reporting disable && tns error-reporting disable;
 
       - run:
-          name: Update version in manifest
+          name: Update android manifest and iOS Info.plist versions
           command: |
             node ./scripts/update-version.js
 
@@ -143,6 +143,14 @@ jobs:
       - store_artifacts:
           path: ./dist
 
+  Completed:
+    executor: nodeandroiddocker
+    steps:
+      - run:
+          name: Completed
+          command: |
+            echo "Build completed"
+
 workflows:
   version: 2
   BuildAndDistribute:
@@ -167,6 +175,11 @@ workflows:
       - BuildReleaseiOS:
             requires:
                   - PrepareiOS
+
+      - Completed:
+            requires:
+                  - DistributeAndroid
+                  - BuildReleaseiOS
 
 #          filters:
 #            branches:
