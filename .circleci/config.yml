@@ -175,7 +175,7 @@ workflows:
       - Completed:
             requires:
                   - DistributeAndroid
-                 - BuildReleaseiOS
+                  - BuildReleaseiOS
 
 #          filters:
 #            branches:
