@@ -165,17 +165,17 @@ workflows:
             requires:
                   - BuildReleaseAndroid
 
-      - PrepareiOS:
-            requires:
-                  - PrepareProject
-      - BuildReleaseiOS:
-            requires:
-                  - PrepareiOS
+#      - PrepareiOS:
+#            requires:
+#                  - PrepareProject
+#      - BuildReleaseiOS:
+#            requires:
+#                  - PrepareiOS
 
       - Completed:
             requires:
                   - DistributeAndroid
-                  - BuildReleaseiOS
+#                  - BuildReleaseiOS
 
 #          filters:
 #            branches:
