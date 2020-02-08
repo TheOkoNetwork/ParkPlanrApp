@@ -135,11 +135,6 @@ jobs:
             tns accept eula 
             tns cloud build ios --accountId ${NATIVESCRIPT_CLOUD_ACCOUNT_ID} --certificate iOSCert.p12 --certificatePassword ${IOS_CERTIFICATE_PASSWORD} --provision ProvisioningProfile.mobileprovision
 
-#      - run:
-#          name: Publish app to internal track on Google Play
-#          command: |
-#            node ./scripts/upload-package.js
-
       - store_artifacts:
           path: ./dist
 
