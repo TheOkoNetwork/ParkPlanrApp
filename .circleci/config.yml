@@ -134,9 +134,10 @@ jobs:
             tns dev-login ${NATIVESCRIPT_CLOUD_USERNAME} ${NATIVESCRIPT_CLOUD_PASSWORD}
             tns accept eula 
             tns cloud build ios --accountId ${NATIVESCRIPT_CLOUD_ACCOUNT_ID} --certificate iOSCert.p12 --certificatePassword ${IOS_CERTIFICATE_PASSWORD} --provision ProvisioningProfile.mobileprovision
+            find .cloud
 
       - store_artifacts:
-          path: ./dist
+          path: .cloud
 
   Completed:
     executor: nodeandroiddocker
@@ -164,17 +165,17 @@ workflows:
             requires:
                   - BuildReleaseAndroid
 
-#      - PrepareiOS:
-#            requires:
-#                  - PrepareProject
-#      - BuildReleaseiOS:
-#            requires:
-#                  - PrepareiOS
+      - PrepareiOS:
+            requires:
+                  - PrepareProject
+      - BuildReleaseiOS:
+            requires:
+                  - PrepareiOS
 
       - Completed:
             requires:
                   - DistributeAndroid
-#                 - BuildReleaseiOS
+                 - BuildReleaseiOS
 
 #          filters:
 #            branches:
