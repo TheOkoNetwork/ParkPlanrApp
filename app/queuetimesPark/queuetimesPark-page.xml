@@ -30,11 +30,11 @@
 	          class="list-group" id="listView" row="2">
 	    <ListView.itemTemplate>
 	        <!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
-		<GridLayout rows="*" columns="*,*,*,*" verticalAlignment="middle" class="list-group-item" tap="ParkSelected" ParkId="{{id}}">
-			<Image row="0" column="0" colSpan="1" src="{{Logo || '~/images/logo_name.png' }}" visibility="{{ HasLogo ? 'visible' : 'collapsed' }}" />
-	        	<Label row="0" column="1" colSpan="2" text="{{Name}}" textWrap="true" class="title" />
-	        	<Label row="0" column="3" colSpan="1" text="&#xf05e; closed" textWrap="true" class="fa" visibility="{{ Open ? 'collapsed' : 'visible' }}" style="font-size: 25" />
-	        	<Label row="0" column="3" colSpan="1" text="{{QueueTime}}" textWrap="true" visibility="{{ Open ? 'visible' : 'collapsed' }}" style="font-size: 50" />
+		<GridLayout rows="*" columns="*,*,*,*" verticalAlignment="middle" class="list-group-item">
+			<Image row="0" column="0" colSpan="1" src="{{logo || '~/images/logo_name.png' }}" visibility="{{ hasLogo ? 'visible' : 'collapsed' }}" />
+	        	<Label row="0" column="1" colSpan="2" text="{{name}}" textWrap="true" class="title" />
+	        	<Label row="0" column="3" colSpan="1" text="&#xf05e; closed" textWrap="true" class="fa" visibility="{{ open ? 'collapsed' : 'visible' }}" style="font-size: 25" />
+	        	<Label row="0" column="3" colSpan="1" text="{{queueTime}}" textWrap="true" visibility="{{ open ? 'visible' : 'collapsed' }}" style="font-size: 50" />
 			
 	        </GridLayout>
 	    </ListView.itemTemplate>

@@ -25,8 +25,8 @@
 
  <FlexboxLayout class="page">
         <StackLayout class="form">
-            <Image class="logo" src="~/images/logo_name.png" />
-            <GridLayout rows="auto,auto,auto,auto,auto,auto">
+            <Image height="100" class="logo" src="~/images/logo_name.png" />
+            <GridLayout rows="auto,auto,auto,auto,auto">
                 <StackLayout row="0" class="input-field">
                     <TextField class="input" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none" returnKeyType="next" id="Email" />
                     <Label class="hr-light" />
@@ -42,11 +42,7 @@
                 <StackLayout row="3" class="input-field">
                        <Button text="&#xf082; &nbsp;Sign in with facebook" class="fa-brands btn btn-facebook" tap="SignInFacebook" />
                 </StackLayout>
-                <StackLayout row="4" class="input-field">
-                       <Button text="&#xf1a0; &nbsp;Sign in with Google" class="fa-brands btn btn-google" tap="SignInGoogle" />
-                </StackLayout>
             </GridLayout>
-
 
             <Label visibility="visible" text="Forgot your password?" class="login-label" route="forgotpassword/forgotpassword-page" tap="pageJump" />
 
