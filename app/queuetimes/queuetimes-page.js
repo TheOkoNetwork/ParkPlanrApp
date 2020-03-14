@@ -1,5 +1,5 @@
 const app = require('tns-core-modules/application')
-const Observable = require('tns-core-modules/data/observable').Observable
+// const Observable = require('tns-core-modules/data/observable').Observable
 
 const QueuetimesViewModel = require('./queuetimes-view-model')
 const fromObject = require('tns-core-modules/data/observable').fromObject
@@ -10,6 +10,7 @@ firebaseApp.initializeApp()
 var FeedbackPlugin = require('nativescript-feedback')
 var feedback = new FeedbackPlugin.Feedback()
 var color = require('color')
+const frameModule = require('tns-core-modules/ui/frame')
 
 function onNavigatingTo (args) {
   const page = args.object
@@ -18,6 +19,7 @@ function onNavigatingTo (args) {
   firebaseApp.firestore().collection('parks').where('active', '==', true).where('queuetimes', '==', true).orderBy('name', 'asc').get().then(querySnapshot => {
     if (!querySnapshot.docs.length) {
       console.log('Empty')
+
       frameModule.topmost().navigate({
         moduleName: 'home/home-page',
         transition: {
@@ -34,10 +36,10 @@ function onNavigatingTo (args) {
       }, 125)
     } else {
       console.log('Not empty')
-      parks = []
+      var parks = []
       querySnapshot.forEach(doc => {
         console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
-        park = doc.data()
+        var park = doc.data()
         park.id = doc.id
         parks.push(park)
       })
@@ -45,8 +47,8 @@ function onNavigatingTo (args) {
       console.log(parks)
       const vm = fromObject({
         parks: parks
-		    	})
-		    	page.bindingContext = vm
+      })
+      page.bindingContext = vm
     };
   }).catch(function (error) {
     console.log('Error fetching parks with queue times enabled')
@@ -69,8 +71,8 @@ function onNavigatingTo (args) {
 }
 
 function onLoaded (args) {
-  frameModule = require('tns-core-modules/ui/frame')
-  page = frameModule.topmost().currentPage
+  // frameModule = require('tns-core-modules/ui/frame')
+  // page = frameModule.topmost().currentPage
 };
 
 function onDrawerButtonTap (args) {
@@ -79,7 +81,7 @@ function onDrawerButtonTap (args) {
 }
 
 function parkSelected (args) {
-  parkId = args.view.parkId
+  var parkId = args.view.parkId
   console.log(`Park: ${parkId} Selected`)
 
   frameModule.topmost().navigate({
@@ -95,7 +97,7 @@ function parkSelected (args) {
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
 exports.pageJump = require('../shared/pageJump')
-AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
