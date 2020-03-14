@@ -5,13 +5,13 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>en</string>
 		<key>CFBundleDisplayName</key>
-		<string>${PRODUCT_NAME}</string>
+		<string>ParkPlanr</string>
 		<key>CFBundleExecutable</key>
 		<string>${EXECUTABLE_NAME}</string>
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>${PRODUCT_NAME}</string>
+		<string>ParkPlanr</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -54,6 +54,7 @@
     <key>CFBundleURLSchemes</key>
     <array>
       <string>uk.org.okonetwork.parkplanr</string>
+      <string>fb147598405909139</string>
     </array>
   </dict>
 </array>
