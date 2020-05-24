@@ -62,6 +62,8 @@ jobs:
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
             echo $ANDROID_KEY_BASE64 | base64 -d > ./key.jks;
             echo $PLAY_STORE_JWT > ./jwt.json;
+            /usr/local/openjdk-8/bin/keytool -list -v -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|grep "Certificate fingerprints" -A 3
+            /usr/local/openjdk-8/bin/keytool -exportcert -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|openssl sha1 -binary | openssl base64
 
       - persist_to_workspace:
           root: ~/

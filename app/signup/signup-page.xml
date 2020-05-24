@@ -26,22 +26,29 @@
  <FlexboxLayout class="page">
         <StackLayout class="form">
             <Image height="100" class="logo" src="~/images/logo_name.png" />
-            <GridLayout rows="auto, auto,auto,auto">
+            <GridLayout rows="auto, auto, auto,auto,auto">
                 <StackLayout row="0" class="input-field">
                     <TextField class="input" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none" returnKeyType="next" id="Email" />
                     <Label class="hr-light" />
                 </StackLayout>
 
                 <StackLayout row="1" class="input-field">
-                    <TextField id="password" class="input" hint="Password" secure="true" returnKeyType="done" id="Password" />
-                    <Label class="hr-light" />
+                  <TextField id="password" class="input" hint="Password" secure="true" returnKeyType="done" id="Password" />
+                  <Label class="hr-light" />
                 </StackLayout>
-		<StackLayout row="2" class="input-field">
-	            <Button text="Sign up" tap="SignUpEmail" class="btn btn-primary m-t-20" />
+
+                <StackLayout row="2" class="input-field">
+	                <Button text="Sign up" tap="SignUpEmail" class="btn btn-primary m-t-20" />
                 </StackLayout>
-		<StackLayout row="3" class="input-field">
-                       <Button text="&#xf082; &nbsp;Sign up with facebook" class="fa-brands btn btn-facebook" tap="SignUpFacebook" />
+
+                <StackLayout row="3" class="input-field">
+                  <Button text="&#xf082; &nbsp;Sign up with facebook" class="fa-brands btn btn-facebook" tap="SignUpFacebook" />
                 </StackLayout>
+
+              <StackLayout row="4" class="input-field">
+                <Button text="&#xf1a0; &nbsp;Sign in with google" class="fa-brands btn btn-google" tap="SignInGoogle" />
+              </StackLayout>
+
             </GridLayout>
             <Label visibility="visible" text="By signing up you agree to the terms of use" textWrap="true" class="login-label" slug="terms" tap="cmsPage" />
 
