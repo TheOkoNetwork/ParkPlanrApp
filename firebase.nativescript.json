@@ -13,7 +13,7 @@
     "storage": true,
     "functions": true,
     "facebook_auth": true,
-    "google_auth": false,
+    "google_auth": true,
     "admob": false,
     "dynamic_links": false,
     "ml_kit": false
