@@ -20,7 +20,7 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="" id="PageTitle"></Label>
+        <Label class="action-bar-title" text="" id="PageTitle" textWrap="true"></Label>
     </ActionBar>
 
         <StackLayout class="page">

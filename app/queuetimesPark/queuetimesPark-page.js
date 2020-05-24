@@ -22,7 +22,28 @@ function onNavigatingTo (args) {
   firebaseApp.firestore().collection('parks').doc(parkId).get().then(function (parkSnapshot) {
     console.log('Park data')
     console.log(parkSnapshot.data())
-    page.getViewById('PageTitle').text = parkSnapshot.data().Name
+    page.getViewById('pageTitle').text = parkSnapshot.data().name
+    if (!parkSnapshot.data().open) {
+      frameModule.topmost().navigate({
+        moduleName: 'queuetimes/queuetimes-page',
+        transition: {
+          name: 'fade'
+        }
+      })
+      if (parkSnapshot.data().closedMessage) {
+        parkClosedMessage=parkSnapshot.data().closedMessage;
+      } else {
+        parkClosedMessage="This attraction is currently closed";
+      };
+      setTimeout(function () {
+        feedback.error({
+          title: `${parkSnapshot.data().name} is closed`,
+          message: parkClosedMessage,
+          titleColor: new color.Color('black')
+        })
+      }, 125)
+      return
+    };
 
     console.log('Fetching ride data')
     firebaseApp.firestore().collection('parks').doc(parkId).collection('rides').where('queueTimes', '==', true).orderBy('name', 'asc').onSnapshot((snapshot) => {
@@ -33,11 +54,15 @@ function onNavigatingTo (args) {
 	                                console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
 	                                ride = doc.data()
 	                                ride.id = doc.id
-        if (ride.Logo) {
+        if (ride.logo) {
           ride.hasLogo = true
         } else {
           ride.hasLogo = false
         };
+        if (!ride.closedReason) {
+          ride.closedReason="&#xf05e; closed";
+        };
+
 	                                rides.push(ride)
 	                        })
 

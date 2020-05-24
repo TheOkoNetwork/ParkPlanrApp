@@ -15,7 +15,7 @@ function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new MapsViewModel()
 
-  firebaseApp.firestore().collection('Parks').where('Active', '==', true).where('Maps', '==', true).orderBy('Name', 'asc').get().then(querySnapshot => {
+  firebaseApp.firestore().collection('parks').where('active', '==', true).where('maps', '==', true).orderBy('name', 'asc').get().then(querySnapshot => {
     if (!querySnapshot.docs.length) {
       console.log('Empty')
       frameModule.topmost().navigate({
@@ -34,17 +34,17 @@ function onNavigatingTo (args) {
       }, 125)
     } else {
       console.log('Not empty')
-      Parks = []
+      parks = []
       querySnapshot.forEach(doc => {
         console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
-        Park = doc.data()
-        Park.id = doc.id
-        Parks.push(Park)
+        park = doc.data()
+        park.id = doc.id
+        parks.push(park)
       })
 
-      console.log(Parks)
+      console.log(parks)
       const vm = fromObject({
-        Parks: Parks
+        parks: parks
 		    	})
 		    	page.bindingContext = vm
     };
@@ -78,9 +78,9 @@ function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
-function ParkSelected (args) {
-  ParkId = args.view.ParkId
-  console.log(`Park: ${ParkId} Selected`)
+function parkSelected (args) {
+  parkId = args.view.parkId
+  console.log(`Park: ${parkId} Selected`)
 
   frameModule.topmost().navigate({
     moduleName: 'mapsPark/mapsPark-page',
@@ -88,7 +88,7 @@ function ParkSelected (args) {
       name: 'fade'
     },
     context: {
-      ParkId: ParkId
+      parkId: parkId
     }
   })
 };
@@ -99,4 +99,4 @@ AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
-exports.ParkSelected = ParkSelected
+exports.parkSelected = parkSelected

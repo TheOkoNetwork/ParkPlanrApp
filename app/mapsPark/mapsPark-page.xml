@@ -19,10 +19,10 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="{{ParkName}}"></Label>
+        <Label class="action-bar-title" text="{{parkName}}" textWrap="true"></Label>
     </ActionBar>
 
   <FlexboxLayout flexDirection="column">
-    <pdf:PDFView flexGrow="1" src="{{MapUrl}}" load="{{ onLoad }}" />
+    <pdf:PDFView flexGrow="1" src="{{mapUrl}}" load="{{ onLoad }}" />
   </FlexboxLayout>
 </Page>

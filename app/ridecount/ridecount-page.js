@@ -18,39 +18,39 @@ function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new RidecountViewModel()
 
-  UserId = page.bindingContext.user.uid
-  TripDataPromises = [
-	        firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').orderBy('Date', 'desc').get(),
-	        firebaseApp.firestore().collection('Parks').get()
+  userId = page.bindingContext.user.uid
+  tripDataPromises = [
+	        firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').orderBy('date', 'desc').get(),
+	        firebaseApp.firestore().collection('parks').where("active","==",true).get()
   ]
-  Promise.all(TripDataPromises).then(PromiseResults => {
-    Parks = {}
-    Trips = []
-    PromiseResults.forEach(function (PromiseResult) {
-      PromiseResult.forEach(function (Doc) {
-        ParentCollection = Doc.ref.path.split('/')[0]
-        switch (ParentCollection) {
-          case 'Parks':
-            Parks[Doc.id] = Doc.data()
-            Parks[Doc.id].id = Doc.id
+  Promise.all(tripDataPromises).then(promiseResults => {
+    parks = {}
+    trips = []
+    promiseResults.forEach(function (promiseResult) {
+      promiseResult.forEach(function (doc) {
+        parentCollection = doc.ref.path.split('/')[0]
+        switch (parentCollection) {
+          case 'parks':
+            parks[doc.id] = doc.data()
+            parks[doc.id].id = doc.id
             break
-          case 'Users':
-            Trip = Doc.data()
-            Trip.HumanDate = moment(Doc.data().Date).format('dddd DD/MM/YYYY')
-            Trip.id = Doc.id
-            Trips.push(Trip)
+          case 'users':
+            trip = doc.data()
+            trip.humanDate = moment(doc.data().date).format('dddd DD/MM/YYYY')
+            trip.id = doc.id
+            trips.push(trip)
             break
           default:
-            console.log(`Unknown parent collection: ${ParentCollection}`)
+            console.log(`Unknown parent collection: ${parentCollection}`)
         };
       })
     })
-    Trips.forEach(function (Trip, TripIndex) {
-      Trips[TripIndex].Park = Parks[Trip.Park]
+    trips.forEach(function (trip, tripIndex) {
+      trips[tripIndex].park = parks[trip.park]
     })
-    console.log(Trips)
+    console.log(trips)
     const vm = fromObject({
-      Trips: Trips
+      trips: trips
     })
     page.bindingContext = vm
   }).catch(function (error) {
@@ -74,25 +74,25 @@ function onNavigatingTo (args) {
 }
 
 function onTripSelect (args) {
-  TripId = args.view.TripId
-  ParkId = args.view.ParkId
-  console.log(`Switching to trip: ${TripId} park: ${ParkId}`)
+  tripId = args.view.tripId
+  parkId = args.view.parkId
+  console.log(`Switching to trip: ${tripId} park: ${parkId}`)
   frameModule.topmost().navigate({
     moduleName: 'ridecountCount/ridecountCount-page',
     transition: {
       name: 'fade'
     },
     context: {
-      TripId: TripId,
-      ParkId: ParkId
+      tripId: tripId,
+      parkId: parkId
     }
   })
 };
 
 function onTripLongSelect (args) {
-  TripId = args.view.TripId
-  ParkId = args.view.ParkId
-  console.log(`Switching to delete confirm for trip: ${TripId} park: ${ParkId}`)
+  tripId = args.view.tripId
+  parkId = args.view.parkId
+  console.log(`Switching to delete confirm for trip: ${tripId} park: ${parkId}`)
 
   frameModule.topmost().navigate({
     moduleName: 'ridecountDelete/ridecountDelete-page',
@@ -100,8 +100,8 @@ function onTripLongSelect (args) {
       name: 'fade'
     },
     context: {
-      TripId: TripId,
-      ParkId: ParkId
+      tripId: tripId,
+      parkId: parkId
     }
   })
 };
