@@ -18,58 +18,58 @@ function onNavigatingTo (args) {
   page = args.object
   page.bindingContext = new RidecountDeleteViewModel()
 
-  TripId = page.navigationContext.TripId
-  ParkId = page.navigationContext.ParkId
-  UserId = page.bindingContext.user.uid
+  tripId = page.navigationContext.tripId
+  parkId = page.navigationContext.parkId
+  userId = page.bindingContext.user.uid
 
-  console.log(`Loading ridecount delete confirmation for trip: ${TripId} to: ${ParkId} for user: ${UserId}`)
+  console.log(`Loading ridecount delete confirmation for trip: ${tripId} to: ${parkId} for user: ${userId}`)
 
-  GetPromises = [
-    firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').doc(TripId).get(),
-    firebaseApp.firestore().collection('Parks').doc(ParkId).get()
+  getPromises = [
+    firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').doc(tripId).get(),
+    firebaseApp.firestore().collection('parks').doc(parkId).get()
   ]
 
-  Promise.all(GetPromises).then(function (PromiseResults) {
-    PageContext = {
+  Promise.all(getPromises).then(function (promiseResults) {
+    pageContext = {
       user: page.bindingContext.user,
-      ParkId: ParkId
+      parkId: parkId
     }
-    PromiseResults.forEach(function (PromiseResult) {
-      if (PromiseResult.id) {
+    promiseResults.forEach(function (promiseResult) {
+      if (promiseResult.id) {
         console.log('Document')
-        switch (PromiseResult.ref.path.split('/')[0]) {
-          case 'Users':
+        switch (promiseResult.ref.path.split('/')[0]) {
+          case 'users':
             console.log('Trip doc')
-            Trip = PromiseResult.data()
-            Trip.Id = PromiseResult.id
-            Trip.DateHuman = moment().format('dddd DD/MM/YYYY')
-            PageContext.Trip = Trip
+            trip = promiseResult.data()
+            trip.id = promiseResult.id
+            trip.dateHuman = moment(trip.date).format('dddd DD/MM/YYYY')
+            pageContext.trip = trip
             break
-          case 'Parks':
+          case 'parks':
             console.log('Park doc')
-            Park = PromiseResult.data()
-            Park.Id = PromiseResult.id
-            PageContext.Park = Park
+            park = promiseResult.data()
+            park.id = promiseResult.id
+            pageContext.park = park
             break
           default:
             console.log('Unknown first fragment')
-            console.log(PromiseResult.ref.path)
+            console.log(promiseResult.ref.path)
         };
       } else {
         console.log('Collection')
-        PromiseResult.forEach(function (Doc) {
-          console.log(Doc)
-          switch (Doc.ref.path.split('/')[0]) {
+        promiseResult.forEach(function (doc) {
+          console.log(doc)
+          switch (doc.ref.path.split('/')[0]) {
             default:
               console.log('Unknown first fragment')
-              console.log(Doc.ref.path)
+              console.log(doc.ref.path)
           };
         })
       };
     })
-    PageContext.PageTitle = `Deleting trip\n${PageContext.Park.Name}\n${PageContext.Trip.DateHuman}`
-    console.log(PageContext)
-    const vm = fromObject(PageContext)
+    pageContext.pageTitle = `Deleting trip\n${pageContext.park.name}\n${pageContext.trip.dateHuman}`
+    console.log(pageContext)
+    const vm = fromObject(pageContext)
     page.bindingContext = vm
   }).catch(function (error) {
     console.log('Ride count get error')
@@ -101,7 +101,7 @@ function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
-function ReturnToRidecount () {
+function returnToRidecount () {
   console.log('Cancelling, returning to ride count')
   var frame = require('ui/frame')
   frameModule.topmost().navigate({
@@ -111,21 +111,21 @@ function ReturnToRidecount () {
                 	name: 'fade'
     },
     context: {
-                	TripId: TripId,
-        	        ParkId: ParkId
+                	tripId: tripId,
+        	        parkId: parkId
 	        }
   })
 }
-function DeleteRidecount () {
+function deleteRidecount () {
   var frame = require('ui/frame')
   var page = frame.topmost().currentPage
   Count = page.bindingContext.AddEditCount
-  UserId = page.bindingContext.user.uid
-  ParkId = page.bindingContext.ParkId
-  TripId = page.bindingContext.Trip.Id
+  userId = page.bindingContext.user.uid
+  parkId = page.bindingContext.parkId
+  tripId = page.bindingContext.trip.id
 
-  console.log(`Deleting trip trip: ${TripId} for user: ${UserId}`)
-  firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').doc(TripId).delete().then(function () {
+  console.log(`Deleting trip: ${tripId} for user: ${userId}`)
+  firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').doc(tripId).delete().then(function () {
     console.log('Server confirmed ride count delete')
   }).catch(function (error) {
     console.log('Ride count delete error')
@@ -146,8 +146,8 @@ function DeleteRidecount () {
                 	name: 'fade'
     },
     context: {
-                	TripId: TripId,
-        	        ParkId: ParkId
+                	tripId: tripId,
+        	        parkId: parkId
 	        }
   })
   setTimeout(function () {
@@ -166,5 +166,5 @@ AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
-exports.ReturnToRidecount = ReturnToRidecount
-exports.DeleteRidecount = DeleteRidecount
+exports.returnToRidecount = returnToRidecount
+exports.deleteRidecount = deleteRidecount

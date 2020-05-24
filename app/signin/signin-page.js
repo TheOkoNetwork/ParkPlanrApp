@@ -19,7 +19,6 @@ function onDrawerButtonTap (args) {
 }
 function SignInEmail (args) {
   console.log('Sign in with email called')
-  alert('Sign in with email called')
 
   frameModule = require('tns-core-modules/ui/frame')
   page = frameModule.topmost().currentPage
@@ -48,7 +47,6 @@ function SignInEmail (args) {
     return
   };
   console.log(`Attempting sign in with email: ${Email} and provided password.`)
-  alert(`Attempting sign in with email: ${Email} and provided password.`)
 
   firebase.login({
     type: firebase.LoginType.PASSWORD,
@@ -58,9 +56,6 @@ function SignInEmail (args) {
 	        }
   }).then(function (result) {
     console.log(result)
-    alert(JSON.stringify(result))
-    // TODO: Fix this
-    // loader.hide();
 
     setTimeout(function () {
       frameModule.topmost().navigate({
@@ -88,7 +83,7 @@ function SignInEmail (args) {
     console.log(ErrorMessage)
     console.log(ErrorCode)
 
-    alert(ErrorCode)
+//    alert(ErrorCode)
 
     setTimeout(function () {
       switch (ErrorCode) {

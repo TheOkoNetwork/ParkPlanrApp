@@ -19,7 +19,7 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="Sign in to ParkPlanr"></Label>
+        <Label class="action-bar-title" text="Sign in to ParkPlanr" textWrap="true"></Label>
     </ActionBar>
 
 

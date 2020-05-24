@@ -15,7 +15,7 @@ var color = require('color')
 function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new RidecountNewViewModel()
-  firebaseApp.firestore().collection('Parks').where('Active', '==', true).where('RideCount', '==', true).orderBy('Name', 'asc').get().then(querySnapshot => {
+  firebaseApp.firestore().collection('parks').where('active', '==', true).where('ridecount', '==', true).orderBy('name', 'asc').get().then(querySnapshot => {
     if (!querySnapshot.docs.length) {
       console.log('Empty')
       frameModule.topmost().navigate({
@@ -27,27 +27,27 @@ function onNavigatingTo (args) {
 
       setTimeout(function () {
         feedback.error({
-          title: 'Unable to load parks',
+          title: 'Unable to load parks(empty)',
           message: 'Please check your internet connection and try again',
           titleColor: new color.Color('black')
         })
       }, 125)
     } else {
       console.log('Not empty')
-      Parks = []
+      parks = []
       querySnapshot.forEach(doc => {
         console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
-			        Parks.push({ id: doc.id, name: doc.data().Name, toString: () => { return doc.data().Name } })
+			        parks.push({ id: doc.id, name: doc.data().name, toString: () => { return doc.data().name } })
       })
 
-      console.log(Parks)
-      const TODAY = new Date()
-      const MINDATE = new Date(1884, 0, 0)
+      console.log(parks)
+      const today = new Date()
+      const minDate = new Date(1884, 0, 0)
       const vm = fromObject({
-        Parks: Parks,
-        Date: TODAY,
-        Today: TODAY,
-        MinDate: MINDATE,
+        parks: parks,
+        date: today,
+        today: today,
+        minDate: minDate,
         user: page.bindingContext.user
       })
       page.bindingContext = vm
@@ -81,31 +81,23 @@ function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
-function CreateTrip () {
+function createTrip () {
   page = frameModule.topmost().currentPage
 
-  UserId = page.bindingContext.user.uid
-  Trip = {}
-  Trip.Park = page.bindingContext.Parks[page.getViewById('Park').selectedIndex].id
-  Trip.Date = page.bindingContext.Date
-  console.log(`Creating trip to ${Trip.Park} for user: ${UserId} on date ${Trip.Date}`)
+  userId = page.bindingContext.user.uid
+  trip = {}
+  trip.park = page.bindingContext.parks[page.getViewById('park').selectedIndex].id
+  trip.date = page.bindingContext.date
+  console.log(`Creating trip to ${trip.park} for user: ${userId} on date ${trip.date}`)
 
-  const options = {
-    message: 'Starting trip',
-    details: 'Just a sec',
-    margin: 10,
-    dimBackground: true,
-    color: '#4B9ED6',
-    hideBezel: true
-  }
 
   console.log(firebaseApp.Timestamp)
-  firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').add({
-    Park: Trip.Park,
-    Date: Trip.Date,
-    TotalRides: 0
-  }).then(function (TripDocRef) {
-    console.log('Trip created with ID: ', TripDocRef.id)
+  firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').add({
+    park: trip.park,
+    date: trip.date,
+    totalRides: 0
+  }).then(function (tripDocRef) {
+    console.log('Trip created with ID: ', tripDocRef.id)
 
     frameModule.topmost().navigate({
 	                moduleName: 'ridecountCount/ridecountCount-page',
@@ -113,7 +105,8 @@ function CreateTrip () {
 	                        name: 'fade'
 	                },
 	                context: {
-	                        TripId: TripDocRef.id
+	                        tripId: tripDocRef.id,
+	                        parkId: trip.park
 	                }
 	        })
   }).catch(function (error) {
@@ -136,4 +129,4 @@ AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
-exports.CreateTrip = CreateTrip
+exports.createTrip = createTrip

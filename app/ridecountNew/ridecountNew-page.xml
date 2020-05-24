@@ -20,12 +20,12 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="New trip"></Label>
+        <Label class="action-bar-title" text="New trip" textWrap="true"></Label>
     </ActionBar>
 
     <FlexboxLayout class="page-content" width="100%" height="100%" flexDirection="column">
-	<ListPicker items="{{Parks}}" selectedIndex="{{ParkIndex}}" class="p-15 picker" id="Park" />
-	<DatePicker loaded="onDatePickerLoaded" date="{{Date}}" minDate="{{MinDate}}" maxDate="{{Today}}"></DatePicker>
-        <Button text="&#xf067; &nbsp;Start trip" class="fa btn btn-primary" tap="CreateTrip"/>	
+	<ListPicker items="{{parks}}" selectedIndex="{{parkIndex}}" class="p-15 picker" id="park" />
+	<DatePicker loaded="onDatePickerLoaded" date="{{date}}" minDate="{{minDate}}" maxDate="{{today}}"></DatePicker>
+        <Button text="&#xf067; &nbsp;Start trip" class="fa btn btn-primary" tap="createTrip"/>	
     </FlexboxLayout>
 </Page>

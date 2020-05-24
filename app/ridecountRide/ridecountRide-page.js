@@ -18,76 +18,76 @@ function onNavigatingTo (args) {
   page = args.object
   page.bindingContext = new RidecountRideViewModel()
 
-  TripId = page.navigationContext.TripId
-  ParkId = page.navigationContext.ParkId
-  RideId = page.navigationContext.RideId
-  UserId = page.bindingContext.user.uid
+  tripId = page.navigationContext.tripId
+  parkId = page.navigationContext.parkId
+  rideId = page.navigationContext.rideId
+  userId = page.bindingContext.user.uid
 
-  console.log(`Loading ridecount ride add/edit for ride: ${RideId} in trip: ${TripId} to: ${ParkId} for user: ${UserId}`)
+  console.log(`Loading ridecount ride add/edit for ride: ${rideId} in trip: ${tripId} to: ${parkId} for user: ${userId}`)
 
-  GetPromises = [
-    firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').doc(TripId).get(),
-    firebaseApp.firestore().collection('Parks').doc(ParkId).collection('Rides').doc(RideId).get(),
-    firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').doc(TripId).collection('Rides').where('Ride', '==', RideId).get()
+  getPromises = [
+    firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').doc(tripId).get(),
+    firebaseApp.firestore().collection('parks').doc(parkId).collection('rides').doc(rideId).get(),
+    firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').doc(tripId).collection('rides').where('ride', '==', rideId).get()
   ]
 
-  Promise.all(GetPromises).then(function (PromiseResults) {
-    PageContext = {
-      Count: 0,
-      Counts: [],
-      AddEditCount: 1,
+  Promise.all(getPromises).then(function (promiseResults) {
+    pageContext = {
+      count: 0,
+      counts: [],
+      addEditCount: 1,
       user: page.bindingContext.user,
-      ParkId: ParkId
+      parkId: parkId
     }
-    PromiseResults.forEach(function (PromiseResult) {
-      if (PromiseResult.id) {
+    promiseResults.forEach(function (promiseResult) {
+      if (promiseResult.id) {
         console.log('Document')
-        switch (PromiseResult.ref.path.split('/')[0]) {
-          case 'Parks':
+        switch (promiseResult.ref.path.split('/')[0]) {
+          case 'parks':
             console.log('Ride doc')
-            Ride = PromiseResult.data()
-            Ride.Id = PromiseResult.id
-            if (Ride.Logo) {
-              Ride.HasLogo = true
+            ride = promiseResult.data()
+            ride.id = promiseResult.id
+            if (ride.logo) {
+              ride.hasLogo = true
             } else {
-              Ride.HasLogo = false
+              ride.hasLogo = false
             };
-            PageContext.Ride = Ride
+            pageContext.ride = ride
             break
-          case 'Users':
+          case 'users':
             console.log('Trip doc')
-            Trip = PromiseResult.data()
-            Trip.Id = PromiseResult.id
-            Trip.DateHuman = moment().format('dddd DD/MM/YYYY')
-            PageContext.Trip = Trip
+            trip = promiseResult.data()
+            trip.id = promiseResult.id
+            trip.dateHuman = moment(trip.date).format('dddd DD/MM/YYYY')
+            pageContext.trip = trip
             break
           default:
             console.log('Unknown first fragment')
-            console.log(PromiseResult.ref.path)
+            console.log(promiseResult.ref.path)
         };
       } else {
         console.log('Collection')
-        PromiseResult.forEach(function (Doc) {
-          console.log(Doc)
-          switch (Doc.ref.path.split('/')[0]) {
-            case 'Users':
+        promiseResult.forEach(function (doc) {
+          console.log(doc)
+          switch (doc.ref.path.split('/')[0]) {
+            case 'users':
               console.log('Ride count count doc')
-              PageContext.Count = PageContext.Count + Doc.data().Count
-              CountDoc = Doc.data()
-              CountDoc.Id = Doc.id
-              CountDoc.TimeHuman = moment(Doc.data().Time).format('HH:mm:ss')
-              PageContext.Counts.push(CountDoc)
+              pageContext.count = pageContext.count + doc.data().count
+              countDoc = doc.data()
+              countDoc.id = doc.id
+              countDoc.timeHuman = moment(doc.data().time).format('HH:mm:ss')
+              pageContext.counts.push(countDoc)
               break
             default:
               console.log('Unknown first fragment')
-              console.log(Doc.ref.path)
+              console.log(doc.ref.path)
           };
         })
       };
     })
-    PageContext.PageTitle = `${PageContext.Ride.Name}\n${PageContext.Trip.DateHuman}`
-    console.log(PageContext)
-    const vm = fromObject(PageContext)
+    pageContext.pageTitle = `${pageContext.ride.name}\n${pageContext.trip.dateHuman}`
+    console.log(pageContext)
+    const vm = fromObject(pageContext)
     page.bindingContext = vm
   }).catch(function (error) {
     console.log('Ride count get error')
@@ -103,7 +103,7 @@ function onNavigatingTo (args) {
     setTimeout(function () {
       feedback.error({
         title: 'Unable to load ride count',
-        message: 'Please check your internet connection and try again',
+        message: `Please check your internet connection and try again(${JSON.stringify(error)})`,
         titleColor: new color.Color('black')
       })
     }, 125)
@@ -119,31 +119,31 @@ function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
-function AddEditCountAdd () {
+function addEditCountAdd () {
   var frame = require('ui/frame')
   var page = frame.topmost().currentPage
-  page.bindingContext.AddEditCount++
+  page.bindingContext.addEditCount++
 };
-function AddEditCountSubtract () {
+function addEditCountSubtract () {
   var frame = require('ui/frame')
   var page = frame.topmost().currentPage
-  Count = page.bindingContext.AddEditCount
-  Count--
-  page.bindingContext.AddEditCount = Math.max(1, Count)
+  count = page.bindingContext.addEditCount
+  count--
+  page.bindingContext.addEditCount = Math.max(1, count)
 };
-function AddEditCountSave () {
+function addEditCountSave () {
   var frame = require('ui/frame')
   var page = frame.topmost().currentPage
-  Count = page.bindingContext.AddEditCount
-  UserId = page.bindingContext.user.uid
-  RideId = page.bindingContext.Ride.Id
-  ParkId = page.bindingContext.ParkId
-  TripId = page.bindingContext.Trip.Id
-  console.log(`Adding ${Count} rides on ride: ${RideId} for trip: ${TripId} to: ${ParkId} for user: ${UserId}`)
-  firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').doc(TripId).collection('Rides').doc().set({
-    Ride: RideId,
-    Count: Count,
-    Time: moment().toDate()
+  count = page.bindingContext.addEditCount
+  userId = page.bindingContext.user.uid
+  rideId = page.bindingContext.ride.id
+  parkId = page.bindingContext.parkId
+  tripId = page.bindingContext.trip.id
+  console.log(`Adding ${count} rides on ride: ${rideId} for trip: ${tripId} to: ${parkId} for user: ${userId}`)
+  firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').doc(tripId).collection('rides').doc().set({
+    ride: rideId,
+    count: count,
+    time: moment().toDate()
   }).then(function () {
     console.log('Server confirmed ride count write')
   }).catch(function (error) {
@@ -158,7 +158,7 @@ function AddEditCountSave () {
     }, 130)
   })
   console.log('Assuming write succeeded')
-  console.log(`Switching to trip: ${TripId} park: ${ParkId}`)
+  console.log(`Switching to trip: ${tripId} park: ${parkId}`)
   frameModule.topmost().navigate({
     moduleName: 'ridecountCount/ridecountCount-page',
     backstackVisible: false,
@@ -166,8 +166,8 @@ function AddEditCountSave () {
                 	name: 'fade'
     },
     context: {
-                	TripId: TripId,
-        	        ParkId: ParkId
+                	tripId: tripId,
+        	        parkId: parkId
 	        }
   })
   setTimeout(function () {
@@ -179,18 +179,18 @@ function AddEditCountSave () {
   }, 125)
 };
 
-function DeleteTripCount (args) {
+function deleteTripCount (args) {
   var frame = require('ui/frame')
   var page = frame.topmost().currentPage
-  UserId = page.bindingContext.user.uid
-  TripId = page.bindingContext.Trip.Id
-  RideId = page.bindingContext.Ride.Id
-  ParkId = page.bindingContext.ParkId
+  userId = page.bindingContext.user.uid
+  tripId = page.bindingContext.trip.id
+  rideId = page.bindingContext.ride.id
+  parkId = page.bindingContext.parkId
 
-  CountId = args.object.CountId
-  console.log(`Deleting count: ${CountId}`)
+  countId = args.object.countId
+  console.log(`Deleting count: ${countId}`)
 
-  firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').doc(TripId).collection('Rides').doc(CountId).delete().then(function () {
+  firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').doc(tripId).collection('rides').doc(countId).delete().then(function () {
     console.log('Server confirmed ride count delete')
   }).catch(function (error) {
     console.log('Ride count delete error')
@@ -211,8 +211,8 @@ function DeleteTripCount (args) {
                 	name: 'fade'
     },
     context: {
-                	TripId: TripId,
-        	        ParkId: ParkId
+                	tripId: tripId,
+        	        parkId: parkId
 	        }
   })
   setTimeout(function () {
@@ -231,7 +231,7 @@ AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
-exports.AddEditCountAdd = AddEditCountAdd
-exports.AddEditCountSubtract = AddEditCountSubtract
-exports.AddEditCountSave = AddEditCountSave
-exports.DeleteTripCount = DeleteTripCount
+exports.addEditCountAdd = addEditCountAdd
+exports.addEditCountSubtract = addEditCountSubtract
+exports.addEditCountSave = addEditCountSave
+exports.deleteTripCount = deleteTripCount

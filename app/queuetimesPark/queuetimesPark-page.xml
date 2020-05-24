@@ -20,10 +20,10 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="Loading queue times for park" id="PageTitle"></Label>
+        <Label class="action-bar-title" text="Loading queue times for park" id="pageTitle" textWrap="true"></Label>
     </ActionBar>
 
-	<ListView items="{{Rides}}" 
+	<ListView items="{{rides}}" 
 	          itemTap="onItemTap" 
 	          loaded="{{ onListViewLoaded }}" 
 	          separatorColor="orangered" rowHeight="100"
@@ -33,7 +33,7 @@
 		<GridLayout rows="*" columns="*,*,*,*" verticalAlignment="middle" class="list-group-item">
 			<Image row="0" column="0" colSpan="1" src="{{logo || '~/images/logo_name.png' }}" visibility="{{ hasLogo ? 'visible' : 'collapsed' }}" />
 	        	<Label row="0" column="1" colSpan="2" text="{{name}}" textWrap="true" class="title" />
-	        	<Label row="0" column="3" colSpan="1" text="&#xf05e; closed" textWrap="true" class="fa" visibility="{{ open ? 'collapsed' : 'visible' }}" style="font-size: 25" />
+	        	<Label row="0" column="3" colSpan="1" text="{{closedReason}}" textWrap="true" class="fa" visibility="{{ open ? 'collapsed' : 'visible' }}" style="font-size: 25" />
 	        	<Label row="0" column="3" colSpan="1" text="{{queueTime}}" textWrap="true" visibility="{{ open ? 'visible' : 'collapsed' }}" style="font-size: 50" />
 			
 	        </GridLayout>

@@ -17,20 +17,21 @@ function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new MapsParkViewModel()
 
-  ParkId = page.navigationContext.ParkId
-  console.log(`Loading map for park: ${ParkId}`)
+  parkId = page.navigationContext.parkId
+  console.log(`Loading map for park: ${parkId}`)
 
   console.log('Fetching park data')
-  firebaseApp.firestore().collection('Parks').doc(ParkId).get().then(function (ParkSnapshot) {
-    console.log('Park data')
-    MapUrl = ParkSnapshot.data().Map
+  firebaseApp.firestore().collection('parks').doc(parkId).get().then(function (parkSnapshot) {
+    console.log('park data')
+    mapUrl = parkSnapshot.data().map
     const vm = fromObject({
-      MapUrl: MapUrl,
-      ParkName: ParkSnapshot.data().Name
+      mapUrl: mapUrl,
+      parkName: parkSnapshot.data().name
     })
+    alert(mapUrl)
     page.bindingContext = vm
   }).catch(function (error) {
-    console.log(`Error fetching map for park: ${ParkId}`)
+    console.log(`Error fetching map for park: ${parkId}`)
     console.log(error)
 
     frameModule.topmost().navigate({

@@ -20,7 +20,7 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="{{PageTitle}}" id="PageTitle" textWrap="true"></Label>
+        <Label class="action-bar-title" text="{{pageTitle}}" id="pageTitle" textWrap="true"></Label>
     </ActionBar>
 
        	<GridLayout rows="auto,auto,auto,auto" columns="*,*,*,*">
@@ -28,9 +28,9 @@
 		  <Label text="&#xf071;" style="font-size: 75" class="fa"/>
 		</StackLayout>
 		<StackLayout row="1" column="0" colSpan="4" verticalAlignment="center" horizontalAlignment="center">
-		  <Label text="Are you sure you wish to delete this trip?" style="font-size: 25" />
+		  <Label text="Are you sure you wish to delete this trip?" textWrap="true" style="font-size: 25" />
 		</StackLayout>
-		<Button class="btn btn-primary" row="2" column="0" colSpan="2" text="Cancel" tap="ReturnToRidecount"></Button>
-		<Button row="2" column="2" colSpan="2" text="Delete &#xf2ed;" class="fa btn btn-danger" tap="DeleteRidecount"></Button>
+		<Button class="btn btn-primary" row="2" column="0" colSpan="2" text="Cancel" tap="returnToRidecount"></Button>
+		<Button row="2" column="2" colSpan="2" text="Delete &#xf2ed;" class="fa btn btn-danger" tap="deleteRidecount"></Button>
 	</GridLayout>
 </Page>

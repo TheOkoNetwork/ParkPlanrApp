@@ -19,7 +19,7 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="Sign up to ParkPlanr"></Label>
+        <Label class="action-bar-title" text="Sign up to ParkPlanr" textWrap="true"></Label>
     </ActionBar>
 
 
@@ -43,7 +43,7 @@
                        <Button text="&#xf082; &nbsp;Sign up with facebook" class="fa-brands btn btn-facebook" tap="SignUpFacebook" />
                 </StackLayout>
             </GridLayout>
-            <Label visibility="visible" text="By signing up you agree to the terms of use" class="login-label" slug="terms" tap="cmsPage" />
+            <Label visibility="visible" text="By signing up you agree to the terms of use" textWrap="true" class="login-label" slug="terms" tap="cmsPage" />
 
         </StackLayout>
 

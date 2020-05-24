@@ -18,87 +18,87 @@ function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new RidecountCountViewModel()
 
-  TripId = page.navigationContext.TripId
-  ParkId = page.navigationContext.ParkId
-  UserId = page.bindingContext.user.uid
+  tripId = page.navigationContext.tripId
+  parkId = page.navigationContext.parkId
+  userId = page.bindingContext.user.uid
 
-  console.log(`Loading trip: ${TripId} to: ${ParkId} for user: ${UserId}`)
+  console.log(`Loading trip: ${tripId} to: ${parkId} for user: ${userId}`)
 
-  GetPromises = [
-    firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').doc(TripId).get(),
-    firebaseApp.firestore().collection('Users').doc(UserId).collection('RideCount').doc(TripId).collection('Rides').get(),
-    firebaseApp.firestore().collection('Parks').doc(ParkId).get(),
-    firebaseApp.firestore().collection('Parks').doc(ParkId).collection('Rides').orderBy('Name', 'asc').get()
+  getPromises = [
+    firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').doc(tripId).get(),
+    firebaseApp.firestore().collection('users').doc(userId).collection('ridecount').doc(tripId).collection('rides').get(),
+    firebaseApp.firestore().collection('parks').doc(parkId).get(),
+    firebaseApp.firestore().collection('parks').doc(parkId).collection('rides').orderBy('name', 'asc').get()
   ]
 
-  Promise.all(GetPromises).then(function (PromiseResults) {
-    RideCounts = {}
-    PageContext = {
-      Rides: []
+  Promise.all(getPromises).then(function (promiseResults) {
+    rideCounts = {}
+    pageContext = {
+      rides: []
     }
-    PromiseResults.forEach(function (PromiseResult) {
-      if (PromiseResult.id) {
+    promiseResults.forEach(function (promiseResult) {
+      if (promiseResult.id) {
         console.log('Document')
-        switch (PromiseResult.ref.path.split('/')[0]) {
-          case 'Parks':
+        switch (promiseResult.ref.path.split('/')[0]) {
+          case 'parks':
             console.log('Park doc')
-            Park = PromiseResult.data()
-            Park.Id = PromiseResult.id
-            PageContext.Park = Park
+            park = promiseResult.data()
+            park.id = promiseResult.id
+            pageContext.park = park
             break
-          case 'Users':
+          case 'users':
             console.log('Trip doc')
-            Trip = PromiseResult.data()
-            Trip.Id = PromiseResult.id
-            Trip.DateHuman = moment().format('dddd DD/MM/YYYY')
-            PageContext.Trip = Trip
+            trip = promiseResult.data()
+            trip.id = promiseResult.id
+            trip.dateHuman = moment(trip.date).format('dddd DD/MM/YYYY')
+            pageContext.trip = trip
             break
           default:
             console.log('Unknown first fragment')
-            console.log(PromiseResult.ref.path)
+            console.log(promiseResult.ref.path)
         };
       } else {
         console.log('Collection')
-        PromiseResult.forEach(function (Doc) {
-          switch (Doc.ref.path.split('/')[0]) {
-            case 'Parks':
+        promiseResult.forEach(function (doc) {
+          switch (doc.ref.path.split('/')[0]) {
+            case 'parks':
               console.log('Ride doc')
-              Ride = Doc.data()
-              Ride.Id = Doc.id
-              if (Ride.Logo) {
-                                                		Ride.HasLogo = true
-		                                        } else {
-                		                                Ride.HasLogo = false
-                        		                };
-              Ride.Count = 0
-              PageContext.Rides.push(Ride)
-              break
-            case 'Users':
-              console.log('Ride count doc')
-              console.log(Doc.data())
-              RideId = Doc.data().Ride
-              Count = Doc.data().Count
-              if (RideCounts[RideId]) {
-                RideCounts[RideId] = RideCounts[RideId] + Count
+              ride = doc.data()
+              ride.id = doc.id
+              if (ride.logo) {
+                ride.hasLogo = true
               } else {
-                RideCounts[RideId] = Count
+                ride.hasLogo = false
+              };
+              ride.count = 0
+              pageContext.rides.push(ride)
+              break
+            case 'users':
+              console.log('Ride count doc')
+              console.log(doc.data())
+              rideId = doc.data().ride
+              count = doc.data().count
+              if (rideCounts[rideId]) {
+                rideCounts[rideId] = rideCounts[rideId] + count
+              } else {
+                rideCounts[rideId] = count
               };
               break
             default:
               console.log('Unknown first fragment')
-              console.log(Doc.ref.path)
+              console.log(doc.ref.path)
           };
         })
       };
     })
-    PageContext.Rides.forEach(function (Ride, Index) {
-      if (RideCounts[Ride.Id]) {
-        PageContext.Rides[Index].Count = RideCounts[Ride.Id]
+    pageContext.rides.forEach(function (ride, index) {
+      if (rideCounts[ride.id]) {
+        pageContext.rides[index].count = rideCounts[ride.id]
       };
     })
-    PageContext.PageTitle = `${PageContext.Park.Name}\n${PageContext.Trip.DateHuman}`
-    console.log(PageContext)
-    const vm = fromObject(PageContext)
+    pageContext.pageTitle = `${pageContext.park.name} ${pageContext.trip.dateHuman}`
+    console.log(pageContext)
+    const vm = fromObject(pageContext)
     page.bindingContext = vm
   }).catch(function (error) {
     console.log('Ride count get error')
@@ -113,7 +113,7 @@ function onNavigatingTo (args) {
     setTimeout(function () {
       feedback.error({
         title: 'Unable to load ride count',
-        message: 'Please check your internet connection and try again',
+        message: `Please check your internet connection and try again ${JSON.stringify(error)}`,
         titleColor: new color.Color('black')
       })
     }, 125)
@@ -129,11 +129,11 @@ function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
-function RideSelected (args) {
-  TripId = args.view.TripId
-  RideId = args.view.RideId
-  ParkId = args.view.ParkId
-  console.log(`Switching to ride count add/edit/delete for ride: ${RideId} on trip: ${TripId} to park: ${ParkId}`)
+function rideSelected (args) {
+  tripId = args.view.tripId
+  rideId = args.view.rideId
+  parkId = args.view.parkId
+  console.log(`Switching to ride count add/edit/delete for ride: ${rideId} on trip: ${tripId} to park: ${parkId}`)
   frameModule.topmost().navigate({
     moduleName: 'ridecountRide/ridecountRide-page',
     backstackVisible: false,
@@ -141,9 +141,9 @@ function RideSelected (args) {
       name: 'fade'
     },
     context: {
-      TripId: TripId,
-      ParkId: ParkId,
-      RideId: RideId
+      tripId: tripId,
+      parkId: parkId,
+      rideId: rideId
     }
   })
 };
@@ -154,4 +154,4 @@ AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
-exports.RideSelected = RideSelected
+exports.rideSelected = rideSelected
