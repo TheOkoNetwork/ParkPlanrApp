@@ -60,15 +60,9 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
                     <StackLayout class="hr-light"></StackLayout>
 
                     <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'About' ? ' selected': '') }}"
-                        route="about/about-page" title="About" tap="onNavigationItemTap">
+                        route="about/about-page" title="aAbout" tap="onNavigationItemTap">
                         <Label row="0" col="0" text="&#xf128;" class="fa" />
                         <Label row="0" col="1" text="About" class="p-r-10" />
-                    </GridLayout>
-
-                    <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Debug' ? ' selected': '') }}"
-                        route="debug/debug-page" title="Debug" tap="onNavigationItemTap">
-                        <Label row="0" col="0" text="&#xf128;" class="fa" />
-                        <Label row="0" col="1" text="Debug" class="p-r-10" />
                     </GridLayout>
 
                     <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Signout' ? ' selected': '') }}"
