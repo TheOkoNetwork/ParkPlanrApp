@@ -10,8 +10,8 @@ function appSyncRun() {
                     enabledWhenUsingHmr: false,
                     deploymentKey: platform.isIOS ? global.appSynciOSKey : global.appSyncAndroidKey,
                     installMode: InstallMode.ON_NEXT_RESTART,
-//                    mandatoryInstallMode: platform.isIOS ? InstallMode.ON_NEXT_RESUME : InstallMode.IMMEDIATE,
-                    mandatoryInstallMode: InstallMode.ON_NEXT_RESUME,
+                    mandatoryInstallMode: platform.isIOS ? InstallMode.ON_NEXT_RESUME : InstallMode.IMMEDIATE,
+//                    mandatoryInstallMode: InstallMode.ON_NEXT_RESUME,
                     updateDialog: {
                       optionalUpdateMessage: "An update is available",
                       updateTitle: "Please restart the app",
