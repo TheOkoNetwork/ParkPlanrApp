@@ -163,5 +163,5 @@ exports.onDrawerButtonTap = onDrawerButtonTap
 exports.SignUpEmail = SignUpEmail
 exports.pageJump = require('../shared/pageJump')
 exports.cmsPage = require('../shared/cmsPage')
-exports.SignUpGoogle = require('../shared/GoogleSignin')
-exports.SignUpFacebook = require('../shared/FacebookSignin')
+exports.SignInGoogle = require('../shared/GoogleSignin')
+exports.SignInFacebook = require('../shared/FacebookSignin')
