@@ -1,0 +1,114 @@
+<Page
+    navigatingTo="onNavigatingTo"  
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!-- 
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!-- 
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu" 
+            android:visibility="collapsed" 
+            tap="onDrawerButtonTap"
+            ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="Debug"></Label>
+    </ActionBar>
+
+  <GridLayout class="page-content">
+    <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" width="100%" height="100%" backgroundColor="white">
+            <Image row="0" column="0" height="100" class="logo" src="~/images/logo_name.png" SLUG="ABitOfEverything" tap="cmsPage" />
+
+      <Label row="1" column="0" colSpan="2" visibility="{{ user ? 'visible' : 'collapsed' }}">
+          <FormattedString>
+              <Span text="UID: "></Span>
+              <Span text="{{user.uid}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="2" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="Version name: "></Span>
+              <Span text="{{versionName}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="3" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="Version number: "></Span>
+              <Span text="{{versionCode}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="4" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="Deployment ID: "></Span>
+              <Span text="{{DeploymentID}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="5" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="App ID: "></Span>
+              <Span text="{{AppID}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="6" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="Manufacturer: "></Span>
+              <Span text="{{platform.device.manufacturer}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="7" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="Device type: "></Span>
+              <Span text="{{platform.device.deviceType}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="8" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="Device model: "></Span>
+              <Span text="{{platform.device.model}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="9" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="OS: "></Span>
+              <Span text="{{platform.device.os}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="10" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="OS version: "></Span>
+              <Span text="{{platform.device.osVersion}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="11" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="SDK version: "></Span>
+              <Span text="{{platform.device.sdkVersion}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="12" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="FCM last submitted timestamp: "></Span>
+              <Span text="{{lastSubmittedTimestamp}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="13" column="0" colSpan="2">
+          <FormattedString>
+              <Span text="FCM last submitted type: "></Span>
+              <Span text="{{lastSubmittedType}}"></Span>
+          </FormattedString>
+      </Label>
+      <Label row="14" column="0" colSpan="2" textWrap="true">
+          <FormattedString>
+              <Span text="FCM token: "></Span>
+              <Span text="{{FCMToken}}"></Span>
+          </FormattedString>
+      </Label>
+    </GridLayout>
+  </GridLayout>
+</Page>

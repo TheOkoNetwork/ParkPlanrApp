@@ -118,7 +118,7 @@ jobs:
           command: |
             sudo npm i -g nativescript-app-sync-cli
             echo $nativescriptAppSyncKey | base64 -d > ~/.nativescript-app-sync.config;
-            ./scripts/publishAppSync.sh
+            nativescript-app-sync release "ParkPlanr Android" android --mandatory
 
   PrepareiOS:
     executor: nodeandroiddocker
