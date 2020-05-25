@@ -22,7 +22,7 @@
     </ActionBar>
 
 	<GridLayout class="page-content">
-		<GridLayout rows="auto,auto,auto,auto,auto" width="100%" height="100%" backgroundColor="white">
+		<GridLayout rows="auto,auto,auto,auto,auto,auto" width="100%" height="100%" backgroundColor="white">
 		        <Image row="0" column="0" height="100" class="logo" src="~/images/logo_name.png" />
 
 			<Label row="1" column="0" colSpan="2">
@@ -39,17 +39,23 @@
 			</Label>
 			<Label row="3" column="0" colSpan="2">
 			    <FormattedString>
+			        <Span text="Deployment number:"></Span>
+			        <Span text="{{deploymentNumber}}"></Span>
+			    </FormattedString>
+			</Label>
+			<Label row="4" column="0" colSpan="2">
+			    <FormattedString>
 			        <Span text=""></Span>
 			    </FormattedString>
 			</Label>
-			<HtmlView row="4" html="
+			<HtmlView row="5" html="
 
 <h1>ParkPlanr is the one app you need for theme parks<br />
 <br />
 Have a idea, issue or just want a chat?<br />
 <a href='https://parkplanr.okonetwork.org.uk'>Contact us</a>
 <br />
-ParkPlanr &copy; The Oko Network 2&zwnj;017&zwnj;-2&zwnj;019
+ParkPlanr &copy; The Oko Network 2&zwnj;017&zwnj;-2&zwnj;020
 </h1>
 " editable="false"></HtmlView>
 
