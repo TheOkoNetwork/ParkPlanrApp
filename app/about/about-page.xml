@@ -40,7 +40,7 @@
 			<Label row="3" column="0" colSpan="2">
 			    <FormattedString>
 			        <Span text="Deployment ID:"></Span>
-			        <Span text="{{DeploymentID}}"></Span>
+			        <Span text="{{deploymentID}}"></Span>
 			    </FormattedString>
 			</Label>
 			<Label row="4" column="0" colSpan="2">
