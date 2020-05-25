@@ -18,7 +18,6 @@ function SignInGoogle (args) {
   var color = require('color')
 
   console.log('Attempting sign in with google')
-  alert('Attempting sign in with google')
 
   const options = {
 	  message: 'Signing in with google',
@@ -48,7 +47,6 @@ function SignInGoogle (args) {
   firebase.login({
     type: firebase.LoginType.GOOGLE
   }).then(function (result) {
-    alert("Got google sign in result");
     console.log(result)
 
     setTimeout(function () {

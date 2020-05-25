@@ -15,7 +15,7 @@ jobs:
     executor: nodeandroiddocker
     steps:
         - checkout
-        - run: rm -rf .git
+#       - run: rm -rf .git
         - persist_to_workspace:
             root: ~/
             paths:
