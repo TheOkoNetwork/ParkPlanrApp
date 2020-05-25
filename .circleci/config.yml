@@ -172,12 +172,12 @@ workflows:
       - PrepareAndroid:
             requires:
                   - PrepareProject
-      - appSyncDistributeAndroid:
-            requires:
-                  - PrepareAndroid
       - BuildReleaseAndroid:
             requires:
                   - PrepareAndroid
+      - appSyncDistributeAndroid:
+            requires:
+                  - BuildReleaseAndroid
       - DistributeAndroid:
             requires:
                   - BuildReleaseAndroid
