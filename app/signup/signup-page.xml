@@ -42,11 +42,11 @@
                 </StackLayout>
 
                 <StackLayout row="3" class="input-field">
-                  <Button text="&#xf082; &nbsp;Sign up with facebook" class="fa-brands btn btn-facebook" tap="SignUpFacebook" />
+                  <Button text="&#xf082; &nbsp;Sign up with facebook" class="fa-brands btn btn-facebook" tap="SignInFacebook" />
                 </StackLayout>
 
               <StackLayout row="4" class="input-field">
-                <Button text="&#xf1a0; &nbsp;Sign in with google" class="fa-brands btn btn-google" tap="SignUpGoogle" />
+                <Button text="&#xf1a0; &nbsp;Sign in with google" class="fa-brands btn btn-google" tap="SignInGoogle" />
               </StackLayout>
 
             </GridLayout>

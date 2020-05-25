@@ -72,9 +72,10 @@ function SignInGoogle (args) {
   }).catch(function (error) {
     console.log('Error signing in with google')
     console.log(error)
-    alert(JSON.stringify(error));
 
     UserErrorMessage = 'Failed signing in with Google'
+    //TODO: Remove me
+    UserErrorMessage = JSON.stringify(error)
 
     setTimeout(function () {
       feedback.error({
