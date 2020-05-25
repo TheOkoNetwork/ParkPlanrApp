@@ -7,9 +7,6 @@ const firebase = require('nativescript-plugin-firebase')
 var FeedbackPlugin = require('nativescript-feedback')
 var feedback = new FeedbackPlugin.Feedback()
 
-const config = require('../shared/config')
-
-
 function SignInGoogle (args) {
   console.log('Sign in with google called')
 
@@ -61,9 +58,9 @@ function SignInGoogle (args) {
 	                })
 
       if (result.displayName) {
-        title = `Welcome ${result.displayName} to ${config('appName')}`
+        title = `Welcome ${result.displayName} to ParkPlanr`
       } else {
-        title = `Welcome to ${config('appName')}`
+        title = `Welcome to ParkPlanr`
       };
       feedback.success({
         title: title,
