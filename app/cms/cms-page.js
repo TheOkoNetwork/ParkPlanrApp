@@ -27,7 +27,7 @@ function onLoaded (args) {
   SelectedPageService.getInstance().updateSelectedPage(slug)
   console.log('Set')
 
-  firebaseApp.firestore().collection('CMSPages').where('SLUG', '==', slug).get().then(querySnapshot => {
+  firebaseApp.firestore().collection('cmsPages').where('slug', '==', slug).get().then(querySnapshot => {
     if (!querySnapshot.docs.length) {
       console.log('Empty')
       frameModule.topmost().navigate({
@@ -46,8 +46,8 @@ function onLoaded (args) {
       console.log('Not empty')
       querySnapshot.forEach(doc => {
         console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
-        page.getViewById('PageContentsHtmlView').html = doc.data().Content
-        page.getViewById('PageTitle').text = doc.data().Title
+        page.getViewById('PageContentsHtmlView').html = doc.data().content
+        page.getViewById('PageTitle').text = doc.data().title
       })
     };
   }).catch(function (error) {
