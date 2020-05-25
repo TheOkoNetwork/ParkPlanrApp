@@ -21,12 +21,12 @@ function AboutViewModel () {
     viewModel.versionCode = versionCode
   })
 
-    appsyncCurrentPackageInfo = JSON.parse(appSettings.getString("APPSYNC_CURRENT_PACKAGE", "{}"));
-//  console.log(AppsyncCurrentPackageInfo);
-//  if (AppsyncCurrentPackageInfo.label) {
-//    console.log(`Deployment version: ${AppsyncCurrentPackageInfo.label}`);
-//    viewModel.DeploymentID = AppsyncCurrentPackageInfo.label;
-//  }
+  appsyncCurrentPackageInfo = JSON.parse(appSettings.getString("APPSYNC_CURRENT_PACKAGE", "{}"));
+  console.log(appsyncCurrentPackageInfo);
+  if (appsyncCurrentPackageInfo.label) {
+    console.log(`Deployment version: ${appsyncCurrentPackageInfo.label}`);
+    viewModel.deploymentID = appsyncCurrentPackageInfo.label;
+  }
 
   return viewModel
 }
