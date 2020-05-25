@@ -21,7 +21,7 @@ function AboutViewModel () {
     viewModel.versionCode = versionCode
   })
 
-//  appsyncCurrentPackageInfo = JSON.parse(appSettings.getString("APPSYNC_CURRENT_PACKAGE", "{}"));
+    appsyncCurrentPackageInfo = JSON.parse(appSettings.getString("APPSYNC_CURRENT_PACKAGE", "{}"));
 //  console.log(AppsyncCurrentPackageInfo);
 //  if (AppsyncCurrentPackageInfo.label) {
 //    console.log(`Deployment version: ${AppsyncCurrentPackageInfo.label}`);
