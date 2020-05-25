@@ -25,11 +25,8 @@ function appSyncRun() {
                         console.log(updateLabel);
                     if (syncStatus === SyncStatus.UP_TO_DATE) {
                       console.log(`AppSync: no pending updates; you're running the latest version, which is: ${updateLabel}`);
-                      //alert(`AppSync: no pending updates; you're running the latest version, which is: ${updateLabel}`);
-                      alert(global.appSyncAndroidKey);
                     } else if (syncStatus === SyncStatus.UPDATE_INSTALLED) {
                       console.log(`AppSync: update (${updateLabel}) installed - it will be activated upon next cold boot`);
-                      alert(`AppSync: update (${updateLabel}) installed - it will be activated upon next cold boot`);
                     }
                 });
         } else {

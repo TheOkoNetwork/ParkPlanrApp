@@ -108,6 +108,16 @@ jobs:
             firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups ${APP_DIST_ANDROID_GROUP} --token ${FIREBASE_TOOLS_TOKEN}
 
 
+  appSyncDistributeAndroid:
+    executor: nodeandroiddocker
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Publish update to app sync
+          command: |
+            ./scripts/publishAppSync.sh
+
   PrepareiOS:
     executor: nodeandroiddocker
     steps:
@@ -160,6 +170,9 @@ workflows:
       - PrepareAndroid:
             requires:
                   - PrepareProject
+      - appSyncDistributeAndroid:
+            requires:
+                  - PrepareAndroid
       - BuildReleaseAndroid:
             requires:
                   - PrepareAndroid
@@ -177,6 +190,7 @@ workflows:
       - Completed:
             requires:
                   - DistributeAndroid
+                  - appSyncDistributeAndroid
 #                  - BuildReleaseiOS
 
 #          filters:
