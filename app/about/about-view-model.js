@@ -8,7 +8,8 @@ function AboutViewModel () {
 
   const viewModel = observableModule.fromObject({
     versionName: '',
-    versionCode: ''
+    versionCode: '',
+    deploymentID: 'App'
   })
 
   appversion.getVersionName().then(function (versionName) {
@@ -20,12 +21,13 @@ function AboutViewModel () {
     viewModel.versionCode = versionCode
   })
 
-  appsyncCurrentPackageInfo = JSON.parse(appSettings.getString("APPSYNC_CURRENT_PACKAGE", "{}"));
-  console.log(AppsyncCurrentPackageInfo);
-  if (AppsyncCurrentPackageInfo.label) {
-    console.log(`Deployment version: ${AppsyncCurrentPackageInfo.label}`);
-    viewModel.DeploymentID = AppsyncCurrentPackageInfo.label;
-  }
+//  appsyncCurrentPackageInfo = JSON.parse(appSettings.getString("APPSYNC_CURRENT_PACKAGE", "{}"));
+//  console.log(AppsyncCurrentPackageInfo);
+//  if (AppsyncCurrentPackageInfo.label) {
+//    console.log(`Deployment version: ${AppsyncCurrentPackageInfo.label}`);
+//    viewModel.DeploymentID = AppsyncCurrentPackageInfo.label;
+//  }
+
   return viewModel
 }
 
