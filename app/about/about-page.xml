@@ -39,8 +39,8 @@
 			</Label>
 			<Label row="3" column="0" colSpan="2">
 			    <FormattedString>
-			        <Span text="Deployment number:"></Span>
-			        <Span text="{{deploymentNumber}}"></Span>
+			        <Span text="Deployment ID:"></Span>
+			        <Span text="{{DeploymentID}}"></Span>
 			    </FormattedString>
 			</Label>
 			<Label row="4" column="0" colSpan="2">
