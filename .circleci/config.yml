@@ -116,6 +116,7 @@ jobs:
       - run:
           name: Publish update to app sync
           command: |
+            sudo npm i -g nativescript-app-sync-cli
             echo $nativescriptAppSyncKey | base64 -d > ~/.nativescript-app-sync.config;
             ./scripts/publishAppSync.sh
 
