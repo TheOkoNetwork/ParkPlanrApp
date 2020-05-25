@@ -46,7 +46,7 @@
                 </StackLayout>
 
               <StackLayout row="4" class="input-field">
-                <Button text="&#xf1a0; &nbsp;Sign in with google" class="fa-brands btn btn-google" tap="SignInGoogle" />
+                <Button text="&#xf1a0; &nbsp;Sign in with google" class="fa-brands btn btn-google" tap="SignUpGoogle" />
               </StackLayout>
 
             </GridLayout>

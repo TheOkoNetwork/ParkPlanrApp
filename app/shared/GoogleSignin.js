@@ -10,14 +10,15 @@ var feedback = new FeedbackPlugin.Feedback()
 function SignInGoogle (args) {
   console.log('Sign in with google called')
 
-  frameModule = require('tns-core-modules/ui/frame')
-  page = frameModule.topmost().currentPage
+  var frameModule = require('tns-core-modules/ui/frame')
+  var page = frameModule.topmost().currentPage
 
   var FeedbackPlugin = require('nativescript-feedback')
   var feedback = new FeedbackPlugin.Feedback()
   var color = require('color')
 
   console.log('Attempting sign in with google')
+  alert('Attempting sign in with google')
 
   const options = {
 	  message: 'Signing in with google',
@@ -47,6 +48,7 @@ function SignInGoogle (args) {
   firebase.login({
     type: firebase.LoginType.GOOGLE
   }).then(function (result) {
+    alert("Got google sign in result");
     console.log(result)
 
     setTimeout(function () {
@@ -70,8 +72,10 @@ function SignInGoogle (args) {
   }).catch(function (error) {
     console.log('Error signing in with google')
     console.log(error)
+    alert(JSON.stringify(error));
 
     UserErrorMessage = 'Failed signing in with Google'
+
     setTimeout(function () {
       feedback.error({
         title: UserErrorMessage,
