@@ -32,6 +32,7 @@ global.appSyncKeys={
   }
 };
 global.appSyncInit=false;
+global.DebugMode=true;
 
 application.run({ moduleName: "app-root/app-root" });
 

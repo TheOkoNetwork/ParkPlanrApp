@@ -27,7 +27,7 @@ function onLoaded (args) {
   SelectedPageService.getInstance().updateSelectedPage(slug)
   console.log('Set')
 
-  firebaseApp.firestore().collection('Pages').where('Slug', '==', slug).get().then(querySnapshot => {
+  firebaseApp.firestore().collection('CMSPages').where('SLUG', '==', slug).get().then(querySnapshot => {
     if (!querySnapshot.docs.length) {
       console.log('Empty')
       frameModule.topmost().navigate({
