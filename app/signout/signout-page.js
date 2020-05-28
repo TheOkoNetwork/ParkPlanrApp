@@ -1,7 +1,6 @@
 const app = require('tns-core-modules/application')
 
 const SignoutViewModel = require('./signout-view-model')
-const fromObject = require('tns-core-modules/data/observable').fromObject
 
 const firebase = require('nativescript-plugin-firebase')
 const frameModule = require('tns-core-modules/ui/frame')
@@ -23,11 +22,11 @@ function SignOut (args) {
     AuthenticatedPageState()
     setTimeout(function () {
       frameModule.topmost().navigate({
-		        moduleName: 'home/home-page',
-		        transition: {
-		            name: 'fade'
-		        }
-		    })
+        moduleName: 'home/home-page',
+        transition: {
+          name: 'fade'
+        }
+      })
     })
   }, 250)
 }
@@ -36,6 +35,6 @@ exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
 exports.SignOut = SignOut
 exports.pageJump = require('../shared/pageJump')
-AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
