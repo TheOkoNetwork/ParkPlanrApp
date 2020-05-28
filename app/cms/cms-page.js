@@ -1,7 +1,6 @@
 const app = require('tns-core-modules/application')
 
 const CmsViewModel = require('./cms-view-model')
-const fromObject = require('tns-core-modules/data/observable').fromObject
 const SelectedPageService = require('../shared/selected-page-service')
 
 const firebaseApp = require('nativescript-plugin-firebase/app')
@@ -10,7 +9,7 @@ firebaseApp.initializeApp()
 var FeedbackPlugin = require('nativescript-feedback')
 var feedback = new FeedbackPlugin.Feedback()
 
-frameModule = require('tns-core-modules/ui/frame')
+const frameModule = require('tns-core-modules/ui/frame')
 var color = require('color')
 
 function onNavigatingTo (args) {
@@ -21,13 +20,13 @@ function onNavigatingTo (args) {
 function onLoaded (args) {
   const page = args.object
   console.log('Fetching cms page')
-  slug = page.navigationContext.slug
+  var slug = page.navigationContext.slug
 
   console.log(`Setting selected page service to: ${slug}`)
   SelectedPageService.getInstance().updateSelectedPage(slug)
   console.log('Set')
 
-  firebaseApp.firestore().collection('cmsPages').where('slug', '==', slug).where('public','==',true).get().then(querySnapshot => {
+  firebaseApp.firestore().collection('cmsPages').where('slug', '==', slug).where('public', '==', true).get().then(querySnapshot => {
     if (!querySnapshot.docs.length) {
       console.log('Empty')
       frameModule.topmost().navigate({
