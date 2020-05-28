@@ -1,7 +1,7 @@
 const observableModule = require('tns-core-modules/data/observable')
 const SelectedPageService = require('../shared/selected-page-service')
 const appversion = require('nativescript-appversion')
-const appSettings = require("tns-core-modules/application-settings");
+const appSettings = require('tns-core-modules/application-settings')
 
 function AboutViewModel () {
   SelectedPageService.getInstance().updateSelectedPage('About')
@@ -9,7 +9,7 @@ function AboutViewModel () {
   const viewModel = observableModule.fromObject({
     versionName: '',
     versionCode: '',
-    deploymentID: 'App'
+    deploymentID: 'Store'
   })
 
   appversion.getVersionName().then(function (versionName) {
@@ -21,11 +21,11 @@ function AboutViewModel () {
     viewModel.versionCode = versionCode
   })
 
-  appsyncCurrentPackageInfo = JSON.parse(appSettings.getString("APPSYNC_CURRENT_PACKAGE", "{}"));
-  console.log(appsyncCurrentPackageInfo);
+  var appsyncCurrentPackageInfo = JSON.parse(appSettings.getString('APPSYNC_CURRENT_PACKAGE', '{}'))
+  console.log(appsyncCurrentPackageInfo)
   if (appsyncCurrentPackageInfo.label) {
-    console.log(`Deployment version: ${appsyncCurrentPackageInfo.label}`);
-    viewModel.deploymentID = appsyncCurrentPackageInfo.label;
+    console.log(`Deployment version: ${appsyncCurrentPackageInfo.label}`)
+    viewModel.deploymentID = appsyncCurrentPackageInfo.label
   }
 
   return viewModel
