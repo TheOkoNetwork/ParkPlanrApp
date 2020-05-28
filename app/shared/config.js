@@ -1,12 +1,12 @@
 const configStore = {
-  appName: "*ParkPlanr*"
+  appName: '*ParkPlanr*'
 }
 
 function config (key) {
   if (configStore[key]) {
-    return configStore[key];
+    return configStore[key]
   } else {
-    return false;
+    return false
   };
 };
 
