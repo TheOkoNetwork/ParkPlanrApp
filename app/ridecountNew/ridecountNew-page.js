@@ -2,6 +2,7 @@ const app = require('tns-core-modules/application')
 
 const RidecountNewViewModel = require('./ridecountNew-view-model')
 const fromObject = require('tns-core-modules/data/observable').fromObject
+const frameModule = require('tns-core-modules/ui/frame')
 
 const firebaseApp = require('nativescript-plugin-firebase/app')
 firebaseApp.initializeApp()
@@ -9,7 +10,6 @@ firebaseApp.initializeApp()
 var FeedbackPlugin = require('nativescript-feedback')
 var feedback = new FeedbackPlugin.Feedback()
 
-frameModule = require('tns-core-modules/ui/frame')
 var color = require('color')
 
 function onNavigatingTo (args) {
@@ -42,7 +42,7 @@ function onNavigatingTo (args) {
         }, 125)
       } else {
         console.log('Not empty')
-        parks = []
+        var parks = []
         querySnapshot.forEach((doc) => {
           console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
           parks.push({
@@ -98,10 +98,10 @@ function onDrawerButtonTap (args) {
 }
 
 function createTrip () {
-  page = frameModule.topmost().currentPage
+  var page = frameModule.topmost().currentPage
 
-  userId = page.bindingContext.user.uid
-  trip = {}
+  var userId = page.bindingContext.user.uid
+  var trip = {}
   trip.park =
         page.bindingContext.parks[page.getViewById('park').selectedIndex].id
   trip.date = page.bindingContext.date
@@ -151,7 +151,7 @@ function createTrip () {
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
 exports.pageJump = require('../shared/pageJump')
-AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
