@@ -1,4 +1,5 @@
 const app = require('tns-core-modules/application')
+const frameModule = require('tns-core-modules/ui/frame')
 
 const RidecountViewModel = require('./ridecount-view-model')
 const fromObject = require('tns-core-modules/data/observable').fromObject
@@ -9,7 +10,6 @@ firebaseApp.initializeApp()
 var FeedbackPlugin = require('nativescript-feedback')
 var feedback = new FeedbackPlugin.Feedback()
 
-frameModule = require('tns-core-modules/ui/frame')
 var color = require('color')
 
 const moment = require('moment')
@@ -18,8 +18,8 @@ function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new RidecountViewModel()
 
-  userId = page.bindingContext.user.uid
-  tripDataPromises = [
+  const userId = page.bindingContext.user.uid
+  var tripDataPromises = [
     firebaseApp
       .firestore()
       .collection('users')
@@ -35,18 +35,18 @@ function onNavigatingTo (args) {
   ]
   Promise.all(tripDataPromises)
     .then((promiseResults) => {
-      parks = {}
-      trips = []
+      var parks = {}
+      var trips = []
       promiseResults.forEach(function (promiseResult) {
         promiseResult.forEach(function (doc) {
-          parentCollection = doc.ref.path.split('/')[0]
+          var parentCollection = doc.ref.path.split('/')[0]
           switch (parentCollection) {
             case 'parks':
               parks[doc.id] = doc.data()
               parks[doc.id].id = doc.id
               break
             case 'users':
-              trip = doc.data()
+              var trip = doc.data()
               trip.humanDate = moment(doc.data().date).format(
                 'dddd DD/MM/YYYY'
               )
@@ -91,8 +91,8 @@ function onNavigatingTo (args) {
 }
 
 function onTripSelect (args) {
-  tripId = args.view.tripId
-  parkId = args.view.parkId
+  var tripId = args.view.tripId
+  var parkId = args.view.parkId
   console.log(`Switching to trip: ${tripId} park: ${parkId}`)
   frameModule.topmost().navigate({
     moduleName: 'ridecountCount/ridecountCount-page',
@@ -107,8 +107,8 @@ function onTripSelect (args) {
 }
 
 function onTripLongSelect (args) {
-  tripId = args.view.tripId
-  parkId = args.view.parkId
+  var tripId = args.view.tripId
+  var parkId = args.view.parkId
   console.log(
         `Switching to delete confirm for trip: ${tripId} park: ${parkId}`
   )
@@ -137,7 +137,7 @@ function onDrawerButtonTap (args) {
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
 exports.pageJump = require('../shared/pageJump')
-AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
