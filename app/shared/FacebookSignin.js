@@ -29,9 +29,9 @@ function SignInFacebook (args) {
 
         var successMessageTitle
         if (result.displayName) {
-          successMessageTitle = `Welcome ${result.displayName} to ${config(
-                        'appName'
-                    )}`
+          successMessageTitle = `Welcome ${
+                        result.displayName
+                    } to ${config('appName')}`
         } else {
           successMessageTitle = `Welcome to ${config('appName')}`
         }
