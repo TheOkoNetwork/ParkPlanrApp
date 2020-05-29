@@ -37,9 +37,9 @@ jobs:
             prettier --write "app/*/*.js" "app/*.js"
 
       - run:
-          name: Standard js style check
+          name: Standard js style check on app js files
           command: |
-            standard app/*/*.js app/*.js
+            standard --fix app/*/*.js app/*.js
 
       - persist_to_workspace:
           root: ~/
