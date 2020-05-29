@@ -2,6 +2,7 @@ const app = require('tns-core-modules/application')
 
 const RidecountCountViewModel = require('./ridecountCount-view-model')
 const fromObject = require('tns-core-modules/data/observable').fromObject
+const frameModule = require('tns-core-modules/ui/frame')
 
 const firebaseApp = require('nativescript-plugin-firebase/app')
 firebaseApp.initializeApp()
@@ -9,7 +10,6 @@ firebaseApp.initializeApp()
 var FeedbackPlugin = require('nativescript-feedback')
 var feedback = new FeedbackPlugin.Feedback()
 
-frameModule = require('tns-core-modules/ui/frame')
 var color = require('color')
 
 const moment = require('moment')
@@ -18,13 +18,13 @@ function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new RidecountCountViewModel()
 
-  tripId = page.navigationContext.tripId
-  parkId = page.navigationContext.parkId
-  userId = page.bindingContext.user.uid
+  const tripId = page.navigationContext.tripId
+  const parkId = page.navigationContext.parkId
+  const userId = page.bindingContext.user.uid
 
   console.log(`Loading trip: ${tripId} to: ${parkId} for user: ${userId}`)
 
-  getPromises = [
+  vargetPromises = [
     firebaseApp
       .firestore()
       .collection('users')
@@ -53,7 +53,7 @@ function onNavigatingTo (args) {
   Promise.all(getPromises)
     .then(function (promiseResults) {
       rideCounts = {}
-      pageContext = {
+      var pageContext = {
         rides: []
       }
       promiseResults.forEach(function (promiseResult) {
@@ -62,13 +62,13 @@ function onNavigatingTo (args) {
           switch (promiseResult.ref.path.split('/')[0]) {
             case 'parks':
               console.log('Park doc')
-              park = promiseResult.data()
+              var park = promiseResult.data()
               park.id = promiseResult.id
               pageContext.park = park
               break
             case 'users':
               console.log('Trip doc')
-              trip = promiseResult.data()
+              var trip = promiseResult.data()
               trip.id = promiseResult.id
               trip.dateHuman = moment(trip.date).format(
                 'dddd DD/MM/YYYY'
@@ -85,7 +85,7 @@ function onNavigatingTo (args) {
             switch (doc.ref.path.split('/')[0]) {
               case 'parks':
                 console.log('Ride doc')
-                ride = doc.data()
+                var ride = doc.data()
                 ride.id = doc.id
                 if (ride.logo) {
                   ride.hasLogo = true
@@ -98,8 +98,8 @@ function onNavigatingTo (args) {
               case 'users':
                 console.log('Ride count doc')
                 console.log(doc.data())
-                rideId = doc.data().ride
-                count = doc.data().count
+                var rideId = doc.data().ride
+                var count = doc.data().count
                 if (rideCounts[rideId]) {
                   rideCounts[rideId] =
                                         rideCounts[rideId] + count
@@ -156,9 +156,9 @@ function onDrawerButtonTap (args) {
 }
 
 function rideSelected (args) {
-  tripId = args.view.tripId
-  rideId = args.view.rideId
-  parkId = args.view.parkId
+  const tripId = args.view.tripId
+  const rideId = args.view.rideId
+  const parkId = args.view.parkId
   console.log(
         `Switching to ride count add/edit/delete for ride: ${rideId} on trip: ${tripId} to park: ${parkId}`
   )
@@ -178,7 +178,7 @@ function rideSelected (args) {
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
 exports.pageJump = require('../shared/pageJump')
-AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
