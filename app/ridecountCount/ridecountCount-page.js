@@ -24,7 +24,7 @@ function onNavigatingTo (args) {
 
   console.log(`Loading trip: ${tripId} to: ${parkId} for user: ${userId}`)
 
-  vargetPromises = [
+  var getPromises = [
     firebaseApp
       .firestore()
       .collection('users')
