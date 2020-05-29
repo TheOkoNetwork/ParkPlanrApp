@@ -1,8 +1,7 @@
 <Page
  xmlns="http://schemas.nativescript.org/tns.xsd"
  xmlns:pdf="nativescript-pdf-view"
- navigatingTo="onNavigatingTo"  
- loaded="pageLoaded">
+ navigatingTo="onNavigatingTo">
 <ActionBar class="action-bar">
         <!-- 
         Use the NavigationButton as a side-drawer button in Android
