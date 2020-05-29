@@ -2,6 +2,7 @@ const app = require('tns-core-modules/application')
 
 const RidecountDeleteViewModel = require('./ridecountDelete-view-model')
 const fromObject = require('tns-core-modules/data/observable').fromObject
+const frameModule = require('tns-core-modules/ui/frame')
 
 const firebaseApp = require('nativescript-plugin-firebase/app')
 firebaseApp.initializeApp()
@@ -9,24 +10,23 @@ firebaseApp.initializeApp()
 var FeedbackPlugin = require('nativescript-feedback')
 var feedback = new FeedbackPlugin.Feedback()
 
-frameModule = require('tns-core-modules/ui/frame')
 var color = require('color')
 
 const moment = require('moment')
 
 function onNavigatingTo (args) {
-  page = args.object
+  var page = args.object
   page.bindingContext = new RidecountDeleteViewModel()
 
-  tripId = page.navigationContext.tripId
-  parkId = page.navigationContext.parkId
-  userId = page.bindingContext.user.uid
+  var tripId = page.navigationContext.tripId
+  var parkId = page.navigationContext.parkId
+  var userId = page.bindingContext.user.uid
 
   console.log(
         `Loading ridecount delete confirmation for trip: ${tripId} to: ${parkId} for user: ${userId}`
   )
 
-  getPromises = [
+  var getPromises = [
     firebaseApp
       .firestore()
       .collection('users')
@@ -39,7 +39,7 @@ function onNavigatingTo (args) {
 
   Promise.all(getPromises)
     .then(function (promiseResults) {
-      pageContext = {
+      var pageContext = {
         user: page.bindingContext.user,
         parkId: parkId
       }
@@ -49,7 +49,7 @@ function onNavigatingTo (args) {
           switch (promiseResult.ref.path.split('/')[0]) {
             case 'users':
               console.log('Trip doc')
-              trip = promiseResult.data()
+              var trip = promiseResult.data()
               trip.id = promiseResult.id
               trip.dateHuman = moment(trip.date).format(
                 'dddd DD/MM/YYYY'
@@ -58,7 +58,7 @@ function onNavigatingTo (args) {
               break
             case 'parks':
               console.log('Park doc')
-              park = promiseResult.data()
+              var park = promiseResult.data()
               park.id = promiseResult.id
               pageContext.park = park
               break
@@ -116,7 +116,13 @@ function onDrawerButtonTap (args) {
 
 function returnToRidecount () {
   console.log('Cancelling, returning to ride count')
+
   var frame = require('ui/frame')
+  var page = frame.topmost().currentPage
+
+  var parkId = page.bindingContext.parkId
+  var tripId = page.bindingContext.trip.id
+
   frameModule.topmost().navigate({
     moduleName: 'ridecount/ridecount-page',
     backstackVisible: false,
@@ -132,10 +138,9 @@ function returnToRidecount () {
 function deleteRidecount () {
   var frame = require('ui/frame')
   var page = frame.topmost().currentPage
-  Count = page.bindingContext.AddEditCount
-  userId = page.bindingContext.user.uid
-  parkId = page.bindingContext.parkId
-  tripId = page.bindingContext.trip.id
+  var userId = page.bindingContext.user.uid
+  var parkId = page.bindingContext.parkId
+  var tripId = page.bindingContext.trip.id
 
   console.log(`Deleting trip: ${tripId} for user: ${userId}`)
   firebaseApp
@@ -184,7 +189,7 @@ function deleteRidecount () {
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
 exports.pageJump = require('../shared/pageJump')
-AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
