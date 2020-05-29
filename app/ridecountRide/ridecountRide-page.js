@@ -2,6 +2,7 @@ const app = require('tns-core-modules/application')
 
 const RidecountRideViewModel = require('./ridecountRide-view-model')
 const fromObject = require('tns-core-modules/data/observable').fromObject
+const frameModule = require('tns-core-modules/ui/frame')
 
 const firebaseApp = require('nativescript-plugin-firebase/app')
 firebaseApp.initializeApp()
@@ -9,25 +10,24 @@ firebaseApp.initializeApp()
 var FeedbackPlugin = require('nativescript-feedback')
 var feedback = new FeedbackPlugin.Feedback()
 
-frameModule = require('tns-core-modules/ui/frame')
 var color = require('color')
 
 const moment = require('moment')
 
 function onNavigatingTo (args) {
-  page = args.object
+  var page = args.object
   page.bindingContext = new RidecountRideViewModel()
 
-  tripId = page.navigationContext.tripId
-  parkId = page.navigationContext.parkId
-  rideId = page.navigationContext.rideId
-  userId = page.bindingContext.user.uid
+  const tripId = page.navigationContext.tripId
+  const parkId = page.navigationContext.parkId
+  const rideId = page.navigationContext.rideId
+  const userId = page.bindingContext.user.uid
 
   console.log(
         `Loading ridecount ride add/edit for ride: ${rideId} in trip: ${tripId} to: ${parkId} for user: ${userId}`
   )
 
-  getPromises = [
+  var getPromises = [
     firebaseApp
       .firestore()
       .collection('users')
@@ -55,7 +55,7 @@ function onNavigatingTo (args) {
 
   Promise.all(getPromises)
     .then(function (promiseResults) {
-      pageContext = {
+      var pageContext = {
         count: 0,
         counts: [],
         addEditCount: 1,
@@ -68,7 +68,7 @@ function onNavigatingTo (args) {
           switch (promiseResult.ref.path.split('/')[0]) {
             case 'parks':
               console.log('Ride doc')
-              ride = promiseResult.data()
+              var ride = promiseResult.data()
               ride.id = promiseResult.id
               if (ride.logo) {
                 ride.hasLogo = true
@@ -79,7 +79,7 @@ function onNavigatingTo (args) {
               break
             case 'users':
               console.log('Trip doc')
-              trip = promiseResult.data()
+              var trip = promiseResult.data()
               trip.id = promiseResult.id
               trip.dateHuman = moment(trip.date).format(
                 'dddd DD/MM/YYYY'
@@ -99,7 +99,7 @@ function onNavigatingTo (args) {
                 console.log('Ride count count doc')
                 pageContext.count =
                                     pageContext.count + doc.data().count
-                countDoc = doc.data()
+                var countDoc = doc.data()
                 countDoc.id = doc.id
                 countDoc.timeHuman = moment(
                   doc.data().time
@@ -158,18 +158,18 @@ function addEditCountAdd () {
 function addEditCountSubtract () {
   var frame = require('ui/frame')
   var page = frame.topmost().currentPage
-  count = page.bindingContext.addEditCount
+  var count = page.bindingContext.addEditCount
   count--
   page.bindingContext.addEditCount = Math.max(1, count)
 }
 function addEditCountSave () {
   var frame = require('ui/frame')
   var page = frame.topmost().currentPage
-  count = page.bindingContext.addEditCount
-  userId = page.bindingContext.user.uid
-  rideId = page.bindingContext.ride.id
-  parkId = page.bindingContext.parkId
-  tripId = page.bindingContext.trip.id
+  var count = page.bindingContext.addEditCount
+  var userId = page.bindingContext.user.uid
+  var rideId = page.bindingContext.ride.id
+  var parkId = page.bindingContext.parkId
+  var tripId = page.bindingContext.trip.id
   console.log(
         `Adding ${count} rides on ride: ${rideId} for trip: ${tripId} to: ${parkId} for user: ${userId}`
   )
@@ -226,12 +226,11 @@ function addEditCountSave () {
 function deleteTripCount (args) {
   var frame = require('ui/frame')
   var page = frame.topmost().currentPage
-  userId = page.bindingContext.user.uid
-  tripId = page.bindingContext.trip.id
-  rideId = page.bindingContext.ride.id
-  parkId = page.bindingContext.parkId
+  const userId = page.bindingContext.user.uid
+  const tripId = page.bindingContext.trip.id
+  const parkId = page.bindingContext.parkId
 
-  countId = args.object.countId
+  const countId = args.object.countId
   console.log(`Deleting count: ${countId}`)
 
   firebaseApp
@@ -282,7 +281,7 @@ function deleteTripCount (args) {
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
 exports.pageJump = require('../shared/pageJump')
-AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
 exports.onLoaded = onLoaded
