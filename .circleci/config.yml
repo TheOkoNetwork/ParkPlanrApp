@@ -21,6 +21,26 @@ jobs:
             paths:
                 - NativescriptAppBuild
 
+  styleCheck:
+    executor: nodeandroiddocker
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Install npm modules
+          command: |
+            sudo npm i -g prettier --ignore-scripts --unsafe-perm --no-progress;
+
+      - run:
+          name: Prettier on app js files
+          command: |
+            prettier --write "app/*/*.js" "app/*.js"
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
+
   PrepareProject:
     executor: nodeandroiddocker
     steps:
@@ -166,9 +186,12 @@ workflows:
   BuildAndDistribute:
     jobs:
       - CheckoutCode
-      - PrepareProject:
+      - styleCheck:
             requires:
                   - CheckoutCode
+      - PrepareProject:
+            requires:
+                  - styleCheck
       - PrepareAndroid:
             requires:
                   - PrepareProject
