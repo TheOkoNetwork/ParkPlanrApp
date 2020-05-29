@@ -14,9 +14,9 @@ function onDrawerButtonTap (args) {
   const sideDrawer = app.getRootView()
   sideDrawer.showDrawer()
 }
-function SignOut (args) {
+async function SignOut (args) {
   console.log('Sign out called')
-  firebase.logout()
+  await firebase.logout()
 
   setTimeout(function () {
     AuthenticatedPageState()
