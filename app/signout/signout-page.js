@@ -19,7 +19,6 @@ async function SignOut (args) {
   await firebase.logout()
 
   setTimeout(function () {
-    AuthenticatedPageState()
     setTimeout(function () {
       frameModule.topmost().navigate({
         moduleName: 'home/home-page',
