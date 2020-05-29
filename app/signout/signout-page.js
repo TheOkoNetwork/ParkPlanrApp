@@ -20,7 +20,7 @@ function onDrawerButtonTap (args) {
 async function SignOut (args) {
   console.log('Sign out called')
   
-  firebaseWebApi.auth().signOut().then(function() {
+  firebaseApp.auth().signOut().then(function() {
     console.log("Logout OK")
     AuthenticatedPageState()
     setTimeout(function () {
