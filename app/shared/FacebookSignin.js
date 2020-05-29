@@ -21,31 +21,6 @@ function SignInFacebook (args) {
 
   console.log('Attempting sign in with facebook')
 
-  const options = {
-    message: 'Signing in with facebook',
-    details: 'Just a sec',
-    //  progress: 0.65,
-    margin: 10,
-    dimBackground: true,
-    color: '#4B9ED6', // color of indicator and labels
-    // background box around indicator
-    // hideBezel will override this if true
-    // backgroundColor: 'yellow',
-    //  userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
-    hideBezel: true // default false, can hide the surrounding bezel
-    //  mode: Mode.AnnularDeterminate, // see options below
-    //  android: {
-    //    view: android.view.View, // Target view to show on top of (Defaults to entire window)
-    //    cancelable: true,
-    //    cancelListener: function(dialog) {
-    //      console.log('Loading cancelled');
-    //    }
-    //  },
-    //  ios: {
-    //    view: UIView // Target view to show on top of (Defaults to entire window)
-    //  }
-  }
-
   firebase
     .login({
       type: firebase.LoginType.FACEBOOK
