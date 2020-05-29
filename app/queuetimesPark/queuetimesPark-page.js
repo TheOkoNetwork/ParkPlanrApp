@@ -1,8 +1,8 @@
 const app = require('tns-core-modules/application')
-const Observable = require('tns-core-modules/data/observable').Observable
 
 const QueuetimesParkViewModel = require('./queuetimesPark-view-model')
 const fromObject = require('tns-core-modules/data/observable').fromObject
+const frameModule = require('tns-core-modules/ui/frame')
 
 const firebaseApp = require('nativescript-plugin-firebase/app')
 firebaseApp.initializeApp()
@@ -15,7 +15,7 @@ function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new QueuetimesParkViewModel()
 
-  parkId = page.navigationContext.parkId
+  const parkId = page.navigationContext.parkId
   console.log(`Loading queue times for park: ${parkId}`)
 
   console.log('Fetching park data')
@@ -35,6 +35,7 @@ function onNavigatingTo (args) {
             name: 'fade'
           }
         })
+        var parkClosedMessage
         if (parkSnapshot.data().closedMessage) {
           parkClosedMessage = parkSnapshot.data().closedMessage
         } else {
@@ -62,12 +63,12 @@ function onNavigatingTo (args) {
           (snapshot) => {
             console.log('Ride data')
 
-            rides = []
+            var rides = []
             snapshot.forEach((doc) => {
               console.log(
                                 `${doc.id} => ${JSON.stringify(doc.data())}`
               )
-              ride = doc.data()
+              var ride = doc.data()
               ride.id = doc.id
               if (ride.logo) {
                 ride.hasLogo = true
@@ -129,11 +130,6 @@ function onNavigatingTo (args) {
     })
 }
 
-function onLoaded (args) {
-  frameModule = require('tns-core-modules/ui/frame')
-  page = frameModule.topmost().currentPage
-}
-
 function onDrawerButtonTap (args) {
   const sideDrawer = app.getRootView()
   sideDrawer.showDrawer()
@@ -142,7 +138,6 @@ function onDrawerButtonTap (args) {
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
 exports.pageJump = require('../shared/pageJump')
-AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
-exports.onLoaded = onLoaded
