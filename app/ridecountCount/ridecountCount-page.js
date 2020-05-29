@@ -52,7 +52,7 @@ function onNavigatingTo (args) {
 
   Promise.all(getPromises)
     .then(function (promiseResults) {
-      rideCounts = {}
+      var rideCounts = {}
       var pageContext = {
         rides: []
       }

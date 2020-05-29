@@ -37,7 +37,7 @@ jobs:
             prettier --write "app/*/*.js" "app/*.js"
 
       - run:
-          name: standard js style check
+          name: Standard js style check
           command: |
             standard app/*/*.js app/*.js
 
