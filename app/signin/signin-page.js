@@ -1,12 +1,9 @@
 const app = require('tns-core-modules/application')
 
 const SigninViewModel = require('./signin-view-model')
-const fromObject = require('tns-core-modules/data/observable').fromObject
+const frameModule = require('tns-core-modules/ui/frame')
 
 const firebase = require('nativescript-plugin-firebase')
-
-var FeedbackPlugin = require('nativescript-feedback')
-var feedback = new FeedbackPlugin.Feedback()
 
 function onNavigatingTo (args) {
   const page = args.object
@@ -20,107 +17,112 @@ function onDrawerButtonTap (args) {
 function SignInEmail (args) {
   console.log('Sign in with email called')
 
-  frameModule = require('tns-core-modules/ui/frame')
-  page = frameModule.topmost().currentPage
+  var page = frameModule.topmost().currentPage
 
   var FeedbackPlugin = require('nativescript-feedback')
   var feedback = new FeedbackPlugin.Feedback()
   var color = require('color')
 
-  Email = page.getViewById('Email').text
+  var Email = page.getViewById('Email').text
   if (!Email) {
-    alert({
-		        title: 'Email required',
-		        message: 'Please enter your email address',
-		        okButtonText: 'Ok'
+    feedback.error({
+      title: 'Please enter your email address or try one of the other sign in options',
+      titleColor: new color.Color('black')
     })
     return
-  };
+  }
 
-  Password = page.getViewById('Password').text
+  var Password = page.getViewById('Password').text
   if (!Password) {
-    alert({
-		        title: 'Password required',
-		        message: 'Please enter your password',
-		        okButtonText: 'Ok'
+    feedback.error({
+      title: 'Please enter your password',
+      titleColor: new color.Color('black')
     })
     return
-  };
+  }
+
   console.log(`Attempting sign in with email: ${Email} and provided password.`)
 
-  firebase.login({
-    type: firebase.LoginType.PASSWORD,
-        	passwordOptions: {
-        		email: Email,
-        		password: Password
-	        }
-  }).then(function (result) {
-    console.log(result)
+  firebase
+    .login({
+      type: firebase.LoginType.PASSWORD,
+      passwordOptions: {
+        email: Email,
+        password: Password
+      }
+    })
+    .then(function (result) {
+      console.log(result)
 
-    setTimeout(function () {
-      frameModule.topmost().navigate({
-	                        moduleName: 'home/home-page',
-	                        transition: {
-	                                name: 'fade'
-	                        }
-	                })
+      setTimeout(function () {
+        frameModule.topmost().navigate({
+          moduleName: 'home/home-page',
+          transition: {
+            name: 'fade'
+          }
+        })
 
-      if (result.displayName) {
-        title = `Welcome ${result.displayName} to ParkPlanr`
-      } else {
-        title = 'Welcome to ParkPlanr'
-      };
-      feedback.success({
-        title: title,
-		 		titleColor: new color.Color('black')
-      })
-    }, 125)
-  }).catch(function (error) {
-    console.log('Error signing in')
-    console.log(error)
-    ErrorCode = error.split(' ')[5].split(':')[0]
-    ErrorMessage = error.split(':')[1].trim()
-    console.log(ErrorMessage)
-    console.log(ErrorCode)
+        var successMessageTitle
+        if (result.displayName) {
+          successMessageTitle = `Welcome ${result.displayName} to ParkPlanr`
+        } else {
+          successMessageTitle = 'Welcome to ParkPlanr'
+        }
+        feedback.success({
+          title: successMessageTitle,
+          titleColor: new color.Color('black')
+        })
+      }, 125)
+    })
+    .catch(function (error) {
+      console.log('Error signing in')
+      console.log(error)
+      var errorCode = error.split(' ')[5].split(':')[0]
+      var errorMessage = error.split(':')[1].trim()
+      console.log(errorMessage)
+      console.log(errorCode)
 
-//    alert(ErrorCode)
+      setTimeout(function () {
+        var userErrorMessage
+        switch (errorCode) {
+          case 'com.google.firebase.auth.FirebaseAuthInvalidCredentialsException':
+            switch (errorMessage) {
+              case 'The email address is badly formatted.':
+                userErrorMessage =
+                                    "That email address doesn't look quite right"
+                break
+              default:
+                userErrorMessage =
+                                    'Invalid email address or password'
+                break
+            }
+            break
+          case 'com.google.firebase.auth.FirebaseAuthInvalidUserException':
+            switch (errorMessage) {
+              case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+                userErrorMessage =
+                                    'Account not found, to sign up just tap sign up'
+                break
+              default:
+                userErrorMessage =
+                                    'Invalid email address or password'
+                break
+            }
+            break
+          default:
+            userErrorMessage =
+                            'Failed to sign in, please try again'
+        }
 
-    setTimeout(function () {
-      switch (ErrorCode) {
-        case 'com.google.firebase.auth.FirebaseAuthInvalidCredentialsException':
-          switch (ErrorMessage) {
-            case 'The email address is badly formatted.':
-              UserErrorMessage = "That email address doesn't look quite right"
-              break
-            default:
-              UserErrorMessage = 'Invalid email address or password'
-              break
-          };
-          break
-        case 'com.google.firebase.auth.FirebaseAuthInvalidUserException':
-          switch (ErrorMessage) {
-            case 'There is no user record corresponding to this identifier. The user may have been deleted.':
-              UserErrorMessage = 'Account not found, to sign up just tap sign up'
-              break
-            default:
-              UserErrorMessage = 'Invalid email address or password'
-              break
-          };
-          break
-        default:
-          UserErrorMessage = 'Failed to sign in, please try again'
-      };
+        console.log(userErrorMessage)
 
-      console.log(UserErrorMessage)
-
-      feedback.error({
-        title: UserErrorMessage,
-		 		titleColor: new color.Color('black')
-      })
-    }, 25)
-  })
+        feedback.error({
+          title: userErrorMessage,
+          titleColor: new color.Color('black')
+        })
+      }, 25)
+    })
 }
-
 
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
