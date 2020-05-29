@@ -1,4 +1,3 @@
-const frameModule = require('tns-core-modules/ui/frame')
 const firebase = require('nativescript-plugin-firebase')
 const AuthenticatedStateService = require('../shared/Authenticated-state-service')
 
@@ -20,10 +19,12 @@ function AuthenticatedPageState () {
       }
     })
     .catch(function (error) {
-      console.log('Error getting current user')
-      AuthenticatedStateService.getInstance().updateAuthenticatedState(
-        false
-      )
+      if (error) {
+        console.log('Error getting current user')
+        AuthenticatedStateService.getInstance().updateAuthenticatedState(
+          false
+        )
+      }
     })
 }
 
