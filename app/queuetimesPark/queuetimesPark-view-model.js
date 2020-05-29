@@ -1,28 +1,28 @@
-const observableModule = require("tns-core-modules/data/observable");
+const observableModule = require('tns-core-modules/data/observable')
 
-const SelectedPageService = require("../shared/selected-page-service");
-const AuthenticatedStateService = require("../shared/Authenticated-state-service");
+const SelectedPageService = require('../shared/selected-page-service')
+const AuthenticatedStateService = require('../shared/Authenticated-state-service')
 
-function QueuetimesParkViewModel() {
-    SelectedPageService.getInstance().updateSelectedPage("QueuetimesPark");
+function QueuetimesParkViewModel () {
+  SelectedPageService.getInstance().updateSelectedPage('QueuetimesPark')
 
-    const viewModel = observableModule.fromObject({
-        /* Add your view model properties here */
-        Authenticated: false,
-        user: false,
-    });
+  const viewModel = observableModule.fromObject({
+    /* Add your view model properties here */
+    Authenticated: false,
+    user: false
+  })
 
-    SelectedPageService.getInstance().selectedPage$.subscribe(
-        (selectedPage) => {
-            viewModel.selectedPage = selectedPage;
-        }
-    );
-    AuthenticatedStateService.getInstance().AuthenticatedState$.subscribe(
-        (user) => {
-            viewModel.user = user;
-        }
-    );
-    return viewModel;
+  SelectedPageService.getInstance().selectedPage$.subscribe(
+    (selectedPage) => {
+      viewModel.selectedPage = selectedPage
+    }
+  )
+  AuthenticatedStateService.getInstance().AuthenticatedState$.subscribe(
+    (user) => {
+      viewModel.user = user
+    }
+  )
+  return viewModel
 }
 
-module.exports = QueuetimesParkViewModel;
+module.exports = QueuetimesParkViewModel

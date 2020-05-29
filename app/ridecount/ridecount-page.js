@@ -1,145 +1,145 @@
-const app = require("tns-core-modules/application");
-const frameModule = require("tns-core-modules/ui/frame");
+const app = require('tns-core-modules/application')
+const frameModule = require('tns-core-modules/ui/frame')
 
-const RidecountViewModel = require("./ridecount-view-model");
-const fromObject = require("tns-core-modules/data/observable").fromObject;
+const RidecountViewModel = require('./ridecount-view-model')
+const fromObject = require('tns-core-modules/data/observable').fromObject
 
-const firebaseApp = require("nativescript-plugin-firebase/app");
-firebaseApp.initializeApp();
+const firebaseApp = require('nativescript-plugin-firebase/app')
+firebaseApp.initializeApp()
 
-var FeedbackPlugin = require("nativescript-feedback");
-var feedback = new FeedbackPlugin.Feedback();
+var FeedbackPlugin = require('nativescript-feedback')
+var feedback = new FeedbackPlugin.Feedback()
 
-var color = require("color");
+var color = require('color')
 
-const moment = require("moment");
+const moment = require('moment')
 
-function onNavigatingTo(args) {
-    const page = args.object;
-    page.bindingContext = new RidecountViewModel();
+function onNavigatingTo (args) {
+  const page = args.object
+  page.bindingContext = new RidecountViewModel()
 
-    const userId = page.bindingContext.user.uid;
-    var tripDataPromises = [
-        firebaseApp
-            .firestore()
-            .collection("users")
-            .doc(userId)
-            .collection("ridecount")
-            .orderBy("date", "desc")
-            .get(),
-        firebaseApp
-            .firestore()
-            .collection("parks")
-            .where("active", "==", true)
-            .get(),
-    ];
-    Promise.all(tripDataPromises)
-        .then((promiseResults) => {
-            var parks = {};
-            var trips = [];
-            promiseResults.forEach(function (promiseResult) {
-                promiseResult.forEach(function (doc) {
-                    var parentCollection = doc.ref.path.split("/")[0];
-                    switch (parentCollection) {
-                        case "parks":
-                            parks[doc.id] = doc.data();
-                            parks[doc.id].id = doc.id;
-                            break;
-                        case "users":
-                            var trip = doc.data();
-                            trip.humanDate = moment(doc.data().date).format(
-                                "dddd DD/MM/YYYY"
-                            );
-                            trip.id = doc.id;
-                            trips.push(trip);
-                            break;
-                        default:
-                            console.log(
+  const userId = page.bindingContext.user.uid
+  var tripDataPromises = [
+    firebaseApp
+      .firestore()
+      .collection('users')
+      .doc(userId)
+      .collection('ridecount')
+      .orderBy('date', 'desc')
+      .get(),
+    firebaseApp
+      .firestore()
+      .collection('parks')
+      .where('active', '==', true)
+      .get()
+  ]
+  Promise.all(tripDataPromises)
+    .then((promiseResults) => {
+      var parks = {}
+      var trips = []
+      promiseResults.forEach(function (promiseResult) {
+        promiseResult.forEach(function (doc) {
+          var parentCollection = doc.ref.path.split('/')[0]
+          switch (parentCollection) {
+            case 'parks':
+              parks[doc.id] = doc.data()
+              parks[doc.id].id = doc.id
+              break
+            case 'users':
+              var trip = doc.data()
+              trip.humanDate = moment(doc.data().date).format(
+                'dddd DD/MM/YYYY'
+              )
+              trip.id = doc.id
+              trips.push(trip)
+              break
+            default:
+              console.log(
                                 `Unknown parent collection: ${parentCollection}`
-                            );
-                    }
-                });
-            });
-            trips.forEach(function (trip, tripIndex) {
-                trips[tripIndex].park = parks[trip.park];
-            });
-            console.log(trips);
-            const vm = fromObject({
-                trips: trips,
-            });
-            page.bindingContext = vm;
+              )
+          }
         })
-        .catch(function (error) {
-            console.log("Error fetching trips");
-            console.log(error);
-            frameModule.topmost().navigate({
-                moduleName: "home/home-page",
-                transition: {
-                    name: "fade",
-                },
-            });
-
-            setTimeout(function () {
-                feedback.error({
-                    title: "Unable to load trip",
-                    message:
-                        "Please check your internet connection and try again",
-                    titleColor: new color.Color("black"),
-                });
-            }, 125);
-        });
-}
-
-function onTripSelect(args) {
-    var tripId = args.view.tripId;
-    var parkId = args.view.parkId;
-    console.log(`Switching to trip: ${tripId} park: ${parkId}`);
-    frameModule.topmost().navigate({
-        moduleName: "ridecountCount/ridecountCount-page",
+      })
+      trips.forEach(function (trip, tripIndex) {
+        trips[tripIndex].park = parks[trip.park]
+      })
+      console.log(trips)
+      const vm = fromObject({
+        trips: trips
+      })
+      page.bindingContext = vm
+    })
+    .catch(function (error) {
+      console.log('Error fetching trips')
+      console.log(error)
+      frameModule.topmost().navigate({
+        moduleName: 'home/home-page',
         transition: {
-            name: "fade",
-        },
-        context: {
-            tripId: tripId,
-            parkId: parkId,
-        },
-    });
+          name: 'fade'
+        }
+      })
+
+      setTimeout(function () {
+        feedback.error({
+          title: 'Unable to load trip',
+          message:
+                        'Please check your internet connection and try again',
+          titleColor: new color.Color('black')
+        })
+      }, 125)
+    })
 }
 
-function onTripLongSelect(args) {
-    var tripId = args.view.tripId;
-    var parkId = args.view.parkId;
-    console.log(
+function onTripSelect (args) {
+  var tripId = args.view.tripId
+  var parkId = args.view.parkId
+  console.log(`Switching to trip: ${tripId} park: ${parkId}`)
+  frameModule.topmost().navigate({
+    moduleName: 'ridecountCount/ridecountCount-page',
+    transition: {
+      name: 'fade'
+    },
+    context: {
+      tripId: tripId,
+      parkId: parkId
+    }
+  })
+}
+
+function onTripLongSelect (args) {
+  var tripId = args.view.tripId
+  var parkId = args.view.parkId
+  console.log(
         `Switching to delete confirm for trip: ${tripId} park: ${parkId}`
-    );
+  )
 
-    frameModule.topmost().navigate({
-        moduleName: "ridecountDelete/ridecountDelete-page",
-        transition: {
-            name: "fade",
-        },
-        context: {
-            tripId: tripId,
-            parkId: parkId,
-        },
-    });
+  frameModule.topmost().navigate({
+    moduleName: 'ridecountDelete/ridecountDelete-page',
+    transition: {
+      name: 'fade'
+    },
+    context: {
+      tripId: tripId,
+      parkId: parkId
+    }
+  })
 }
 
-function onLoaded(args) {
-    AuthenticatedPageState();
+function onLoaded (args) {
+  AuthenticatedPageState()
 }
 
-function onDrawerButtonTap(args) {
-    const sideDrawer = app.getRootView();
-    sideDrawer.showDrawer();
+function onDrawerButtonTap (args) {
+  const sideDrawer = app.getRootView()
+  sideDrawer.showDrawer()
 }
 
-exports.onNavigatingTo = onNavigatingTo;
-exports.onDrawerButtonTap = onDrawerButtonTap;
-exports.pageJump = require("../shared/pageJump");
-var AuthenticatedPageState = require("../shared/AuthenticatedPageState");
-exports.cmsPage = require("../shared/cmsPage");
-exports.AuthenticatedPageState = AuthenticatedPageState;
-exports.onLoaded = onLoaded;
-exports.onTripSelect = onTripSelect;
-exports.onTripLongSelect = onTripLongSelect;
+exports.onNavigatingTo = onNavigatingTo
+exports.onDrawerButtonTap = onDrawerButtonTap
+exports.pageJump = require('../shared/pageJump')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+exports.cmsPage = require('../shared/cmsPage')
+exports.AuthenticatedPageState = AuthenticatedPageState
+exports.onLoaded = onLoaded
+exports.onTripSelect = onTripSelect
+exports.onTripLongSelect = onTripLongSelect
