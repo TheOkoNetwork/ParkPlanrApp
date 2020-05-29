@@ -29,12 +29,17 @@ jobs:
       - run:
           name: Install npm modules
           command: |
-            sudo npm i -g prettier --ignore-scripts --unsafe-perm --no-progress;
+            sudo npm i -g standard prettier --ignore-scripts --unsafe-perm --no-progress;
 
       - run:
           name: Prettier on app js files
           command: |
             prettier --write "app/*/*.js" "app/*.js"
+
+      - run:
+          name: standard js style check
+          command: |
+            standard app/*/*.js app/*.js
 
       - persist_to_workspace:
           root: ~/
