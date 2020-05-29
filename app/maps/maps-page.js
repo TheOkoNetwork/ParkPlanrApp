@@ -1,8 +1,8 @@
 const app = require('tns-core-modules/application')
-const Observable = require('tns-core-modules/data/observable').Observable
 
 const MapsViewModel = require('./maps-view-model')
 const fromObject = require('tns-core-modules/data/observable').fromObject
+const frameModule = require('tns-core-modules/ui/frame')
 
 const firebaseApp = require('nativescript-plugin-firebase/app')
 firebaseApp.initializeApp()
@@ -26,18 +26,18 @@ function onNavigatingTo (args) {
       })
 
       setTimeout(function () {
-	                        feedback.error({
-        	                        title: 'Unable to load maps',
-                	                message: 'Please check your internet connection and try again',
-                        	        titleColor: new color.Color('black')
-                        	})
+        feedback.error({
+          title: 'Unable to load maps',
+          message: 'Please check your internet connection and try again',
+          titleColor: new color.Color('black')
+        })
       }, 125)
     } else {
       console.log('Not empty')
-      parks = []
+      var parks = []
       querySnapshot.forEach(doc => {
         console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
-        park = doc.data()
+        var park = doc.data()
         park.id = doc.id
         parks.push(park)
       })
@@ -45,8 +45,8 @@ function onNavigatingTo (args) {
       console.log(parks)
       const vm = fromObject({
         parks: parks
-		    	})
-		    	page.bindingContext = vm
+      })
+      page.bindingContext = vm
     };
   }).catch(function (error) {
     console.log('Error fetching parks with maps enabled')
@@ -59,19 +59,14 @@ function onNavigatingTo (args) {
     })
 
     setTimeout(function () {
-	                        feedback.error({
-        	                        title: 'Unable to load maps',
-                	                message: 'Please check your internet connection and try again',
-                        	        titleColor: new color.Color('black')
-                        	})
+      feedback.error({
+        title: 'Unable to load maps',
+        message: 'Please check your internet connection and try again',
+        titleColor: new color.Color('black')
+      })
     }, 125)
   })
 }
-
-function onLoaded (args) {
-  frameModule = require('tns-core-modules/ui/frame')
-  page = frameModule.topmost().currentPage
-};
 
 function onDrawerButtonTap (args) {
   const sideDrawer = app.getRootView()
@@ -79,7 +74,7 @@ function onDrawerButtonTap (args) {
 }
 
 function parkSelected (args) {
-  parkId = args.view.parkId
+  var parkId = args.view.parkId
   console.log(`Park: ${parkId} Selected`)
 
   frameModule.topmost().navigate({
@@ -95,8 +90,7 @@ function parkSelected (args) {
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
 exports.pageJump = require('../shared/pageJump')
-AuthenticatedPageState = require('../shared/AuthenticatedPageState')
+var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
 exports.cmsPage = require('../shared/cmsPage')
 exports.AuthenticatedPageState = AuthenticatedPageState
-exports.onLoaded = onLoaded
 exports.parkSelected = parkSelected
