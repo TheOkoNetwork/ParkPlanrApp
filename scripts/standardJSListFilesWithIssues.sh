@@ -1,3 +1,6 @@
 #!/bin/bash
 
-standard app/*/*.js|cut -d: -f1|sort|uniq
+errors=$(standard app/*/*.js)
+totalErrors=$(echo "$errors"|wc -l)
+echo "$errors"|cut -d: -f1|sort|uniq
+echo "$totalErrors errors"
