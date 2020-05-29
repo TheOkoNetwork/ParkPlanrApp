@@ -56,13 +56,14 @@ function onLoaded (args) {
           var cmsPage = doc.data()
           cmsPage.id = doc.id
           cmsPage.content = doc.data().content
+          cmsPage.rawContent = cmsPage.content
 
           if (typeof cmsPage.content === 'string') {
             cmsPage.content = JSON.parse(cmsPage.content)
           }
 
           page.getViewById('PageContentsHtmlView').html =
-                        cmsPage.content
+                        cmsPage.rawContent
           page.getViewById('PageTitle').text = cmsPage.title
         })
       }
