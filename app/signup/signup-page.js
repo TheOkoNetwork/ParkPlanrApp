@@ -2,12 +2,15 @@ const app = require('tns-core-modules/application')
 
 const SignupViewModel = require('./signup-view-model')
 const frameModule = require('tns-core-modules/ui/frame')
+const config = require('../shared/config')
 
 const firebase = require('nativescript-plugin-firebase')
 
 function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new SignupViewModel()
+
+  page.getViewById('pageTitle').text = `Sign up to ${config('appName')}`
 }
 
 function onDrawerButtonTap (args) {
@@ -63,9 +66,9 @@ function SignUpEmail (args) {
 
         var successFeedbackTitle
         if (result.displayName) {
-          successFeedbackTitle = `Welcome ${result.displayName} to ParkPlanr`
+          successFeedbackTitle = `Welcome ${result.displayName} to ${config('appName')}`
         } else {
-          successFeedbackTitle = 'Welcome to ParkPlanr'
+          successFeedbackTitle = `Welcome to ${config('appName')}`
         }
         feedback.success({
           title: successFeedbackTitle,
