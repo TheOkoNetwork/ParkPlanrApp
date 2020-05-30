@@ -2,15 +2,17 @@ const app = require('tns-core-modules/application')
 
 const SignoutViewModel = require('./signout-view-model')
 
-
 const firebaseApp = require('nativescript-plugin-firebase/app')
 firebaseApp.initializeApp()
 
 const frameModule = require('tns-core-modules/ui/frame')
+const config = require('../shared/config')
 
 function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new SignoutViewModel()
+
+  page.getViewById('pageTitle').text = `Sign out of ${config('appName')}`
 }
 
 function onDrawerButtonTap (args) {
