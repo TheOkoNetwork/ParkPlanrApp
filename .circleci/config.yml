@@ -22,6 +22,26 @@ jobs:
             paths:
                 - NativescriptAppBuild
 
+  setupGlobal:
+    executor: nodeandroiddocker
+    steps:
+      - restore_cache:
+          keys:
+            - v3-npm-global
+
+      - run:
+          name: Install npm modules
+          command: |
+            npm config set prefix '~/npm-global'
+            npm i -g standard prettier --ignore-scripts --unsafe-perm --no-progress;
+            npm i -g nativescript-app-sync-cli nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
+
+      - save_cache:
+          paths:
+            - ~/npm-global
+          key: v3-npm-global
+
+
   styleCheck:
     executor: nodeandroiddocker
     steps:
@@ -29,18 +49,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v2-npm-global
-
-      - run:
-          name: Install npm modules
-          command: |
-            npm config set prefix '~/npm-global'
-            npm i -g standard prettier --ignore-scripts --unsafe-perm --no-progress;
-
-      - save_cache:
-          paths:
-            - ~/npm-global
-          key: v2-npm-global
+            - v3-npm-global
 
       - run:
           name: Prettier on app js files
@@ -67,21 +76,10 @@ jobs:
           command: |
             npm i --no-progress;
 
-      - run:
-          name: Install npm global modules
-          command: |
-            npm config set prefix '~/npm-global'
-            npm i -g nativescript-app-sync-cli nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
-
       - save_cache:
           paths:
             - node_modules
           key: v1-npm-deps-{{ checksum "package-lock.json" }}
-
-      - save_cache:
-          paths:
-            - ~/npm-global
-          key: v2-npm-global
 
       - run:
           name: Update android manifest and iOS Info.plist versions
@@ -110,7 +108,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v2-npm-global
+            - v3-npm-global
 
       - run:
           name: Adding platform
@@ -140,7 +138,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v2-npm-global
+            - v3-npm-global
 
       - run:
           name: Build signed app
@@ -165,7 +163,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v2-npm-global
+            - v3-npm-global
 
       - run:
           name: Publish apk to firebase app distribution
@@ -182,7 +180,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v2-npm-global
+            - v3-npm-global
 
       - run:
           name: Publish update to app sync
@@ -203,9 +201,12 @@ workflows:
   BuildAndDistribute:
     jobs:
       - CheckoutCode
-      - styleCheck:
+      - setupGlobal:
             requires:
                   - CheckoutCode
+      - styleCheck:
+            requires:
+                  - setupGlobal
       - PrepareProject:
             requires:
                   - styleCheck
