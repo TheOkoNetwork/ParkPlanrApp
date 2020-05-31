@@ -100,33 +100,6 @@ jobs:
           paths:
               - NativescriptAppBuild
 
-  PrepareiOS:
-    executor: iosbuildmac
-    steps:
-      - *fast-checkout
-
-      - run:
-          name: Installing NPM global packages
-          command: |
-            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
-
-      - run:
-          name: Installing miscellaneous dependancies
-          command: |
-            sudo pip install six
-
-      - run:
-          name: Adding platform
-          command: |
-            cd ~/NativescriptAppBuild
-            tns platform add ios;
-
-      - persist_to_workspace:
-          root: ~/
-          paths:
-              - NativescriptAppBuild
-
-
   BuildReleaseAndroid:
     executor: nodeandroiddocker
     steps:
@@ -176,6 +149,56 @@ jobs:
             echo $nativescriptAppSyncKey | base64 -d > ~/.nativescript-app-sync.config;
             ./scripts/publishAppSync.sh
 
+
+  PrepareiOS:
+    executor: iosbuildmac
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Installing NPM global packages
+          command: |
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
+
+      - run:
+          name: Installing miscellaneous dependancies
+          command: |
+            sudo pip install six
+
+      - run:
+          name: Adding platform
+          command: |
+            cd ~/NativescriptAppBuild
+            tns platform add ios;
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
+
+  buildDebugiOS:
+    executor: iosbuildmac
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Installing NPM global packages
+          command: |
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
+
+      - run:
+          name: Building IPA
+          command: |
+            tns build ios --force-device --copy-to --copy-to ./dist/build.ipa;
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
+
+      - store_artifacts:
+          path: ./dist
+
   Completed:
     executor: nodeandroiddocker
     steps:
@@ -222,7 +245,7 @@ workflows:
             requires:
                   - DistributeAndroid
                   - appSyncDistributeAndroid
-#                  - BuildReleaseiOS
+                  - BuildDebugiOS
 
 #          filters:
 #            branches:
