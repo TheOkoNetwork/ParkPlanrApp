@@ -68,8 +68,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-npm-deps-{{ checksum "package-lock.json" }}
-            - v1-npm-deps-
+            - v2-npm-deps-{{ checksum "package-lock.json" }}
+            - v2-npm-deps-
 
       - run:
           name: Install npm local modules
@@ -79,7 +79,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          key: v2-npm-deps-{{ checksum "package-lock.json" }}
 
       - run:
           name: Update android manifest and iOS Info.plist versions
@@ -103,13 +103,13 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-npm-deps-{{ checksum "package-lock.json" }}
-            - v1-npm-deps-
+            - v2-npm-deps-{{ checksum "package-lock.json" }}
+            - v2-npm-deps-
 
       - restore_cache:
           keys:
-            - v1-android-npm-deps-{{ checksum "package-lock.json" }}
-            - v1-android-npm-deps-
+            - v2-android-npm-deps-{{ checksum "package-lock.json" }}
+            - v2-android-npm-deps-
 
       - restore_cache:
           keys:
@@ -128,7 +128,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-android-npm-deps-{{ checksum "package-lock.json" }}
+          key: v2-android-npm-deps-{{ checksum "package-lock.json" }}
 
       - persist_to_workspace:
           root: ~/
@@ -147,8 +147,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-android-npm-deps-{{ checksum "package-lock.json" }}
-            - v1-android-npm-deps-
+            - v2-android-npm-deps-{{ checksum "package-lock.json" }}
+            - v2-android-npm-deps-
 
       - run:
           name: Build signed app
