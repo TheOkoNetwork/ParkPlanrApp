@@ -70,6 +70,7 @@ jobs:
       - run:
           name: Install npm global modules
           command: |
+            npm config set prefix '~/npm-global'
             npm i -g nativescript-app-sync-cli nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
 
       - save_cache:
