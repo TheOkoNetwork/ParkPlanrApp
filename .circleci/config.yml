@@ -166,39 +166,6 @@ jobs:
             echo $nativescriptAppSyncKey | base64 -d > ~/.nativescript-app-sync.config;
             ./scripts/publishAppSync.sh
 
-  PrepareiOS:
-    executor: nodeandroiddocker
-    steps:
-      - *fast-checkout
-
-      - run:
-          name: Extracting certificate
-          command: |
-            echo $IOS_CERTIFICATE_BASE64 | base64 -d > ./iOSCert.p12;
-
-      - persist_to_workspace:
-          root: ~/
-          paths:
-              - NativescriptAppBuild
-
-  BuildReleaseiOS:
-    executor: nodeandroiddocker
-    steps:
-      - *fast-checkout
-
-      - run:
-          name: Building for iOS
-          command: |
-            sudo npm i -g npm-check-updates nativescript nativescript-cloud --ignore-scripts --unsafe-perm --no-progress;
-            echo $IOS_CERTIFICATE_BASE64 | base64 -d > ./iOSCert.p12;
-            tns dev-login ${NATIVESCRIPT_CLOUD_USERNAME} ${NATIVESCRIPT_CLOUD_PASSWORD}
-            tns accept eula 
-            tns cloud build ios --accountId ${NATIVESCRIPT_CLOUD_ACCOUNT_ID} --certificate iOSCert.p12 --certificatePassword ${IOS_CERTIFICATE_PASSWORD} --provision ProvisioningProfile.mobileprovision
-            find .cloud
-
-      - store_artifacts:
-          path: .cloud
-
   Completed:
     executor: nodeandroiddocker
     steps:
