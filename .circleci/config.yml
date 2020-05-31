@@ -8,14 +8,10 @@ executors:
     working_directory: ~/NativescriptAppBuild
 
 jobs:
-  CheckoutCode:
-    executor: nodeandroiddocker
-    steps:
-        - checkout
-
   styleCheck:
     executor: nodeandroiddocker
     steps:
+      - checkout
       - run:
           name: Install npm modules
           command: |
@@ -146,10 +142,7 @@ workflows:
   version: 2
   BuildAndDistribute:
     jobs:
-      - CheckoutCode
-      - styleCheck:
-            requires:
-                  - CheckoutCode
+      - styleCheck
       - PrepareProject:
             requires:
                   - styleCheck
