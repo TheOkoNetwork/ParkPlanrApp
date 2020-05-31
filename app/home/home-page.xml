@@ -20,7 +20,7 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="ParkPlanr (CI 5)" textWrap="true"></Label>
+        <Label class="action-bar-title" text="ParkPlanr (CI 6)" textWrap="true"></Label>
     </ActionBar>
 
     <GridLayout class="page-content">
