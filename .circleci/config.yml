@@ -96,24 +96,19 @@ jobs:
           paths:
               - NativescriptAppBuild
 
-  PrepareAndroid:
+  BuildReleaseAndroid:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
 
       - restore_cache:
           keys:
-            - v2-npm-deps-{{ checksum "package-lock.json" }}
-            - v2-npm-deps-
-
-      - restore_cache:
-          keys:
-            - v2-android-npm-deps-{{ checksum "package-lock.json" }}
-            - v2-android-npm-deps-
-
-      - restore_cache:
-          keys:
             - v3-npm-global
+
+      - restore_cache:
+          keys:
+            - v3-android-npm-deps-{{ checksum "package-lock.json" }}
+            - v3-android-npm-deps-
 
       - run:
           name: Adding platform
@@ -128,27 +123,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v2-android-npm-deps-{{ checksum "package-lock.json" }}
-
-      - persist_to_workspace:
-          root: ~/
-          paths:
-              - NativescriptAppBuild
-
-
-  BuildReleaseAndroid:
-    executor: nodeandroiddocker
-    steps:
-      - *fast-checkout
-
-      - restore_cache:
-          keys:
-            - v3-npm-global
-
-      - restore_cache:
-          keys:
-            - v2-android-npm-deps-{{ checksum "package-lock.json" }}
-            - v2-android-npm-deps-
+          key: v3-android-npm-deps-{{ checksum "package-lock.json" }}
 
       - run:
           name: Build signed app
@@ -220,12 +195,9 @@ workflows:
       - PrepareProject:
             requires:
                   - setupGlobal
-      - PrepareAndroid:
-            requires:
-                  - PrepareProject
       - BuildReleaseAndroid:
             requires:
-                  - PrepareAndroid
+                  - PrepareProject
                   - styleCheck
       - appSyncDistributeAndroid:
             requires:
