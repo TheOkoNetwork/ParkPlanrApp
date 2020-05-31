@@ -161,6 +161,13 @@ jobs:
             echo $nativescriptAppSyncKey | base64 -d > ~/.nativescript-app-sync.config;
             ./scripts/publishAppSync.sh
 
+  Completed:
+    executor: nodeandroiddocker
+    steps:
+      - run:
+          name: Completed
+          command: |
+            echo "Build completed"
 workflows:
   version: 2
   BuildAndDistribute:
