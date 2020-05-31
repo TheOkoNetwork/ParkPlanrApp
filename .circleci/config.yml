@@ -29,7 +29,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-npm-global
+            - v2-npm-global
 
       - run:
           name: Install npm modules
@@ -40,7 +40,7 @@ jobs:
       - save_cache:
           paths:
             - ~/npm-global
-          key: v1-npm-global
+          key: v2-npm-global
 
       - run:
           name: Prettier on app js files
@@ -63,14 +63,24 @@ jobs:
             - v1-npm-deps-
 
       - run:
-          name: Install npm modules
+          name: Install npm local modules
           command: |
             npm i --no-progress;
+
+      - run:
+          name: Install npm global modules
+          command: |
+            npm i -g nativescript-app-sync-cli nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
 
       - save_cache:
           paths:
             - node_modules
           key: v1-npm-deps-{{ checksum "package-lock.json" }}
+
+      - save_cache:
+          paths:
+            - ~/npm-global
+          key: v2-npm-global
 
       - run:
           name: Update android manifest and iOS Info.plist versions
@@ -99,13 +109,11 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-npm-global
+            - v2-npm-global
 
       - run:
           name: Adding platform
           command: |
-            npm config set prefix '~/npm-global'
-            npm i -g nativescript --ignore-scripts --unsafe-perm --no-progress;
             ~/npm-global/bin/tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
             echo $ANDROID_KEY_BASE64 | base64 -d > ./key.jks;
@@ -117,11 +125,6 @@ jobs:
           paths:
             - node_modules
           key: v1-npm-deps-{{ checksum "package-lock.json" }}
-
-      - save_cache:
-          paths:
-            - ~/npm-global
-          key: v1-npm-global
 
       - persist_to_workspace:
           root: ~/
@@ -136,7 +139,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-npm-global
+            - v2-npm-global
 
       - run:
           name: Build signed app
@@ -144,14 +147,7 @@ jobs:
             ANDROID_KEY_BASE64: ""
             PLAY_STORE_JWT: ""
           command: |
-            npm config set prefix '~/npm-global'
-            npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             ~/npm-global/bin/tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
-
-      - save_cache:
-          paths:
-            - ~/npm-global
-          key: v1-npm-global
 
       - persist_to_workspace:
           root: ~/
@@ -168,22 +164,15 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-npm-global
+            - v2-npm-global
 
       - run:
           name: Publish apk to firebase app distribution
           command: |
-            npm config set prefix '~/npm-global'
-            npm i -g firebase-tools --ignore-scripts --unsafe-perm --no-progress;
             export GIT_COMMIT_MESSAGE="$(git log --format=%B -n 1 $CIRCLE_SHA1)"
             echo ${APP_DIST_ANDROID_GROUP}|base64;
             echo $GIT_COMMIT_MESSAGE;
             ~/npm-global/bin/firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups ${APP_DIST_ANDROID_GROUP} --token ${FIREBASE_TOOLS_TOKEN}
-
-      - save_cache:
-          paths:
-            - ~/npm-global
-          key: v1-npm-global
 
   appSyncDistributeAndroid:
     executor: nodeandroiddocker
@@ -192,20 +181,13 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-npm-global
+            - v2-npm-global
 
       - run:
           name: Publish update to app sync
           command: |
-            npm config set prefix '~/npm-global'
-            npm i -g nativescript-app-sync-cli
             echo $nativescriptAppSyncKey | base64 -d > ~/.nativescript-app-sync.config;
             ./scripts/publishAppSync.sh
-
-      - save_cache:
-          paths:
-            - ~/npm-global
-          key: v1-npm-global
 
   Completed:
     executor: nodeandroiddocker
