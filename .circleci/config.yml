@@ -15,7 +15,8 @@ jobs:
   CheckoutCode:
     executor: nodeandroiddocker
     steps:
-        - checkout
+#        - checkout
+        - run: git clone --depth 1 "$CIRCLE_REPOSITORY_URL" --branch "$CIRCLE_BRANCH"
 #       - run: rm -rf .git
         - persist_to_workspace:
             root: ~/
