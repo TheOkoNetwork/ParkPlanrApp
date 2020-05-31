@@ -1,7 +1,5 @@
 version: 2.1
 
-orbs:
-  shallow-checkout: datacamp/shallow-checkout@0.0.1
 executors:
   nodeandroiddocker:
     docker:
@@ -17,7 +15,7 @@ jobs:
   CheckoutCode:
     executor: nodeandroiddocker
     steps:
-        - shallow-checkout
+        - checkout
 #       - run: rm -rf .git
         - persist_to_workspace:
             root: ~/
