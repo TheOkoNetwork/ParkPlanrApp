@@ -66,7 +66,9 @@ function SignUpEmail (args) {
 
         var successFeedbackTitle
         if (result.displayName) {
-          successFeedbackTitle = `Welcome ${result.displayName} to ${config('appName')}`
+          successFeedbackTitle = `Welcome ${
+                        result.displayName
+                    } to ${config('appName')}`
         } else {
           successFeedbackTitle = `Welcome to ${config('appName')}`
         }

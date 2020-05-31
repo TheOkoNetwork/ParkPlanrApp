@@ -10,7 +10,6 @@ function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new SigninViewModel()
 
-
   page.getViewById('pageTitle').text = `Sign in to ${config('appName')}`
 }
 
@@ -71,7 +70,9 @@ function SignInEmail (args) {
 
         var successMessageTitle
         if (result.displayName) {
-          successMessageTitle = `Welcome ${result.displayName} to ${config('appName')}`
+          successMessageTitle = `Welcome ${
+                        result.displayName
+                    } to ${config('appName')}`
         } else {
           successMessageTitle = `Welcome to ${config('appName')}`
         }

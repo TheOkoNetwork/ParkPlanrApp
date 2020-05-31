@@ -6,6 +6,9 @@ purpose of the file is to pass control to the app’s first module.
 const application = require('tns-core-modules/application')
 var firebase = require('nativescript-plugin-firebase')
 
+// TODO CI stuff, remove me
+console.log(1)
+
 firebase
   .init({
     // Optionally pass in properties for database, authentication and cloud messaging,

@@ -21,22 +21,26 @@ function onDrawerButtonTap (args) {
 }
 async function SignOut (args) {
   console.log('Sign out called')
-  firebaseApp.auth().signOut().then(function() {
-    console.log("Logout OK")
-    setTimeout(function () {
-      frameModule.topmost().navigate({
-        moduleName: 'home/home-page',
-        transition: {
-          name: 'fade'
-        }
-      })
-    }, 250)
-  }).catch(function(error) {
-    if (error) {
-      console.log("Error signing out")
-      console.log(error)
-    }
-  })
+  firebaseApp
+    .auth()
+    .signOut()
+    .then(function () {
+      console.log('Logout OK')
+      setTimeout(function () {
+        frameModule.topmost().navigate({
+          moduleName: 'home/home-page',
+          transition: {
+            name: 'fade'
+          }
+        })
+      }, 250)
+    })
+    .catch(function (error) {
+      if (error) {
+        console.log('Error signing out')
+        console.log(error)
+      }
+    })
 }
 
 exports.onNavigatingTo = onNavigatingTo
