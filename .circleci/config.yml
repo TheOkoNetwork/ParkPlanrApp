@@ -7,10 +7,6 @@ executors:
     resource_class: large
     working_directory: ~/NativescriptAppBuild
 
-fast-checkout: &fast-checkout
-  attach_workspace:
-    at: ~/
-
 jobs:
   CheckoutCode:
     executor: nodeandroiddocker
@@ -25,8 +21,6 @@ jobs:
   styleCheck:
     executor: nodeandroiddocker
     steps:
-      - *fast-checkout
-
       - run:
           name: Install npm modules
           command: |
@@ -42,16 +36,10 @@ jobs:
           command: |
             standard --fix app/*/*.js app/*.js
 
-      - persist_to_workspace:
-          root: ~/
-          paths:
-              - NativescriptAppBuild
 
   PrepareProject:
     executor: nodeandroiddocker
     steps:
-      - *fast-checkout
-
       - run:
           name: Install npm modules
           command: |
@@ -78,8 +66,6 @@ jobs:
   PrepareAndroid:
     executor: nodeandroiddocker
     steps:
-      - *fast-checkout
-
       - run:
           name: Adding platform
           command: |
@@ -100,8 +86,6 @@ jobs:
   BuildReleaseAndroid:
     executor: nodeandroiddocker
     steps:
-      - *fast-checkout
-
       - run:
           name: Build signed app
           environment:
@@ -122,8 +106,6 @@ jobs:
   DistributeAndroid:
     executor: nodeandroiddocker
     steps:
-      - *fast-checkout
-
       - run:
           name: Publish apk to firebase app distribution
           command: |
@@ -137,8 +119,6 @@ jobs:
   appSyncDistributeAndroid:
     executor: nodeandroiddocker
     steps:
-      - *fast-checkout
-
       - run:
           name: Publish update to app sync
           command: |
@@ -149,8 +129,6 @@ jobs:
   PrepareiOS:
     executor: nodeandroiddocker
     steps:
-      - *fast-checkout
-
       - run:
           name: Extracting certificate
           command: |
@@ -160,24 +138,6 @@ jobs:
           root: ~/
           paths:
               - NativescriptAppBuild
-
-  BuildReleaseiOS:
-    executor: nodeandroiddocker
-    steps:
-      - *fast-checkout
-
-      - run:
-          name: Building for iOS
-          command: |
-            sudo npm i -g npm-check-updates nativescript nativescript-cloud --ignore-scripts --unsafe-perm --no-progress;
-            echo $IOS_CERTIFICATE_BASE64 | base64 -d > ./iOSCert.p12;
-            tns dev-login ${NATIVESCRIPT_CLOUD_USERNAME} ${NATIVESCRIPT_CLOUD_PASSWORD}
-            tns accept eula 
-            tns cloud build ios --accountId ${NATIVESCRIPT_CLOUD_ACCOUNT_ID} --certificate iOSCert.p12 --certificatePassword ${IOS_CERTIFICATE_PASSWORD} --provision ProvisioningProfile.mobileprovision
-            find .cloud
-
-      - store_artifacts:
-          path: .cloud
 
   Completed:
     executor: nodeandroiddocker
@@ -210,19 +170,10 @@ workflows:
       - DistributeAndroid:
             requires:
                   - BuildReleaseAndroid
-
-#      - PrepareiOS:
-#            requires:
-#                  - PrepareProject
-#      - BuildReleaseiOS:
-#            requires:
-#                  - PrepareiOS
-
       - Completed:
             requires:
                   - DistributeAndroid
                   - appSyncDistributeAndroid
-#                  - BuildReleaseiOS
 
 #          filters:
 #            branches:
