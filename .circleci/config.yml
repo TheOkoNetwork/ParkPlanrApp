@@ -7,6 +7,10 @@ executors:
     resource_class: large
     working_directory: ~/NativescriptAppBuild
 
+  iosBuildMac:
+    macos:
+      xcode: "11.3.0"
+
 fast-checkout: &fast-checkout
   attach_workspace:
     at: ~/
@@ -52,12 +56,12 @@ jobs:
     steps:
       - *fast-checkout
 
-      - run:
-          name: Install npm modules
-          command: |
-            sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
-            npm i --no-progress;
-            tns usage-reporting disable && tns error-reporting disable;
+  #    - run:
+  #        name: Install npm modules
+  #        command: |
+  #          sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
+  #          npm i --no-progress;
+  #          tns usage-reporting disable && tns error-reporting disable;
 
       - run:
           name: Update android manifest and iOS Info.plist versions
@@ -90,6 +94,22 @@ jobs:
             echo $PLAY_STORE_JWT > ./jwt.json;
             /usr/local/openjdk-8/bin/keytool -list -v -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|grep "Certificate fingerprints" -A 3
             /usr/local/openjdk-8/bin/keytool -exportcert -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|openssl sha1 -binary | openssl base64
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
+
+  PrepareiOS:
+    executor: iosBuildMac
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Adding platform
+          command: |
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
+            tns platform add ios;
 
       - persist_to_workspace:
           root: ~/
@@ -199,6 +219,9 @@ workflows:
             requires:
                   - styleCheck
       - PrepareAndroid:
+            requires:
+                  - PrepareProject
+      - PrepareIos:
             requires:
                   - PrepareProject
       - BuildReleaseAndroid:
