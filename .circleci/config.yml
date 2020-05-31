@@ -22,64 +22,42 @@ jobs:
             paths:
                 - NativescriptAppBuild
 
-  setupGlobal:
-    executor: nodeandroiddocker
-    steps:
-      - restore_cache:
-          keys:
-            - v3-npm-global
-
-      - run:
-          name: Install npm modules
-          command: |
-            npm config set prefix '~/npm-global'
-            npm i -g standard prettier --ignore-scripts --unsafe-perm --no-progress;
-            npm i -g nativescript-app-sync-cli nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
-
-      - save_cache:
-          paths:
-            - ~/npm-global
-          key: v3-npm-global
-
-
   styleCheck:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
 
-      - restore_cache:
-          keys:
-            - v3-npm-global
+      - run:
+          name: Install npm modules
+          command: |
+            sudo npm i -g standard prettier --ignore-scripts --unsafe-perm --no-progress;
 
       - run:
           name: Prettier on app js files
           command: |
-            ~/npm-global/bin/prettier --write "app/*/*.js" "app/*.js"
+            prettier --write "app/*/*.js" "app/*.js"
 
       - run:
           name: Standard js style check on app js files
           command: |
-            ~/npm-global/bin/standard --fix app/*/*.js app/*.js
+            standard --fix app/*/*.js app/*.js
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
 
   PrepareProject:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
 
-      - restore_cache:
-          keys:
-            - v2-npm-deps-{{ checksum "package-lock.json" }}
-            - v2-npm-deps-
-
       - run:
-          name: Install npm local modules
+          name: Install npm modules
           command: |
+            sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
             npm i --no-progress;
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v2-npm-deps-{{ checksum "package-lock.json" }}
+            tns usage-reporting disable && tns error-reporting disable;
 
       - run:
           name: Update android manifest and iOS Info.plist versions
@@ -89,6 +67,7 @@ jobs:
       - run:
           name: Build setup
           command: |
+            ./UpdateAll.sh;
             rm -rf platforms;
 
       - persist_to_workspace:
@@ -96,34 +75,32 @@ jobs:
           paths:
               - NativescriptAppBuild
 
-  BuildReleaseAndroid:
+  PrepareAndroid:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
 
-      - restore_cache:
-          keys:
-            - v3-npm-global
-
-      - restore_cache:
-          keys:
-            - v3-android-npm-deps-{{ checksum "package-lock.json" }}
-            - v3-android-npm-deps-
-
       - run:
           name: Adding platform
           command: |
-            ~/npm-global/bin/tns platform add android;
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
+            tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
             echo $ANDROID_KEY_BASE64 | base64 -d > ./key.jks;
             echo $PLAY_STORE_JWT > ./jwt.json;
             /usr/local/openjdk-8/bin/keytool -list -v -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|grep "Certificate fingerprints" -A 3
             /usr/local/openjdk-8/bin/keytool -exportcert -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|openssl sha1 -binary | openssl base64
 
-      - save_cache:
+      - persist_to_workspace:
+          root: ~/
           paths:
-            - node_modules
-          key: v3-android-npm-deps-{{ checksum "package-lock.json" }}
+              - NativescriptAppBuild
+
+
+  BuildReleaseAndroid:
+    executor: nodeandroiddocker
+    steps:
+      - *fast-checkout
 
       - run:
           name: Build signed app
@@ -131,12 +108,13 @@ jobs:
             ANDROID_KEY_BASE64: ""
             PLAY_STORE_JWT: ""
           command: |
-            ~/npm-global/bin/tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
+            tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
 
       - persist_to_workspace:
           root: ~/
           paths:
-              - NativescriptAppBuild/dist
+              - NativescriptAppBuild
 
       - store_artifacts:
           path: ./dist
@@ -146,32 +124,60 @@ jobs:
     steps:
       - *fast-checkout
 
-      - restore_cache:
-          keys:
-            - v3-npm-global
-
       - run:
           name: Publish apk to firebase app distribution
           command: |
+            sudo npm i -g firebase-tools --ignore-scripts --unsafe-perm --no-progress;
             export GIT_COMMIT_MESSAGE="$(git log --format=%B -n 1 $CIRCLE_SHA1)"
             echo ${APP_DIST_ANDROID_GROUP}|base64;
             echo $GIT_COMMIT_MESSAGE;
-            ~/npm-global/bin/firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups ${APP_DIST_ANDROID_GROUP} --token ${FIREBASE_TOOLS_TOKEN}
+            firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups ${APP_DIST_ANDROID_GROUP} --token ${FIREBASE_TOOLS_TOKEN}
+
 
   appSyncDistributeAndroid:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
 
-      - restore_cache:
-          keys:
-            - v3-npm-global
-
       - run:
           name: Publish update to app sync
           command: |
+            sudo npm i -g nativescript-app-sync-cli
             echo $nativescriptAppSyncKey | base64 -d > ~/.nativescript-app-sync.config;
             ./scripts/publishAppSync.sh
+
+  PrepareiOS:
+    executor: nodeandroiddocker
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Extracting certificate
+          command: |
+            echo $IOS_CERTIFICATE_BASE64 | base64 -d > ./iOSCert.p12;
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
+
+  BuildReleaseiOS:
+    executor: nodeandroiddocker
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Building for iOS
+          command: |
+            sudo npm i -g npm-check-updates nativescript nativescript-cloud --ignore-scripts --unsafe-perm --no-progress;
+            echo $IOS_CERTIFICATE_BASE64 | base64 -d > ./iOSCert.p12;
+            tns dev-login ${NATIVESCRIPT_CLOUD_USERNAME} ${NATIVESCRIPT_CLOUD_PASSWORD}
+            tns accept eula 
+            tns cloud build ios --accountId ${NATIVESCRIPT_CLOUD_ACCOUNT_ID} --certificate iOSCert.p12 --certificatePassword ${IOS_CERTIFICATE_PASSWORD} --provision ProvisioningProfile.mobileprovision
+            find .cloud
+
+      - store_artifacts:
+          path: .cloud
 
   Completed:
     executor: nodeandroiddocker
@@ -186,19 +192,18 @@ workflows:
   BuildAndDistribute:
     jobs:
       - CheckoutCode
-      - setupGlobal:
-            requires:
-                  - CheckoutCode
       - styleCheck:
             requires:
-                  - setupGlobal
+                  - CheckoutCode
       - PrepareProject:
             requires:
-                  - setupGlobal
-      - BuildReleaseAndroid:
+                  - styleCheck
+      - PrepareAndroid:
             requires:
                   - PrepareProject
-                  - styleCheck
+      - BuildReleaseAndroid:
+            requires:
+                  - PrepareAndroid
       - appSyncDistributeAndroid:
             requires:
                   - BuildReleaseAndroid
@@ -206,10 +211,18 @@ workflows:
             requires:
                   - BuildReleaseAndroid
 
+#      - PrepareiOS:
+#            requires:
+#                  - PrepareProject
+#      - BuildReleaseiOS:
+#            requires:
+#                  - PrepareiOS
+
       - Completed:
             requires:
                   - DistributeAndroid
                   - appSyncDistributeAndroid
+#                  - BuildReleaseiOS
 
 #          filters:
 #            branches:
