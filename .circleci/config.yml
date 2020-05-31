@@ -106,9 +106,19 @@ jobs:
       - *fast-checkout
 
       - run:
-          name: Adding platform
+          name: Installing NPM global packages
           command: |
             sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
+
+      - run:
+          name: Installing miscellaneous dependancies
+          command: |
+            sudo pip install six
+
+      - run:
+          name: Adding platform
+          command: |
+            cd ~/NativescriptAppBuild
             tns platform add ios;
 
       - persist_to_workspace:
