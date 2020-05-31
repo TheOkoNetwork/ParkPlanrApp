@@ -91,11 +91,6 @@ jobs:
     steps:
       - *fast-checkout
 
-      - restore_cache:
-        keys:
-          - v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
-          - v1-npm-global-packages
-
       - run:
           name: Adding platform
           command: |
@@ -116,11 +111,6 @@ jobs:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
-
-      - restore_cache:
-        keys:
-          - v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
-          - v1-npm-global-packages
 
       - run:
           name: Build signed app
@@ -143,11 +133,6 @@ jobs:
     steps:
       - *fast-checkout
 
-      - restore_cache:
-        keys:
-          - v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
-          - v1-npm-global-packages
-
       - run:
           name: Publish apk to firebase app distribution
           command: |
@@ -161,11 +146,6 @@ jobs:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
-
-      - restore_cache:
-        keys:
-          - v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
-          - v1-npm-global-packages
 
       - run:
           name: Publish update to app sync
