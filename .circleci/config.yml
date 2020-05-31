@@ -230,12 +230,12 @@ workflows:
       - DistributeAndroid:
             requires:
                   - BuildReleaseAndroid
-      - PrepareiOS:
-            requires:
-                  - PrepareProject
-      - buildDebugiOS:
-            requires:
-                  - PrepareiOS
+      #- PrepareiOS:
+      #      requires:
+      #            - PrepareProject
+      #- buildDebugiOS:
+      #      requires:
+      #            - PrepareiOS
 
       - Completed:
             requires:
