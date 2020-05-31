@@ -53,14 +53,11 @@ jobs:
       - *fast-checkout
 
       - run:
-          name: Install global npm modules
+          name: Install npm modules
           command: |
             sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
-
-      - run:
-          name: Install local npm modules
-          command: |
             npm i --no-progress;
+            tns usage-reporting disable && tns error-reporting disable;
 
       - run:
           name: Update android manifest and iOS Info.plist versions
@@ -106,16 +103,12 @@ jobs:
       - *fast-checkout
 
       - run:
-          name: npm install global
-          command: |
-            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
-
-      - run:
           name: Build signed app
           environment:
             ANDROID_KEY_BASE64: ""
             PLAY_STORE_JWT: ""
           command: |
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
 
       - persist_to_workspace:
@@ -132,13 +125,9 @@ jobs:
       - *fast-checkout
 
       - run:
-          name: npm install global
-          command: |
-            sudo npm i -g firebase-tools --ignore-scripts --unsafe-perm --no-progress;
-
-      - run:
           name: Publish apk to firebase app distribution
           command: |
+            sudo npm i -g firebase-tools --ignore-scripts --unsafe-perm --no-progress;
             export GIT_COMMIT_MESSAGE="$(git log --format=%B -n 1 $CIRCLE_SHA1)"
             echo ${APP_DIST_ANDROID_GROUP}|base64;
             echo $GIT_COMMIT_MESSAGE;
@@ -151,15 +140,44 @@ jobs:
       - *fast-checkout
 
       - run:
-          name: npm install
-          command: |
-            sudo npm i -g nativescript-app-sync-cli
-
-      - run:
           name: Publish update to app sync
           command: |
+            sudo npm i -g nativescript-app-sync-cli
             echo $nativescriptAppSyncKey | base64 -d > ~/.nativescript-app-sync.config;
             ./scripts/publishAppSync.sh
+
+  PrepareiOS:
+    executor: nodeandroiddocker
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Extracting certificate
+          command: |
+            echo $IOS_CERTIFICATE_BASE64 | base64 -d > ./iOSCert.p12;
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
+
+  BuildReleaseiOS:
+    executor: nodeandroiddocker
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Building for iOS
+          command: |
+            sudo npm i -g npm-check-updates nativescript nativescript-cloud --ignore-scripts --unsafe-perm --no-progress;
+            echo $IOS_CERTIFICATE_BASE64 | base64 -d > ./iOSCert.p12;
+            tns dev-login ${NATIVESCRIPT_CLOUD_USERNAME} ${NATIVESCRIPT_CLOUD_PASSWORD}
+            tns accept eula 
+            tns cloud build ios --accountId ${NATIVESCRIPT_CLOUD_ACCOUNT_ID} --certificate iOSCert.p12 --certificatePassword ${IOS_CERTIFICATE_PASSWORD} --provision ProvisioningProfile.mobileprovision
+            find .cloud
+
+      - store_artifacts:
+          path: .cloud
 
   Completed:
     executor: nodeandroiddocker
@@ -168,6 +186,7 @@ jobs:
           name: Completed
           command: |
             echo "Build completed"
+
 workflows:
   version: 2
   BuildAndDistribute:
@@ -178,14 +197,13 @@ workflows:
                   - CheckoutCode
       - PrepareProject:
             requires:
-                  - CheckoutCode
+                  - styleCheck
       - PrepareAndroid:
             requires:
                   - PrepareProject
       - BuildReleaseAndroid:
             requires:
                   - PrepareAndroid
-                  - styleCheck
       - appSyncDistributeAndroid:
             requires:
                   - BuildReleaseAndroid
@@ -193,10 +211,18 @@ workflows:
             requires:
                   - BuildReleaseAndroid
 
+#      - PrepareiOS:
+#            requires:
+#                  - PrepareProject
+#      - BuildReleaseiOS:
+#            requires:
+#                  - PrepareiOS
+
       - Completed:
             requires:
                   - DistributeAndroid
                   - appSyncDistributeAndroid
+#                  - BuildReleaseiOS
 
 #          filters:
 #            branches:
