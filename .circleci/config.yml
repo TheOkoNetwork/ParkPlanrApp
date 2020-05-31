@@ -53,11 +53,14 @@ jobs:
       - *fast-checkout
 
       - run:
-          name: Install npm modules
+          name: Install global npm modules
           command: |
             sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
+
+      - run:
+          name: Install local npm modules
+          command: |
             npm i --no-progress;
-            tns usage-reporting disable && tns error-reporting disable;
 
       - run:
           name: Update android manifest and iOS Info.plist versions
