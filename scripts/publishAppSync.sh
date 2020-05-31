@@ -3,4 +3,4 @@
 dirname=$(dirname $0)
 version="$(node $dirname/get-version.js)"
 echo "Current app version: ${version}"
-nativescript-app-sync release "ParkPlanr Android" android --targetBinaryVersion "$version" --mandatory
+~/npm-global/bin/nativescript-app-sync release "ParkPlanr Android" android --targetBinaryVersion "$version" --mandatory
