@@ -223,10 +223,10 @@ workflows:
       - PrepareAndroid:
             requires:
                   - PrepareProject
-                  - styleCheck
       - BuildReleaseAndroid:
             requires:
                   - PrepareAndroid
+                  - styleCheck
       - appSyncDistributeAndroid:
             requires:
                   - BuildReleaseAndroid
