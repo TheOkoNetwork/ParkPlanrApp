@@ -108,6 +108,11 @@ jobs:
 
       - restore_cache:
           keys:
+            - v1-android-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-android-npm-deps-
+
+      - restore_cache:
+          keys:
             - v3-npm-global
 
       - run:
@@ -123,7 +128,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          key: v1-android-npm-deps-{{ checksum "package-lock.json" }}
 
       - persist_to_workspace:
           root: ~/
@@ -139,6 +144,11 @@ jobs:
       - restore_cache:
           keys:
             - v3-npm-global
+
+      - restore_cache:
+          keys:
+            - v1-android-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-android-npm-deps-
 
       - run:
           name: Build signed app
