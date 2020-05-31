@@ -52,10 +52,18 @@ jobs:
     steps:
       - *fast-checkout
 
+      - restore_cache:
+        keys:
+          - v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
+          - v1-npm-global-packages
+
       - run:
           name: Install global npm modules
           command: |
-            sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
+            npm i -g nativescript-app-sync-cli npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress --prefix ~/npm-global;
+
+      - save_cache:
+        key: v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
 
       - run:
           name: Install local npm modules
@@ -83,10 +91,14 @@ jobs:
     steps:
       - *fast-checkout
 
+      - restore_cache:
+        keys:
+          - v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
+          - v1-npm-global-packages
+
       - run:
           name: Adding platform
           command: |
-            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
             echo $ANDROID_KEY_BASE64 | base64 -d > ./key.jks;
@@ -105,10 +117,10 @@ jobs:
     steps:
       - *fast-checkout
 
-      - run:
-          name: npm install global
-          command: |
-            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
+      - restore_cache:
+        keys:
+          - v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
+          - v1-npm-global-packages
 
       - run:
           name: Build signed app
@@ -131,10 +143,10 @@ jobs:
     steps:
       - *fast-checkout
 
-      - run:
-          name: npm install global
-          command: |
-            sudo npm i -g firebase-tools --ignore-scripts --unsafe-perm --no-progress;
+      - restore_cache:
+        keys:
+          - v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
+          - v1-npm-global-packages
 
       - run:
           name: Publish apk to firebase app distribution
@@ -150,10 +162,10 @@ jobs:
     steps:
       - *fast-checkout
 
-      - run:
-          name: npm install
-          command: |
-            sudo npm i -g nativescript-app-sync-cli
+      - restore_cache:
+        keys:
+          - v1-npm-global-packages-{{ checksum "./.circleci/config.yml"}}
+          - v1-npm-global-packages
 
       - run:
           name: Publish update to app sync
