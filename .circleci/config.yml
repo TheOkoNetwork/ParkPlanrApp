@@ -188,7 +188,7 @@ workflows:
       - PrepareAndroid:
             requires:
                   - PrepareProject
-      - PrepareIOS:
+      - PrepareiOS:
             requires:
                   - PrepareProject
       - BuildReleaseAndroid:
