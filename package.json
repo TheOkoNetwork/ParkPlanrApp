@@ -16,13 +16,14 @@
     "lint": "eslint \"app/**/*.js\""
   },
   "dependencies": {
+    "@nativescript/core": "^6.2.3",
     "moment": "^2.24.0",
     "nativescript-app-sync": "^2.0.0",
     "nativescript-appversion": "^1.4.2",
     "nativescript-feedback": "^1.3.11",
     "nativescript-pdf-view": "^2.0.1",
-    "nativescript-plugin-firebase": "^10.5.0",
-    "nativescript-theme-core": "~1.0.6",
+    "nativescript-plugin-firebase": "^10.2.1",
+    "nativescript-theme-core": "^1.0.6",
     "nativescript-ui-sidedrawer": "~7.0.0",
     "rxjs": "^6.4.0",
     "tns-core-modules": "~6.3.0"
