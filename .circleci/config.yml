@@ -1,4 +1,4 @@
-qversion: 2.1
+version: 2.1
 
 executors:
   nodeandroiddocker:
@@ -68,8 +68,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - v3-npm-deps-{{ checksum "package-lock.json" }}
-            - v3-npm-deps-
+            - v2-npm-deps-{{ checksum "package-lock.json" }}
+            - v2-npm-deps-
 
       - run:
           name: Install npm local modules
@@ -79,7 +79,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v3-npm-deps-{{ checksum "package-lock.json" }}
+          key: v2-npm-deps-{{ checksum "package-lock.json" }}
 
       - run:
           name: Update android manifest and iOS Info.plist versions
@@ -101,6 +101,20 @@ jobs:
     steps:
       - *fast-checkout
 
+      - restore_cache:
+          keys:
+            - v2-npm-deps-{{ checksum "package-lock.json" }}
+            - v2-npm-deps-
+
+      - restore_cache:
+          keys:
+            - v2-android-npm-deps-{{ checksum "package-lock.json" }}
+            - v2-android-npm-deps-
+
+      - restore_cache:
+          keys:
+            - v3-npm-global
+
       - run:
           name: Adding platform
           command: |
@@ -110,6 +124,11 @@ jobs:
             echo $PLAY_STORE_JWT > ./jwt.json;
             /usr/local/openjdk-8/bin/keytool -list -v -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|grep "Certificate fingerprints" -A 3
             /usr/local/openjdk-8/bin/keytool -exportcert -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|openssl sha1 -binary | openssl base64
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v2-android-npm-deps-{{ checksum "package-lock.json" }}
 
       - persist_to_workspace:
           root: ~/
@@ -125,6 +144,11 @@ jobs:
       - restore_cache:
           keys:
             - v3-npm-global
+
+      - restore_cache:
+          keys:
+            - v2-android-npm-deps-{{ checksum "package-lock.json" }}
+            - v2-android-npm-deps-
 
       - run:
           name: Build signed app
