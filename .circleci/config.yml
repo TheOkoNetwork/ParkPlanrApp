@@ -12,11 +12,6 @@ jobs:
     executor: nodeandroiddocker
     steps:
         - checkout
-#       - run: rm -rf .git
-        - persist_to_workspace:
-            root: ~/
-            paths:
-                - NativescriptAppBuild
 
   styleCheck:
     executor: nodeandroiddocker
