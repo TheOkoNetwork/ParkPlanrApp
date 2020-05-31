@@ -4,6 +4,7 @@ executors:
   nodeandroiddocker:
     docker:
       - image: circleci/android:api-29-node
+    resource_class: large
     working_directory: ~/NativescriptAppBuild
 
 fast-checkout: &fast-checkout
