@@ -245,7 +245,7 @@ workflows:
             requires:
                   - DistributeAndroid
                   - appSyncDistributeAndroid
-                  - BuildDebugiOS
+                  - buildDebugiOS
 
 #          filters:
 #            branches:
