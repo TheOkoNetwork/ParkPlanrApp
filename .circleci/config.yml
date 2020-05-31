@@ -219,10 +219,11 @@ workflows:
                   - setupGlobal
       - PrepareProject:
             requires:
-                  - styleCheck
+                  - setupGlobal
       - PrepareAndroid:
             requires:
                   - PrepareProject
+                  - styleCheck
       - BuildReleaseAndroid:
             requires:
                   - PrepareAndroid
