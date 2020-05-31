@@ -7,11 +7,26 @@ executors:
     resource_class: large
     working_directory: ~/NativescriptAppBuild
 
+fast-checkout: &fast-checkout
+  attach_workspace:
+    at: ~/
+
 jobs:
+  CheckoutCode:
+    executor: nodeandroiddocker
+    steps:
+        - checkout
+#       - run: rm -rf .git
+        - persist_to_workspace:
+            root: ~/
+            paths:
+                - NativescriptAppBuild
+
   styleCheck:
     executor: nodeandroiddocker
     steps:
-      - checkout
+      - *fast-checkout
+
       - run:
           name: Install npm modules
           command: |
@@ -27,16 +42,26 @@ jobs:
           command: |
             standard --fix app/*/*.js app/*.js
 
-
   PrepareProject:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
+      - restore_cache:
+          keys:
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-npm-deps-
+
       - run:
           name: Install npm modules
           command: |
             sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
             npm i --no-progress;
-            tns usage-reporting disable && tns error-reporting disable;
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
 
       - run:
           name: Update android manifest and iOS Info.plist versions
@@ -46,7 +71,6 @@ jobs:
       - run:
           name: Build setup
           command: |
-            ./UpdateAll.sh;
             rm -rf platforms;
 
       - persist_to_workspace:
@@ -57,6 +81,13 @@ jobs:
   PrepareAndroid:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
+      - restore_cache:
+          keys:
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-npm-deps-
+
       - run:
           name: Adding platform
           command: |
@@ -68,6 +99,11 @@ jobs:
             /usr/local/openjdk-8/bin/keytool -list -v -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|grep "Certificate fingerprints" -A 3
             /usr/local/openjdk-8/bin/keytool -exportcert -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|openssl sha1 -binary | openssl base64
 
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+
       - persist_to_workspace:
           root: ~/
           paths:
@@ -77,6 +113,8 @@ jobs:
   BuildReleaseAndroid:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
       - run:
           name: Build signed app
           environment:
@@ -97,6 +135,8 @@ jobs:
   DistributeAndroid:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
       - run:
           name: Publish apk to firebase app distribution
           command: |
@@ -110,6 +150,8 @@ jobs:
   appSyncDistributeAndroid:
     executor: nodeandroiddocker
     steps:
+      - *fast-checkout
+
       - run:
           name: Publish update to app sync
           command: |
@@ -117,18 +159,6 @@ jobs:
             echo $nativescriptAppSyncKey | base64 -d > ~/.nativescript-app-sync.config;
             ./scripts/publishAppSync.sh
 
-  PrepareiOS:
-    executor: nodeandroiddocker
-    steps:
-      - run:
-          name: Extracting certificate
-          command: |
-            echo $IOS_CERTIFICATE_BASE64 | base64 -d > ./iOSCert.p12;
-
-      - persist_to_workspace:
-          root: ~/
-          paths:
-              - NativescriptAppBuild
 
   Completed:
     executor: nodeandroiddocker
@@ -142,7 +172,10 @@ workflows:
   version: 2
   BuildAndDistribute:
     jobs:
-      - styleCheck
+      - CheckoutCode
+      - styleCheck:
+            requires:
+                  - CheckoutCode
       - PrepareProject:
             requires:
                   - styleCheck
@@ -158,6 +191,7 @@ workflows:
       - DistributeAndroid:
             requires:
                   - BuildReleaseAndroid
+
       - Completed:
             requires:
                   - DistributeAndroid
