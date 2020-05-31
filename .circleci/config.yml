@@ -1,5 +1,7 @@
 version: 2.1
 
+orbs:
+  shallow-checkout: datacamp/shallow-checkout@0.0.1
 executors:
   nodeandroiddocker:
     docker:
@@ -15,7 +17,7 @@ jobs:
   CheckoutCode:
     executor: nodeandroiddocker
     steps:
-        - checkout
+        - shallow-checkout
 #       - run: rm -rf .git
         - persist_to_workspace:
             root: ~/
@@ -197,13 +199,14 @@ workflows:
                   - CheckoutCode
       - PrepareProject:
             requires:
-                  - styleCheck
+                  - CheckoutCode
       - PrepareAndroid:
             requires:
                   - PrepareProject
       - BuildReleaseAndroid:
             requires:
                   - PrepareAndroid
+                  - CheckoutCode
       - appSyncDistributeAndroid:
             requires:
                   - BuildReleaseAndroid
