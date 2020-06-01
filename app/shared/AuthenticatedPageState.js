@@ -9,7 +9,7 @@ function AuthenticatedPageState () {
     .then(function (user) {
       if (user) {
         // console.log("Authenticated");
-        // console.log(user);
+        console.log(user)
         // console.log("Updating authenticated state");
         AuthenticatedStateService.getInstance().updateAuthenticatedState(
           user
