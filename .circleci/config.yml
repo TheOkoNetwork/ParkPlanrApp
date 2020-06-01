@@ -47,7 +47,7 @@ jobs:
             standard --fix app/*/*.js app/*.js
 
 
-  PrepareProject:
+  BuildReleaseAndroid:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
@@ -55,7 +55,7 @@ jobs:
       - run:
           name: Install npm modules
           command: |
-            sudo npm i -g npm-check-updates nativescript firebase-tools --ignore-scripts --unsafe-perm --no-progress;
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             npm i --no-progress;
             tns usage-reporting disable && tns error-reporting disable;
 
@@ -70,20 +70,9 @@ jobs:
             ./UpdateAll.sh;
             rm -rf platforms;
 
-      - persist_to_workspace:
-          root: ~/
-          paths:
-              - NativescriptAppBuild
-
-  BuildReleaseAndroid:
-    executor: nodeandroiddocker
-    steps:
-      - *fast-checkout
-
       - run:
           name: Adding platform
           command: |
-            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             tns platform add android;
             cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
             echo $ANDROID_KEY_BASE64 | base64 -d > ./key.jks;
@@ -201,12 +190,8 @@ workflows:
       - styleCheck:
             requires:
                   - CheckoutCode
-      - PrepareProject:
-            requires:
-                  - CheckoutCode
       - BuildReleaseAndroid:
             requires:
-                  - PrepareProject
                   - styleCheck
       - appSyncDistributeAndroid:
             requires:
