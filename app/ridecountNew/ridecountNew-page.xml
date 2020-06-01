@@ -24,7 +24,7 @@
     </ActionBar>
 
     <FlexboxLayout class="page-content" width="100%" height="100%" flexDirection="column">
-	<ListPicker items="{{parks}}" selectedIndex="{{parkIndex}}" class="p-15 picker" id="park" height="25%" />
+	<ListPicker items="{{parks}}" selectedIndex="{{parkIndex}}" class="p-15 picker" id="park" height="50%" />
 	<DatePicker loaded="onDatePickerLoaded" date="{{date}}" minDate="{{minDate}}" maxDate="{{today}}"></DatePicker>
         <Button text="&#xf067; &nbsp;Start trip" class="fa btn btn-primary" tap="createTrip"/>	
     </FlexboxLayout>
