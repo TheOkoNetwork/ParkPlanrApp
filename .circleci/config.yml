@@ -192,12 +192,14 @@ workflows:
                   - CheckoutCode
       - BuildReleaseAndroid:
             requires:
-                  - styleCheck
+                  - CheckoutCode
       - appSyncDistributeAndroid:
             requires:
+                  - styleCheck
                   - BuildReleaseAndroid
       - DistributeAndroid:
             requires:
+                  - styleCheck
                   - BuildReleaseAndroid
       #- PrepareiOS:
       #      requires:
