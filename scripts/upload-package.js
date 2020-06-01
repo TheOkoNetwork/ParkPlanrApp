@@ -1,35 +1,35 @@
 // @ts-check
 
-(async function() {
-  const { google } = require('googleapis');
-  const fs = require('fs');
-  const path = require('path');
+(async function () {
+  const { google } = require('googleapis')
+  const fs = require('fs')
+  const path = require('path')
   // @ts-ignore
-  const pkg = require('../package.json');
+  const pkg = require('../package.json')
 
-  console.log('Beginning app publishing');
+  console.log('Beginning app publishing')
 
-  const fileName = 'build.apk';
-  const filePath = path.join(__dirname, '..', 'dist', fileName);
-  const keyPath = path.join(__dirname, '..', 'jwt.json');
-  const packageName = 'uk.org.okonetwork.parkplanr';
-  const editId = `${new Date().getTime()}`;
-  const scopes = 'https://www.googleapis.com/auth/androidpublisher';
+  const fileName = 'build.apk'
+  const filePath = path.join(__dirname, '..', 'dist', fileName)
+  const keyPath = path.join(__dirname, '..', 'jwt.json')
+  const packageName = 'uk.org.okonetwork.parkplanr'
+  const editId = `${new Date().getTime()}`
+  const scopes = 'https://www.googleapis.com/auth/androidpublisher'
 
-  console.log('Logging into Google Play Store...');
+  console.log('Logging into Google Play Store...')
 
-  let client;
+  let client
 
   try {
     client = await google.auth.getClient({
       keyFile: keyPath,
       scopes
-    });
+    })
   } catch (e) {
-    console.error('There was an error', e.message);
+    console.error('There was an error', e.message)
   }
 
-  console.log('Logged into Google Play Store!');
+  console.log('Logged into Google Play Store!')
 
   const play = google.androidpublisher({
     version: 'v2',
@@ -37,23 +37,23 @@
     params: {
       packageName
     }
-  });
+  })
 
-  const apk = require('fs').readFileSync(filePath);
+  const apk = require('fs').readFileSync(filePath)
 
   try {
-    console.log('Creating edit...');
+    console.log('Creating edit...')
 
     const edit = await play.edits.insert({
       resource: {
         id: editId,
         expiryTimeSeconds: 600
       }
-    });
+    })
 
-    console.log('Edit created:', edit.data.id);
+    console.log('Edit created:', edit.data.id)
 
-    console.log('Uploading apk...');
+    console.log('Uploading apk...')
 
     const upload = await play.edits.apks.upload({
       editId: edit.data.id,
@@ -61,11 +61,11 @@
         mimeType: 'application/vnd.android.package-archive',
         body: apk
       }
-    });
+    })
 
-    console.log(`Apk successfully uploaded: versionCode is ${upload.data.versionCode}`);
+    console.log(`Apk successfully uploaded: versionCode is ${upload.data.versionCode}`)
 
-    console.log('Updating edit...');
+    console.log('Updating edit...')
 
     const update = await play.edits.tracks.update({
       editId: edit.data.id,
@@ -74,16 +74,16 @@
         track: 'internal',
         versionCodes: [+upload.data.versionCode]
       }
-    });
+    })
 
-    console.log('Commiting edit...');
+    console.log('Commiting edit...')
 
     const commit = await play.edits.commit({
       editId: edit.data.id
-    });
+    })
 
-    console.log('Successfully published app to Google Play Store!');
+    console.log('Successfully published app to Google Play Store!')
   } catch (e) {
-    console.error('There was an error', e.message);
+    console.error('There was an error', e.message)
   }
-})();
+})()

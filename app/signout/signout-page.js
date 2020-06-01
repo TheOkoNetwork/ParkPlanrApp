@@ -9,10 +9,6 @@ const firebase = require('nativescript-plugin-firebase')
 const frameModule = require('tns-core-modules/ui/frame')
 const config = require('../shared/config')
 
-var FeedbackPlugin = require('nativescript-feedback')
-var feedback = new FeedbackPlugin.Feedback()
-var color = require('color')
-
 function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new SignoutViewModel()
@@ -33,32 +29,17 @@ async function SignOut (args) {
     .then(function () {
       console.log('firebaseApp signOut')
 
-      firebase
-        .reloadUser()
-        .then(function () {
-          AuthenticatedPageState()
+      AuthenticatedPageState()
 
-          setTimeout(function () {
-            frameModule.topmost().navigate({
-              moduleName: 'home/home-page',
-              transition: {
-                name: 'fade'
-              }
-            })
-          }, 500)
-        })
-        .catch(function (error) {
-          if (error) {
-            console.log('Error reloading user after signing out')
-            console.log(error)
-            feedback.error({
-              title: JSON.stringify(error),
-              titleColor: new color.Color('black')
-            })
+      setTimeout(function () {
+        frameModule.topmost().navigate({
+          moduleName: 'home/home-page',
+          transition: {
+            name: 'fade'
           }
         })
+      }, 500)
     })
-
     .catch(function (error) {
       if (error) {
         console.log('Error signing out')

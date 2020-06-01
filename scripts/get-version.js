@@ -1,2 +1,2 @@
-const pkg = require('../package.json');
-console.log(`${pkg.version}`);
+const pkg = require('../package.json')
+console.log(`${pkg.version}`)
