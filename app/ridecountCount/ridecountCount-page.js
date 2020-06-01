@@ -46,6 +46,7 @@ function onNavigatingTo (args) {
       .collection('parks')
       .doc(parkId)
       .collection('rides')
+      .where("active",true)
       .orderBy('name', 'asc')
       .get()
   ]
