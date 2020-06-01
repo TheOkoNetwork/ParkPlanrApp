@@ -1,0 +1,10 @@
+<Page
+    class="page"
+    navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Signed out" textWrap="true"></Label>
+    </ActionBar>
+</Page>
