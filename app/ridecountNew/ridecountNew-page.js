@@ -121,18 +121,24 @@ function createTrip () {
       totalRides: 0
     })
     .then(function (tripDocRef) {
-      console.log('Trip created with ID: ', tripDocRef.id)
-
-      frameModule.topmost().navigate({
-        moduleName: 'ridecountCount/ridecountCount-page',
-        transition: {
-          name: 'fade'
-        },
-        context: {
-          tripId: tripDocRef.id,
-          parkId: trip.park
-        }
+      feedback.error({
+        title: 'Trip created',
+        message: `${JSON.stringify(tripDocRef)}`,
+        titleColor: new color.Color('black')
       })
+
+      // console.log('Trip created with ID: ', tripDocRef.id)
+
+      // frameModule.topmost().navigate({
+      //  moduleName: 'ridecountCount/ridecountCount-page',
+      //  transition: {
+      //    name: 'fade'
+      //  },
+      //  context: {
+      //    tripId: tripDocRef.id,
+      //    parkId: trip.park
+      //  }
+      // })
     })
     .catch(function (error) {
       console.error('Error creating trip document: ', error)
@@ -140,8 +146,9 @@ function createTrip () {
       setTimeout(function () {
         feedback.error({
           title: 'Unable to start trip',
-          message:
-                        `Please check your internet connection and try again ${JSON.stringify(error)}`,
+          message: `Please check your internet connection and try again ${JSON.stringify(
+                        error
+                    )}`,
           titleColor: new color.Color('black')
         })
       }, 125)
