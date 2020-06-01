@@ -79,7 +79,7 @@ jobs:
           paths:
               - NativescriptAppBuild
 
-  PrepareAndroid:
+  BuildReleaseAndroid:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
@@ -94,16 +94,6 @@ jobs:
             echo $PLAY_STORE_JWT > ./jwt.json;
             /usr/local/openjdk-8/bin/keytool -list -v -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|grep "Certificate fingerprints" -A 3
             /usr/local/openjdk-8/bin/keytool -exportcert -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|openssl sha1 -binary | openssl base64
-
-      - persist_to_workspace:
-          root: ~/
-          paths:
-              - NativescriptAppBuild
-
-  BuildReleaseAndroid:
-    executor: nodeandroiddocker
-    steps:
-      - *fast-checkout
 
       - run:
           name: Build signed app
@@ -218,12 +208,9 @@ workflows:
       - PrepareProject:
             requires:
                   - styleCheck
-      - PrepareAndroid:
-            requires:
-                  - PrepareProject
       - BuildReleaseAndroid:
             requires:
-                  - PrepareAndroid
+                  - PrepareProject
       - appSyncDistributeAndroid:
             requires:
                   - BuildReleaseAndroid
