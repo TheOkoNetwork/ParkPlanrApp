@@ -26,6 +26,9 @@ async function SignOut (args) {
     .signOut()
     .then(function () {
       console.log('Logout OK')
+
+      AuthenticatedPageState()
+
       setTimeout(function () {
         frameModule.topmost().navigate({
           moduleName: 'home/home-page',
@@ -33,7 +36,7 @@ async function SignOut (args) {
             name: 'fade'
           }
         })
-      }, 250)
+      }, 500)
     })
     .catch(function (error) {
       if (error) {

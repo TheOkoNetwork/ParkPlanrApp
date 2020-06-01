@@ -16,6 +16,9 @@ function AuthenticatedPageState () {
         )
       } else {
         // console.log("Unauthenticated");
+        AuthenticatedStateService.getInstance().updateAuthenticatedState(
+          false
+        )
       }
     })
     .catch(function (error) {
