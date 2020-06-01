@@ -141,7 +141,7 @@ function createTrip () {
         feedback.error({
           title: 'Unable to start trip',
           message:
-                        'Please check your internet connection and try again',
+                        `Please check your internet connection and try again ${JSON.stringify(error)}`,
           titleColor: new color.Color('black')
         })
       }, 125)
