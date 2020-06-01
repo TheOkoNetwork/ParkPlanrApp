@@ -7,7 +7,6 @@ firebaseApp.initializeApp()
 const firebase = require('nativescript-plugin-firebase')
 const exit = require('nativescript-exit').exit
 
-const frameModule = require('tns-core-modules/ui/frame')
 const config = require('../shared/config')
 
 function onNavigatingTo (args) {
