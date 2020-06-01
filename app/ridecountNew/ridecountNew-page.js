@@ -121,13 +121,13 @@ function createTrip () {
       totalRides: 0
     })
     .then(function (tripDocRef) {
+      console.log('Trip created with ID: ', tripDocRef.id)
+
       feedback.error({
         title: 'Trip created',
-        message: `${JSON.stringify(tripDocRef)}`,
+        message: `parkId: ${trip.park} tripId: ${tripDocRef.id}`,
         titleColor: new color.Color('black')
       })
-
-      // console.log('Trip created with ID: ', tripDocRef.id)
 
       // frameModule.topmost().navigate({
       //  moduleName: 'ridecountCount/ridecountCount-page',
