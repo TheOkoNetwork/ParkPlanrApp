@@ -46,10 +46,6 @@ jobs:
           command: |
             standard --fix app/*/*.js app/*.js
 
-      - persist_to_workspace:
-          root: ~/
-          paths:
-              - NativescriptAppBuild
 
   PrepareProject:
     executor: nodeandroiddocker
@@ -207,10 +203,11 @@ workflows:
                   - CheckoutCode
       - PrepareProject:
             requires:
-                  - styleCheck
+                  - CheckoutCode
       - BuildReleaseAndroid:
             requires:
                   - PrepareProject
+                  - styleCheck
       - appSyncDistributeAndroid:
             requires:
                   - BuildReleaseAndroid
