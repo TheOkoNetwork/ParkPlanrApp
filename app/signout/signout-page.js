@@ -5,6 +5,7 @@ const SignoutViewModel = require('./signout-view-model')
 const firebaseApp = require('nativescript-plugin-firebase/app')
 firebaseApp.initializeApp()
 const firebase = require('nativescript-plugin-firebase')
+const exit = require('nativescript-exit').exit
 
 const frameModule = require('tns-core-modules/ui/frame')
 const config = require('../shared/config')
@@ -30,15 +31,7 @@ async function SignOut (args) {
       console.log('firebaseApp signOut')
 
       AuthenticatedPageState()
-
-      setTimeout(function () {
-        frameModule.topmost().navigate({
-          moduleName: 'home/home-page',
-          transition: {
-            name: 'fade'
-          }
-        })
-      }, 500)
+      exit()
     })
     .catch(function (error) {
       if (error) {

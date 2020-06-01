@@ -20,6 +20,7 @@
     "moment": "^2.24.0",
     "nativescript-app-sync": "^2.0.0",
     "nativescript-appversion": "^1.4.2",
+    "nativescript-exit": "^1.0.1",
     "nativescript-feedback": "^1.3.11",
     "nativescript-pdf-view": "^2.0.1",
     "nativescript-plugin-firebase": "^10.5.2",
