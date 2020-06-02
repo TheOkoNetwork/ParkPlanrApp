@@ -129,16 +129,16 @@ function createTrip () {
         titleColor: new color.Color('black')
       })
 
-      // frameModule.topmost().navigate({
-      //  moduleName: 'ridecountCount/ridecountCount-page',
-      //  transition: {
-      //    name: 'fade'
-      //  },
-      //  context: {
-      //    tripId: tripDocRef.id,
-      //    parkId: trip.park
-      //  }
-      // })
+      frameModule.topmost().navigate({
+        moduleName: 'ridecountCount/ridecountCount-page',
+        transition: {
+           name: 'fade'
+        },
+        context: {
+        tripId: tripDocRef.id,
+          parkId: trip.park
+        }
+      })
     })
     .catch(function (error) {
       console.error('Error creating trip document: ', error)
