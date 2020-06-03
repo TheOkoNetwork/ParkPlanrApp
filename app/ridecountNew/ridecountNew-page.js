@@ -132,10 +132,10 @@ function createTrip () {
       frameModule.topmost().navigate({
         moduleName: 'ridecountCount/ridecountCount-page',
         transition: {
-           name: 'fade'
+          name: 'fade'
         },
         context: {
-        tripId: tripDocRef.id,
+          tripId: tripDocRef.id,
           parkId: trip.park
         }
       })
