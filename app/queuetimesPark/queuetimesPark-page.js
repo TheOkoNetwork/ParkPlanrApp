@@ -57,7 +57,7 @@ function onNavigatingTo (args) {
         .collection('parks')
         .doc(parkId)
         .collection('rides')
-        .where('queueTimes', '==', true)
+        .where('queuetimes', '==', true)
         .where('active', '==', true)
         .orderBy('name.name', 'asc')
         .onSnapshot(
