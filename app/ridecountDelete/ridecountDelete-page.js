@@ -78,7 +78,7 @@ function onNavigatingTo (args) {
           })
         }
       })
-      pageContext.pageTitle = `Deleting trip\n${pageContext.park.name}\n${pageContext.trip.dateHuman}`
+      pageContext.pageTitle = `Deleting trip\n${pageContext.park.name.name}\n${pageContext.trip.dateHuman}`
       console.log(pageContext)
       const vm = fromObject(pageContext)
       page.bindingContext = vm

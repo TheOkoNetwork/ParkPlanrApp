@@ -32,7 +32,7 @@
                 <!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
                 <GridLayout rows="*" columns="*,*,*,*" verticalAlignment="middle" class="list-group-item" tap="rideSelected" rideId="{{id}}" parkId="{{ $parents['ListView'].park.id, $parents['ListView'].park.id }}" tripId="{{ $parents['ListView'].trip.id, $parents['ListView'].trip.id }}">
                         <Image row="0" column="0" colSpan="1" src="{{logo || '~/images/logo_name.png' }}" visibility="{{ hasLogo ? 'visible' : 'collapsed' }}" />
-                        <Label row="0" column="1" colSpan="2" text="{{name}}" textWrap="true" class="title" />
+                        <Label row="0" column="1" colSpan="2" text="{{name.name}}" textWrap="true" class="title" />
                         <Label row="0" column="3" colSpan="1" text="{{count}}" textWrap="true" style="font-size: 50" />
                 </GridLayout>
             </ListView.itemTemplate>

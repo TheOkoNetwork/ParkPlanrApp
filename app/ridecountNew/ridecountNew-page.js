@@ -20,7 +20,7 @@ function onNavigatingTo (args) {
     .collection('parks')
     .where('active', '==', true)
     .where('ridecount', '==', true)
-    .orderBy('name', 'asc')
+    .orderBy('name.name', 'asc')
     .get()
     .then((querySnapshot) => {
       if (!querySnapshot.docs.length) {
@@ -47,9 +47,9 @@ function onNavigatingTo (args) {
           console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
           parks.push({
             id: doc.id,
-            name: doc.data().name,
+            name: doc.data().name.name,
             toString: () => {
-              return doc.data().name
+              return doc.data().name.name
             }
           })
         })
