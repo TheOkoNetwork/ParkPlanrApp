@@ -47,7 +47,7 @@ function onNavigatingTo (args) {
       .doc(parkId)
       .collection('rides')
       .where('active', '==', true)
-      .orderBy('name', 'asc')
+      .orderBy('name.name', 'asc')
       .get()
   ]
 
@@ -120,7 +120,7 @@ function onNavigatingTo (args) {
           pageContext.rides[index].count = rideCounts[ride.id]
         }
       })
-      pageContext.pageTitle = `${pageContext.park.name} ${pageContext.trip.dateHuman}`
+      pageContext.pageTitle = `${pageContext.park.name.name} ${pageContext.trip.dateHuman}`
       console.log(pageContext)
       const vm = fromObject(pageContext)
       page.bindingContext = vm

@@ -27,7 +27,7 @@ function onNavigatingTo (args) {
     .then(function (parkSnapshot) {
       console.log('Park data')
       console.log(parkSnapshot.data())
-      page.getViewById('pageTitle').text = parkSnapshot.data().name
+      page.getViewById('pageTitle').text = parkSnapshot.data().name.name
       if (!parkSnapshot.data().open) {
         frameModule.topmost().navigate({
           moduleName: 'queuetimes/queuetimes-page',
@@ -43,7 +43,7 @@ function onNavigatingTo (args) {
         }
         setTimeout(function () {
           feedback.error({
-            title: `${parkSnapshot.data().name} is closed`,
+            title: `${parkSnapshot.data().name.name} is closed`,
             message: parkClosedMessage,
             titleColor: new color.Color('black')
           })
@@ -59,7 +59,7 @@ function onNavigatingTo (args) {
         .collection('rides')
         .where('queueTimes', '==', true)
         .where('active', '==', true)
-        .orderBy('name', 'asc')
+        .orderBy('name.name', 'asc')
         .onSnapshot(
           (snapshot) => {
             console.log('Ride data')

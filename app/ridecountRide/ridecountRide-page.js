@@ -113,7 +113,7 @@ function onNavigatingTo (args) {
           })
         }
       })
-      pageContext.pageTitle = `${pageContext.ride.name}\n${pageContext.trip.dateHuman}`
+      pageContext.pageTitle = `${pageContext.ride.name.name}\n${pageContext.trip.dateHuman}`
       console.log(pageContext)
       const vm = fromObject(pageContext)
       page.bindingContext = vm

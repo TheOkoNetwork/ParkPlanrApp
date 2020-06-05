@@ -34,7 +34,7 @@
                 		<!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
                 		<GridLayout rows="*" columns="*,*,*,*,*,*,*" verticalAlignment="middle" class="list-group-item" tap="onTripSelect" longPress="onTripLongSelect" tripId="{{id}}" parkId="{{park.id}}">
                 			<Image row="0" column="0" colSpan="1" src="{{park.logo || '~/images/logo_name.png' }}" />
-                			<Label row="0" column="1" colSpan="3" text="{{park.name}}" textWrap="true" class="title" />
+                			<Label row="0" column="1" colSpan="3" text="{{park.name.name}}" textWrap="true" class="title" />
                 			<Label row="0" column="4" colSpan="2" text="{{humanDate}}" textWrap="true" class="title" />
                 			<Label row="0" column="6" text="{{totalRides}}" textWrap="true" class="title" />
 	                	</GridLayout>
