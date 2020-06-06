@@ -79,15 +79,18 @@ function onLoaded (args) {
 
                 var paragraphText = block.data.text
                 paragraphText = paragraphText.replace(
-                  /\r\n/g,
-                  '&#xa;'
+                  /<br>/g,
+                  '\r\n'
                 )
 
-                var formattedStringLabel = new formattedStringModule.FormattedString()
                 var labelSpan = new spanModule.Span()
                 labelSpan.text = paragraphText
+
+                var formattedStringLabel = new formattedStringModule.FormattedString()
                 formattedStringLabel.spans.push(labelSpan)
+
                 paragraphLabel.formattedText = formattedStringLabel
+
                 container.addChild(paragraphLabel)
                 break
               default:
