@@ -79,7 +79,7 @@ function onLoaded (args) {
 
                 var paragraphText = block.data.text
                 paragraphText = paragraphText.replace(
-                  /<br>/g,
+                  /\r\n/g,
                   '&#xa;'
                 )
 
