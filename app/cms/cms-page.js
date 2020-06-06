@@ -73,7 +73,7 @@ function onLoaded (args) {
           cmsPage.content.blocks.forEach(function (block) {
             switch (block.type) {
               case 'paragraph':
-                const paragraphLabel = new labelModule.Label()
+                var paragraphLabel = new labelModule.Label()
                 paragraphLabel.text = block.data.text
                 container.addChild(paragraphLabel)
                 break
