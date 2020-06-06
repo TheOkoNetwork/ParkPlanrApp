@@ -81,7 +81,7 @@ function onLoaded (args) {
                 var paragraphText = block.data.text
                 paragraphText = paragraphText.replace(
                   /<br>/g,
-                  '\r\n\r\n'
+                  '\r\n\n'
                 )
 
                 var labelSpan = new spanModule.Span()
