@@ -18,6 +18,8 @@ function onNavigatingTo (args) {
 }
 
 const labelModule = require('tns-core-modules/ui/label')
+const formattedStringModule = require('tns-core-modules/text/formatted-string')
+const spanModule = require('tns-core-modules/text/span')
 
 function onLoaded (args) {
   const page = args.object
@@ -74,9 +76,18 @@ function onLoaded (args) {
             switch (block.type) {
               case 'paragraph':
                 var paragraphLabel = new labelModule.Label()
+
                 var paragraphText = block.data.text
-                paragraphText = paragraphText.replace(/<br>/g,"\n");
-                paragraphLabel.text = paragraphText
+                paragraphText = paragraphText.replace(
+                  /<br>/g,
+                  '\n'
+                )
+
+                var formattedStringLabel = new formattedStringModule.FormattedString()
+                var labelSpan = new spanModule.Span()
+                labelSpan.text = paragraphText
+                formattedStringLabel.spans.push(labelSpan)
+                paragraphLabel.formattedText = formattedStringLabel
                 container.addChild(paragraphLabel)
                 break
               default:
