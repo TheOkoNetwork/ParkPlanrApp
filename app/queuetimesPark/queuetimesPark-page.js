@@ -102,8 +102,9 @@ function onNavigatingTo (args) {
             setTimeout(function () {
               feedback.error({
                 title: 'Unable to load queue times',
-                message:
-                                    'Please check your internet connection and try again',
+                message: `Please check your internet connection and try again ${JSON.stringify(
+                                    error
+                                )}-1`,
                 titleColor: new color.Color('black')
               })
             }, 125)
