@@ -74,7 +74,9 @@ function onLoaded (args) {
             switch (block.type) {
               case 'paragraph':
                 var paragraphLabel = new labelModule.Label()
-                paragraphLabel.text = block.data.text
+                var paragraphText = block.data.text
+                paragraphText = paragraphText.replace(/<br>/g,"\n");
+                paragraphLabel.text = paragraphText
                 container.addChild(paragraphLabel)
                 break
               default:
