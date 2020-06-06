@@ -76,11 +76,12 @@ function onLoaded (args) {
             switch (block.type) {
               case 'paragraph':
                 var paragraphLabel = new labelModule.Label()
+                paragraphLabel.textWrap = true
 
                 var paragraphText = block.data.text
                 paragraphText = paragraphText.replace(
                   /<br>/g,
-                  '\r\n'
+                  '\r\n\r\n'
                 )
 
                 var labelSpan = new spanModule.Span()
