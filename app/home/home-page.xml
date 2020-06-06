@@ -25,7 +25,7 @@
 
     <GridLayout class="page-content">
 		<GridLayout columns="*,*" rows="*,*,*,*,*,*,*" width="100%" height="100%" backgroundColor="white"  visibility="{{ user ? 'visible' : 'collapsed' }}">
-	        	<Button row="0" col="0" colSpan="2" text="&#xf12a; &nbsp;Coronavirus Info" class="fa btn btn-primary" slug="coronavirus" tap="cmsPage" />
+	        	<Button row="0" col="0" colSpan="2" text="&#xf12a; &nbsp;Coronavirus Info" class="fa btn btn-primary" slug="ABitOfEverything" tap="cmsPage" />
 	        	<Button row="1" col="0" text="&#xf017; &nbsp;Queue times" class="fa btn btn-primary" route="queuetimes/queuetimes-page" tap="pageJump"/>
 	        	<Button row="1" col="1" text="&#xf0cb; &nbsp;Ride count" class="fa btn btn-primary" route="ridecount/ridecount-page" tap="pageJump"/>
 	        	<Button row="2" col="0" text="&#xf1ec; &nbsp;Discounts" class="fa btn btn-primary" route="discountcalculator/discountcalculator-page" tap="pageJump" />
