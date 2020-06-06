@@ -56,6 +56,8 @@ function onLoaded (args) {
         })
       } else {
         console.log('Not empty')
+
+        container.removeChildren()
         querySnapshot.forEach((doc) => {
           console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
 
