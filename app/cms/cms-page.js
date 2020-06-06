@@ -80,7 +80,7 @@ function onLoaded (args) {
                 var paragraphText = block.data.text
                 paragraphText = paragraphText.replace(
                   /<br>/g,
-                  '\n'
+                  '&#xa;'
                 )
 
                 var formattedStringLabel = new formattedStringModule.FormattedString()
