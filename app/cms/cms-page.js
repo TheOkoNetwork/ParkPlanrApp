@@ -17,8 +17,12 @@ function onNavigatingTo (args) {
   page.bindingContext = new CmsViewModel()
 }
 
+const labelModule = require('tns-core-modules/ui/label')
+
 function onLoaded (args) {
   const page = args.object
+  const container = page.getViewById('container')
+
   console.log('Fetching cms page')
   var slug = page.navigationContext.slug
 
@@ -65,6 +69,20 @@ function onLoaded (args) {
           page.getViewById('PageContentsHtmlView').html =
                         cmsPage.rawContent
           page.getViewById('PageTitle').text = cmsPage.title
+
+          cmsPage.content.blocks.forEach(function (block) {
+            switch (block.type) {
+              case 'paragraph':
+                const paragraphLabel = new labelModule.Label()
+                paragraphLabel.text = block.data.text
+                container.addChild(paragraphLabel)
+                break
+              default:
+                console.log(
+                                    `Unknown block type: ${block.type}`
+                )
+            }
+          })
         })
       }
     })
