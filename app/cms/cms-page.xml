@@ -24,6 +24,6 @@
     </ActionBar>
 
         <StackLayout class="page" id="container">
-      		<HtmlView html="" id="PageContentsHtmlView"></HtmlView>
+<!--      		<HtmlView html="" id="PageContentsHtmlView"></HtmlView> -->
         </StackLayout>
 </Page>
