@@ -12,17 +12,14 @@ var feedback = new FeedbackPlugin.Feedback()
 const frameModule = require('tns-core-modules/ui/frame')
 var color = require('color')
 
-function onNavigatingTo (args) {
-  const page = args.object
-  page.bindingContext = new CmsViewModel()
-}
-
 const labelModule = require('tns-core-modules/ui/label')
 const formattedStringModule = require('tns-core-modules/text/formatted-string')
 const spanModule = require('tns-core-modules/text/span')
 
-function onLoaded (args) {
+function onNavigatingTo (args) {
   const page = args.object
+  page.bindingContext = new CmsViewModel()
+
   const container = page.getViewById('container')
 
   console.log('Fetching cms page')
@@ -57,7 +54,6 @@ function onLoaded (args) {
       } else {
         console.log('Not empty')
 
-        container.removeChildren()
         querySnapshot.forEach((doc) => {
           console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
 
@@ -130,6 +126,5 @@ function onDrawerButtonTap (args) {
 
 exports.onNavigatingTo = onNavigatingTo
 exports.onDrawerButtonTap = onDrawerButtonTap
-exports.onLoaded = onLoaded
 exports.pageJump = require('../shared/pageJump')
 exports.cmsPage = require('../shared/cmsPage')

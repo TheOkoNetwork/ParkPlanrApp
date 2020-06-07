@@ -1,0 +1,468 @@
+06-07 01:04:03.628  4582  4582 D Zygote  : Forked child process 19318
+06-07 01:04:03.632 19318 19318 E Zygote  : isWhitelistProcess - Process is Whitelisted
+06-07 01:04:03.633 19318 19318 E Zygote  : accessInfo : 1
+06-07 01:04:03.643 19318 19318 E twork.parkplan: Not starting debugger since process cannot load the jdwp agent.
+06-07 01:04:03.650 19318 19318 D ActivityThread: setConscryptValidator
+06-07 01:04:03.650 19318 19318 D ActivityThread: setConscryptValidator - put
+06-07 01:04:03.708 19318 19342 W DynamiteModule: Local module descriptor class for com.google.firebase.auth not found.
+06-07 01:04:03.731 19318 19318 I FirebaseInitProvider: FirebaseApp initialization successful
+06-07 01:04:03.734 19318 19344 W DynamiteModule: Local module descriptor class for com.google.firebase.auth not found.
+06-07 01:04:03.742 19318 19344 I FirebaseAuth: [FirebaseAuth:] Preparing to create service connection to gms implementation
+06-07 01:04:03.771 19318 19318 I CrashlyticsCore: Initializing Crashlytics Core 2.7.0.33
+06-07 01:04:03.780 19318 19318 I CrashlyticsInitProvider: CrashlyticsInitProvider initialization successful
+06-07 01:04:03.821 19318 19318 W com.facebook.UserSettingsManager: Please set a value for AutoLogAppEventsEnabled. Set the flag to TRUE if you want to collect app install, app launch and in-app purchase events automatically. To request user consent before collecting data, set the flag value to FALSE, then change to TRUE once user consent is received. Learn more: https://developers.facebook.com/docs/app-events/getting-started-app-events-android#disable-auto-events.
+06-07 01:04:03.821 19318 19318 W com.facebook.UserSettingsManager: You haven't set a value for AdvertiserIDCollectionEnabled. Set the flag to TRUE if you want to collect Advertiser ID for better advertising and analytics results. To request user consent before collecting data, set the flag value to FALSE, then change to TRUE once user consent is received. Learn more: https://developers.facebook.com/docs/app-events/getting-started-app-events-android#disable-auto-events.
+06-07 01:04:03.824 19318 19362 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+06-07 01:04:03.832 19318 19362 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:03.832 19318 19362 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:03.844 19318 19362 E Fabric  : Error performing auto configuration.
+06-07 01:04:03.853 19318 19386 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:03.853 19318 19386 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:03.856 19318 19384 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:03.856 19318 19384 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:03.871 19318 19384 D TcpOptimizer: TcpOptimizer-ON
+06-07 01:04:03.875 19318 19318 I System.out: --- currentHash: c8d5ff2b5c0c5e9ba9363beb56482995f2afe2a42549a4ed0659411df4a249a8
+06-07 01:04:03.985 19318 19341 I FA      : App measurement initialized, version: 21028
+06-07 01:04:03.985 19318 19341 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+06-07 01:04:03.985 19318 19341 I FA      : To enable faster debug mode event logging run:
+06-07 01:04:03.985 19318 19341 I FA      :   adb shell setprop debug.firebase.analytics.app uk.org.okonetwork.parkplanr
+06-07 01:04:04.043 19318 19318 I TNS.Runtime: NativeScript Runtime Version 6.5.0, commit 06980ed0e5e2fae2c94a42808e858871cd349c81
+06-07 01:04:04.065 19318 19318 D TNS.Runtime: V8 version 8.0.426.16
+06-07 01:04:04.470 19318 19318 W ActivityThread: handleWindowVisibility: no activity for token android.os.BinderProxy@5ccedb7
+06-07 01:04:04.517 19318 19416 D libEGL  : loaded /vendor/lib64/egl/libGLES_mali.so
+06-07 01:04:04.618 19318 19318 D FirebasePluginCB: Unregistering the activity lifecycle callbacks...
+06-07 01:04:04.618 19318 19318 D FirebasePluginCB: Registering the activity lifecycle callbacks...
+06-07 01:04:04.858 19318 19318 D ScrollView: initGoToTop
+06-07 01:04:04.877 19318 19318 D ScrollView: initGoToTop
+06-07 01:04:04.900 19318 19318 I MultiWindowDecorSupport: updateCaptionType >> DecorView@e5b12fc[], isFloating: false, isApplication: true, hasWindowDecorCaption: false, hasWindowControllerCallback: true
+06-07 01:04:04.900 19318 19318 D MultiWindowDecorSupport: setCaptionType = 0, DecorView = DecorView@e5b12fc[]
+06-07 01:04:05.064 19318 19318 D FirebasePlugin: onActivityResumed: Application has been started
+06-07 01:04:05.065 19318 19341 I FA      : Tag Manager is not found and thus will not be used
+06-07 01:04:05.066 19318 19384 D libmdf  : libmdf v2.9.0.0 On 64bit PLATFORM
+06-07 01:04:05.081 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: setView = com.android.internal.policy.DecorView@e5b12fc TM=true MM=false
+06-07 01:04:05.175 19318 19420 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:05.175 19318 19420 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:05.182  4364  4620 I SurfaceFlinger: id=135489 createSurf (720x1480),1 flag=404, uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:05.185  4940  7214 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION wanim=0x1030305
+06-07 01:04:05.186 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)0 dur=6 res=0x7 s={true 491552923648} ch=true
+06-07 01:04:05.186 19318 19414 D OpenGLRenderer: createReliableSurface : 0x72f6c42380, 0x7272d66000
+06-07 01:04:05.205 19318 19414 D mali_winsys: EGLint new_window_surface(egl_winsys_display *, void *, EGLSurface, EGLConfig, egl_winsys_surface **, EGLBoolean) returns 0x3000
+06-07 01:04:05.209 19318 19414 W Gralloc3: mapper 3.x is not supported
+06-07 01:04:05.212 19318 19414 I gralloc : Arm Module v1.0
+06-07 01:04:05.228  4940  6091 D InputDispatcher: Focus entered window (19318): eb25cc2 in display 0 0
+06-07 01:04:05.237  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59049200 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:05.316  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59049200 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:05.335 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_WINDOW_FOCUS_CHANGED 1 1
+06-07 01:04:05.336 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:04:05.336 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:05.338 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:04:05.338 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:05.338 19318 19318 V InputMethodManager: Starting input: tba=uk.org.okonetwork.parkplanr ic=null mNaviBarColor -855310 mIsGetNaviBarColorSuccess true , NavVisible : true , NavTrans : false
+06-07 01:04:05.338 19318 19318 D InputMethodManager: startInputInner - Id : 0
+06-07 01:04:05.338 19318 19318 I InputMethodManager: startInputInner - mService.startInputOrWindowGainedFocus
+06-07 01:04:05.340 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_RESIZED: frame=(0,0,720,1480) ci=(0,42,0,84) vi=(0,42,0,84) or=1
+06-07 01:04:05.376 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:04:05.376 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:05.376 19318 19318 V InputMethodManager: Starting input: tba=uk.org.okonetwork.parkplanr ic=null mNaviBarColor -855310 mIsGetNaviBarColorSuccess true , NavVisible : true , NavTrans : false
+06-07 01:04:05.376 19318 19318 D InputMethodManager: startInputInner - Id : 0
+06-07 01:04:05.630 19318 19384 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:05.630 19318 19384 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:05.723 19318 19420 D skia    : --- Failed to create image decoder with message 'unimplemented'
+06-07 01:04:06.020  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:06.021 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:04:06.033  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:06.101  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:06.101 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:04:06.332  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:06.344 19318 19318 W ExifInterface: Invalid image: ExifInterface got an unsupported image format file(ExifInterface supports JPEG and some RAW image formats only) or a corrupted JPEG file to ExifInterface.
+06-07 01:04:06.344 19318 19318 W ExifInterface: java.io.IOException: Invalid byte order: ffff8950
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.media.ExifInterface.readByteOrder(ExifInterface.java:3135)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.media.ExifInterface.isOrfFormat(ExifInterface.java:2443)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.media.ExifInterface.getMimeType(ExifInterface.java:2321)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.media.ExifInterface.loadAttributes(ExifInterface.java:1755)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.media.ExifInterface.initForFilename(ExifInterface.java:2303)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.media.ExifInterface.<init>(ExifInterface.java:1386)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at org.nativescript.widgets.image.Fetcher.getExifInterface(Fetcher.java:435)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at org.nativescript.widgets.image.Fetcher.decodeSampledBitmapFromFile(Fetcher.java:472)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at org.nativescript.widgets.image.Fetcher.processBitmap(Fetcher.java:263)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at org.nativescript.widgets.image.Worker.loadImage(Worker.java:119)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at org.nativescript.widgets.ImageView.loadImage(ImageView.java:197)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at org.nativescript.widgets.ImageView.onAttachedToWindow(ImageView.java:58)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.view.View.dispatchAttachedToWindow(View.java:21308)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:4246)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:4246)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:4246)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.view.ViewGroup.addViewInner(ViewGroup.java:6001)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.view.ViewGroup.addView(ViewGroup.java:5777)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.view.ViewGroup.addView(ViewGroup.java:5717)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.view.ViewGroup.addView(ViewGroup.java:5690)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at androidx.fragment.app.FragmentManagerImpl.moveToState(FragmentManager.java:1466)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at androidx.fragment.app.FragmentManagerImpl.moveFragmentToExpectedState(FragmentManager.java:1784)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at androidx.fragment.app.FragmentManagerImpl.moveToState(FragmentManager.java:1852)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at androidx.fragment.app.BackStackRecord.executeOps(BackStackRecord.java:802)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at androidx.fragment.app.FragmentManagerImpl.executeOps(FragmentManager.java:2625)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at androidx.fragment.app.FragmentManagerImpl.executeOpsTogether(FragmentManager.java:2411)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at androidx.fragment.app.FragmentManagerImpl.removeRedundantOperationsAndExecute(FragmentManager.java:2366)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at androidx.fragment.app.FragmentManagerImpl.execPendingActions(FragmentManager.java:2273)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at androidx.fragment.app.FragmentManagerImpl$1.run(FragmentManager.java:733)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.os.Handler.handleCallback(Handler.java:883)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.os.Handler.dispatchMessage(Handler.java:100)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.os.Looper.loop(Looper.java:237)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at android.app.ActivityThread.main(ActivityThread.java:7857)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at java.lang.reflect.Method.invoke(Native Method)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+06-07 01:04:06.344 19318 19318 W ExifInterface: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1076)
+06-07 01:04:08.166  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:08.166 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:04:08.183  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:08.277  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:08.278 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:04:08.306 19318 19318 D EmergencyMode: [EmergencyManager] android createPackageContext successful
+06-07 01:04:08.516  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59049200 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:09.981  4940  5174 I InputDispatcher: Delivering key to (19318): action: 0x0 (0), f=0x48, m=0x0, d=0, 'eb25cc2'
+06-07 01:04:09.985 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme key 0
+06-07 01:04:10.001  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:10.076  4940  5174 I InputDispatcher: Delivering key to (19318): action: 0x1 (0), f=0x48, m=0x0, d=0, 'eb25cc2'
+06-07 01:04:10.077 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme key 1
+06-07 01:04:10.306  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047680 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:11.015  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:11.015 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:04:11.038  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59049200 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:11.135  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:11.136 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:04:11.366  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59049200 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:12.239  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:12.239 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:04:12.252  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59049200 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:12.311  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:12.311 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:04:12.551  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047680 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:13.181  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:13.182 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:04:13.221  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59049200 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:13.319  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:13.320 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:04:13.384 19318 19449 D ConnectivityManager: requestNetwork; CallingUid : 10388, CallingPid : 19318, PackageName : uk.org.okonetwork.parkplanr
+06-07 01:04:13.385 19318 19386 W DynamiteModule: Local module descriptor class for providerinstaller not found.
+06-07 01:04:13.394 19318 19386 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0
+06-07 01:04:13.394 19318 19386 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.
+06-07 01:04:13.400 19318 19386 I twork.parkplan: The ClassLoaderContext is a special shared library.
+06-07 01:04:13.406 19318 19386 I chatty  : uid=10388(uk.org.okonetwork.parkplanr) AsyncTask #4 identical 1 line
+06-07 01:04:13.410 19318 19386 I twork.parkplan: The ClassLoaderContext is a special shared library.
+06-07 01:04:13.431 19318 19386 V NativeCrypto: Registering com/google/android/gms/org/conscrypt/NativeCrypto's 286 native methods...
+06-07 01:04:13.447 19318 19386 I ProviderInstaller: Installed default security provider GmsCore_OpenSSL
+06-07 01:04:13.460 19318 19386 D ConnectivityManager: requestNetwork; CallingUid : 10388, CallingPid : 19318, PackageName : uk.org.okonetwork.parkplanr
+06-07 01:04:13.551  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:13.904 19318 19318 D skia    : approximate: numPoints=51, lengths[0]=0.000000, totalLength=620.200073, segmentPoints[0]=[-197.600006,0.000000]
+06-07 01:04:13.904 19318 19318 D skia    : approximate: approximation[0]=0.000000, approximation[1]=-197.600006, approximation[2]=0.000000
+06-07 01:04:13.905 19318 19318 D skia    : approximate: numPoints=51, lengths[50]=620.200073, totalLength=620.200073, segmentPoints[50]=[422.600037,0.000000]
+06-07 01:04:13.905 19318 19318 D skia    : approximate: approximation[150]=1.000000, approximation[151]=422.600037, approximation[152]=0.000000
+06-07 01:04:13.905 19318 19318 D skia    : approximate: numPoints=4, lengths[0]=0.000000, totalLength=3.448155, segmentPoints[0]=[0.000000,0.100000]
+06-07 01:04:13.905 19318 19318 D skia    : approximate: approximation[0]=0.000000, approximation[1]=0.000000, approximation[2]=0.100000
+06-07 01:04:13.905 19318 19318 D skia    : approximate: numPoints=4, lengths[3]=3.448155, totalLength=3.448155, segmentPoints[3]=[3.000000,0.100000]
+06-07 01:04:13.905 19318 19318 D skia    : approximate: approximation[9]=1.000000, approximation[10]=3.000000, approximation[11]=0.100000
+06-07 01:04:13.906 19318 19318 D skia    : approximate: numPoints=47, lengths[0]=0.000000, totalLength=722.199951, segmentPoints[0]=[-522.599976,0.000000]
+06-07 01:04:13.906 19318 19318 D skia    : approximate: approximation[0]=0.000000, approximation[1]=-522.599976, approximation[2]=0.000000
+06-07 01:04:13.906 19318 19318 D skia    : approximate: numPoints=47, lengths[46]=722.199951, totalLength=722.199951, segmentPoints[46]=[199.600006,0.000000]
+06-07 01:04:13.906 19318 19318 D skia    : approximate: approximation[138]=1.000000, approximation[139]=199.600006, approximation[140]=0.000000
+06-07 01:04:13.907 19318 19318 D skia    : approximate: numPoints=3, lengths[0]=0.000000, totalLength=2.472497, segmentPoints[0]=[0.000000,0.100000]
+06-07 01:04:13.907 19318 19318 D skia    : approximate: approximation[0]=0.000000, approximation[1]=0.000000, approximation[2]=0.100000
+06-07 01:04:13.907 19318 19318 D skia    : approximate: numPoints=3, lengths[2]=2.472497, totalLength=2.472497, segmentPoints[2]=[2.000000,0.100000]
+06-07 01:04:13.907 19318 19318 D skia    : approximate: approximation[6]=1.000000, approximation[7]=2.000000, approximation[8]=0.100000
+06-07 01:04:15.423  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:15.428 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:04:15.438  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047680 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:15.470  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:15.472 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:04:15.701  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:16.505  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:16.507 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:04:16.519  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59049200 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:16.604  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:04:16.605 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:04:16.676 19318 19318 D FirebasePlugin: onActivityPaused: Application has been stopped.
+06-07 01:04:16.689 19318 19318 W ActivityThread: handleWindowVisibility: no activity for token android.os.BinderProxy@967ce06
+06-07 01:04:16.698 19318 19318 I MultiWindowDecorSupport: updateCaptionType >> DecorView@a8e7dbf[], isFloating: false, isApplication: true, hasWindowDecorCaption: false, hasWindowControllerCallback: true
+06-07 01:04:16.698 19318 19318 D MultiWindowDecorSupport: setCaptionType = 0, DecorView = DecorView@a8e7dbf[]
+06-07 01:04:16.709 19318 19318 D FirebasePlugin: onActivityResumed: Application has been started
+06-07 01:04:16.715  4940  6698 D InputDispatcher: Focus left window (19318): eb25cc2 in display 0 0
+06-07 01:04:16.733 19318 19318 D ViewRootImpl@8e5d616[FacebookActivity]: setView = com.android.internal.policy.DecorView@a8e7dbf TM=true MM=false
+06-07 01:04:16.744  4364  4415 I SurfaceFlinger: id=135493 createSurf (720x1480),1 flag=4, uk.org.okonetwork.parkplanr/com.facebook.FacebookActivity$_19318#0
+06-07 01:04:16.747  4940  5538 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION fmt=TRANSPARENT wanim=0x1030305
+06-07 01:04:16.748 19318 19318 D ViewRootImpl@8e5d616[FacebookActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)0 dur=7 res=0x7 s={true 491539210240} ch=true
+06-07 01:04:16.748 19318 19414 D OpenGLRenderer: createReliableSurface : 0x727204d000, 0x7272052000
+06-07 01:04:16.749 19318 19414 D mali_winsys: EGLint new_window_surface(egl_winsys_display *, void *, EGLSurface, EGLConfig, egl_winsys_surface **, EGLBoolean) returns 0x3000
+06-07 01:04:16.782 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_WINDOW_FOCUS_CHANGED 0 1
+06-07 01:04:16.783 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:04:16.783 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:16.795 19318 19318 D ViewRootImpl@8e5d616[FacebookActivity]: MSG_WINDOW_FOCUS_CHANGED 1 1
+06-07 01:04:16.796 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@a8e7dbf[FacebookActivity]
+06-07 01:04:16.796 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:16.797 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@a8e7dbf[FacebookActivity]
+06-07 01:04:16.797 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:16.797 19318 19318 V InputMethodManager: Starting input: tba=uk.org.okonetwork.parkplanr ic=null mNaviBarColor -855310 mIsGetNaviBarColorSuccess true , NavVisible : true , NavTrans : false
+06-07 01:04:16.797 19318 19318 D InputMethodManager: startInputInner - Id : 0
+06-07 01:04:16.797 19318 19318 I InputMethodManager: startInputInner - mService.startInputOrWindowGainedFocus
+06-07 01:04:16.799 19318 19318 D InputTransport: Input channel destroyed: 'ClientS', fd=83
+06-07 01:04:16.804 19318 19318 D ViewRootImpl@8e5d616[FacebookActivity]: MSG_RESIZED: frame=(0,0,720,1480) ci=(0,42,0,84) vi=(0,42,0,84) or=1
+06-07 01:04:16.815  4940  6698 D InputDispatcher: Focus entered window (19318): 32ce94a in display 0 0
+06-07 01:04:16.820  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59049200 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:16.820  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdec80 | 0000 | RGBA_8888 |   0.0    0.0  720.0  271.0 |    0 1209  720 1480 | uk.org.okonetwork.parkplanr/com.facebook.FacebookActivity$_19318#0
+06-07 01:04:16.853  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:16.853  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a3b765840 | 0000 | RGBA_8888 |   0.0    0.0  720.0  651.0 |    0  829  720 1480 | uk.org.okonetwork.parkplanr/com.facebook.FacebookActivity$_19318#0
+06-07 01:04:16.869 19318 19332 W System  : A resource failed to call close. 
+06-07 01:04:17.168 19318 19386 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:17.168 19318 19386 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:17.561 19318 19318 D FirebasePlugin: onActivityPaused: Application has been stopped.
+06-07 01:04:17.582  4940  5538 D InputDispatcher: Focus left window (19318): 32ce94a in display 0 0
+06-07 01:04:17.600  4940  6091 D InputDispatcher: Focus entered window (19318): eb25cc2 in display 0 0
+06-07 01:04:17.608 19318 19318 I BiChannelGoogleApi: [FirebaseAuth: ] getGoogleApiForMethod() returned Gms: com.google.firebase.auth.api.internal.zzaq@7a47c8b
+06-07 01:04:17.609 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: stopped(false) old=false
+06-07 01:04:17.610 19318 19318 D FirebasePlugin: onActivityResumed: Application has been started
+06-07 01:04:17.614 19318 19479 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:17.614 19318 19479 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:17.616 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_WINDOW_FOCUS_CHANGED 1 1
+06-07 01:04:17.617 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:04:17.617 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:17.619 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:04:17.619 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:17.619 19318 19318 V InputMethodManager: Starting input: tba=uk.org.okonetwork.parkplanr ic=null mNaviBarColor -855310 mIsGetNaviBarColorSuccess true , NavVisible : true , NavTrans : false
+06-07 01:04:17.619 19318 19318 D InputMethodManager: startInputInner - Id : 0
+06-07 01:04:17.619 19318 19318 I InputMethodManager: startInputInner - mService.startInputOrWindowGainedFocus
+06-07 01:04:17.620 19318 19318 D InputTransport: Input channel destroyed: 'ClientS', fd=114
+06-07 01:04:17.620 19318 19318 D ViewRootImpl@8e5d616[FacebookActivity]: MSG_WINDOW_FOCUS_CHANGED 0 1
+06-07 01:04:17.621 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@a8e7dbf[FacebookActivity]
+06-07 01:04:17.621 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:17.808 19318 19479 D skia    : --- Failed to create image decoder with message 'unimplemented'
+06-07 01:04:17.868  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047680 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:17.886  4364  4415 E BufferQueueProducer: [uk.org.okonetwork.parkplanr/com.facebook.FacebookActivity$_19318#0] disconnect: not connected (req=1)
+06-07 01:04:17.886 19318 19414 W libEGL  : EGLNativeWindowType 0x727204d010 disconnect failed
+06-07 01:04:17.889  4940  6091 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION fmt=TRANSPARENT wanim=0x1030305
+06-07 01:04:17.889 19318 19318 D ViewRootImpl@8e5d616[FacebookActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)8 dur=3 res=0x5 s={false 0} ch=true
+06-07 01:04:18.599 19318 19336 D FirebaseAuth: Notifying id token listeners about user ( G5urWzoptvOiy5OdRLDUCwOlPt23 ).
+06-07 01:04:18.600 19318 19336 D FirebaseAuth: Notifying auth state listeners about user ( G5urWzoptvOiy5OdRLDUCwOlPt23 ).
+06-07 01:04:19.279 19318 19318 E         : getParent() returning Null
+06-07 01:04:19.299 19318 19318 E         : java.lang.NullPointerException: Attempt to invoke virtual method 'void android.view.ViewGroup.removeView(android.view.View)' on a null object reference
+06-07 01:04:19.299 19318 19318 E         : 	at com.tapadoo.alerter.Alerter$1.run(Alerter.java:108)
+06-07 01:04:19.299 19318 19318 E         : 	at android.view.ViewPropertyAnimator$AnimatorEventListener.onAnimationEnd(ViewPropertyAnimator.java:1116)
+06-07 01:04:19.299 19318 19318 E         : 	at android.animation.Animator$AnimatorListener.onAnimationEnd(Animator.java:554)
+06-07 01:04:19.299 19318 19318 E         : 	at android.animation.ValueAnimator.endAnimation(ValueAnimator.java:1242)
+06-07 01:04:19.299 19318 19318 E         : 	at android.animation.ValueAnimator.doAnimationFrame(ValueAnimator.java:1484)
+06-07 01:04:19.299 19318 19318 E         : 	at android.animation.AnimationHandler.doAnimationFrame(AnimationHandler.java:146)
+06-07 01:04:19.299 19318 19318 E         : 	at android.animation.AnimationHandler.access$100(AnimationHandler.java:37)
+06-07 01:04:19.299 19318 19318 E         : 	at android.animation.AnimationHandler$1.doFrame(AnimationHandler.java:54)
+06-07 01:04:19.299 19318 19318 E         : 	at android.view.Choreographer$CallbackRecord.run(Choreographer.java:994)
+06-07 01:04:19.299 19318 19318 E         : 	at android.view.Choreographer.doCallbacks(Choreographer.java:794)
+06-07 01:04:19.299 19318 19318 E         : 	at android.view.Choreographer.doFrame(Choreographer.java:725)
+06-07 01:04:19.299 19318 19318 E         : 	at android.view.Choreographer$FrameDisplayEventReceiver.run(Choreographer.java:981)
+06-07 01:04:19.299 19318 19318 E         : 	at android.os.Handler.handleCallback(Handler.java:883)
+06-07 01:04:19.299 19318 19318 E         : 	at android.os.Handler.dispatchMessage(Handler.java:100)
+06-07 01:04:19.299 19318 19318 E         : 	at android.os.Looper.loop(Looper.java:237)
+06-07 01:04:19.299 19318 19318 E         : 	at android.app.ActivityThread.main(ActivityThread.java:7857)
+06-07 01:04:19.299 19318 19318 E         : 	at java.lang.reflect.Method.invoke(Native Method)
+06-07 01:04:19.299 19318 19318 E         : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+06-07 01:04:19.299 19318 19318 E         : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1076)
+06-07 01:04:19.687  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:19.784  4940  7214 D InputDispatcher: Focus left window (19318): eb25cc2 in display 0 0
+06-07 01:04:19.784 19318 19318 D FirebasePlugin: onActivityPaused: Application has been stopped.
+06-07 01:04:19.785 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_WINDOW_FOCUS_CHANGED 0 1
+06-07 01:04:19.785 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:04:19.785 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:04:19.799 19318 19318 D ViewRootImpl@8e5d616[FacebookActivity]: stopped(true) old=false
+06-07 01:04:19.918 19318 19318 D ViewRootImpl@8e5d616[FacebookActivity]: dispatchDetachedFromWindow
+06-07 01:04:19.920  4364  5935 I Layer   : id=135493 removeFromCurrentState uk.org.okonetwork.parkplanr/com.facebook.FacebookActivity$_19318#0 (95)
+06-07 01:04:19.920  4364  5935 I SurfaceFlinger: id=135493 Removed uk.org.okonetwork.parkplanr/com.facebook.FacebookActivity$_19318#0 (95)
+06-07 01:04:19.922 19318 19318 D InputTransport: Input channel destroyed: '32ce94a', fd=113
+06-07 01:04:19.932  4364  4364 I Layer   : id=135493[1] Destroyed uk.org.okonetwork.parkplanr/com.facebook.FacebookActivity$_19318#0
+06-07 01:04:19.944 19318 19318 D InputTransport: Input channel destroyed: 'ClientS', fd=123
+06-07 01:04:19.980  4364  4364 I SurfaceFlinger:      CLIENT | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    1    1  719 1478 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:20.083  4364  4364 I SurfaceFlinger:      CLIENT | 0x7a59047f40 | 0002 | RGBA_8888 |   0.0   17.0  552.0 1444.0 |  270  113  720 1277 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:20.338 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: stopped(true) old=false
+06-07 01:04:20.389  4364  5935 E BufferQueueProducer: [uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0] disconnect: not connected (req=1)
+06-07 01:04:20.390 19318 19414 W libEGL  : EGLNativeWindowType 0x72f6c42390 disconnect failed
+06-07 01:04:20.395  4940  7052 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION wanim=0x1030305
+06-07 01:04:20.397 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)8 dur=7 res=0x5 s={false 0} ch=false
+06-07 01:04:20.404  4364  5935 I Layer   : id=135489 removeFromCurrentState uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0 (92)
+06-07 01:04:20.404  4364  5935 I SurfaceFlinger: id=135489 Removed uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0 (92)
+06-07 01:04:20.418  4364  4364 I Layer   : id=135489[1] Destroyed uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:04:31.799 19318 19395 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:04:31.800 19318 19395 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:08:55.980  4360  4360 I lmkd    : check proc pid launching app : 19318
+06-07 01:08:56.163  4940  8240 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION wanim=0x1030305
+06-07 01:08:56.169 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)4 dur=9 res=0x1 s={false 0} ch=false
+06-07 01:08:56.171 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: stopped(false) old=true
+06-07 01:08:56.338 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: stopped(false) old=false
+06-07 01:08:56.342 19318 19318 D FirebasePlugin: onActivityResumed: Application has been started
+06-07 01:08:56.360 19318 20758 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:08:56.360 19318 20758 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:08:56.366  4364  7284 I SurfaceFlinger: id=135669 createSurf (720x1480),1 flag=404, uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:08:56.368  4940  6699 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION wanim=0x1030305
+06-07 01:08:56.370 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)0 dur=6 res=0x7 s={true 491541417984} ch=true
+06-07 01:08:56.370 19318 19414 D OpenGLRenderer: createReliableSurface : 0x7287c10800, 0x727226d000
+06-07 01:08:56.373 19318 19414 D mali_winsys: EGLint new_window_surface(egl_winsys_display *, void *, EGLSurface, EGLConfig, egl_winsys_surface **, EGLBoolean) returns 0x3000
+06-07 01:08:56.401 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_WINDOW_FOCUS_CHANGED 1 1
+06-07 01:08:56.402 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:08:56.402 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:08:56.404 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:08:56.404 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:08:56.404 19318 19318 V InputMethodManager: Starting input: tba=uk.org.okonetwork.parkplanr ic=null mNaviBarColor -855310 mIsGetNaviBarColorSuccess true , NavVisible : true , NavTrans : false
+06-07 01:08:56.404 19318 19318 D InputMethodManager: startInputInner - Id : 0
+06-07 01:08:56.404 19318 19318 I InputMethodManager: startInputInner - mService.startInputOrWindowGainedFocus
+06-07 01:08:56.422 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_RESIZED: frame=(0,0,720,1480) ci=(0,42,0,84) vi=(0,42,0,84) or=1
+06-07 01:08:56.429  4940  8240 D InputDispatcher: Focus entered window (19318): eb25cc2 in display 0 0
+06-07 01:08:56.432  4940  5853 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION wanim=0x1030305
+06-07 01:08:56.433 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)0 dur=7 res=0x1 s={true 491541417984} ch=false
+06-07 01:08:56.433 19318 19414 D OpenGLRenderer: createReliableSurface : 0x730161cd40, 0x727226d000
+06-07 01:08:56.435  4364  5935 E BufferQueueProducer: [uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0] disconnect: not connected (req=1)
+06-07 01:08:56.436 19318 19414 W libEGL  : EGLNativeWindowType 0x7287c10810 disconnect failed
+06-07 01:08:56.436  4364  4364 I SurfaceFlinger:      CLIENT | 0x7a3b765480 | 0002 | RGBA_8888 |   0.0  553.0  720.0 1273.0 |  311 1028  409 1126 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:08:56.436 19318 19414 D mali_winsys: EGLint new_window_surface(egl_winsys_display *, void *, EGLSurface, EGLConfig, egl_winsys_surface **, EGLBoolean) returns 0x3000
+06-07 01:08:56.450 19318 20758 V NativeCrypto: Read error: ssl=0x7287fa9d48: I/O error during system call, Connection reset by peer
+06-07 01:08:56.454 19318 20758 V NativeCrypto: SSL shutdown failed: ssl=0x7287fa9d48: I/O error during system call, Broken pipe
+06-07 01:08:56.456 19318 20758 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:08:56.456 19318 20758 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:08:56.786  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:08:56.967 19318 19318 E         : getParent() returning Null
+06-07 01:08:57.094 19318 20758 D skia    : --- Failed to create image decoder with message 'unimplemented'
+06-07 01:09:07.679  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:07.680 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:09:07.700  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a5904a600 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:07.783  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:07.783 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:09:07.993 19318 19458 V NativeCrypto: Read error: ssl=0x7272d92bc8: I/O error during system call, Connection reset by peer
+06-07 01:09:08.002 19318 20775 V NativeCrypto: Write error: ssl=0x7272d92bc8: I/O error during system call, Broken pipe
+06-07 01:09:08.003 19318 20775 V NativeCrypto: SSL shutdown failed: ssl=0x7272d92bc8: I/O error during system call, Success
+06-07 01:09:08.016  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:08.929  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:08.929 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:09:08.950  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a5904a600 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:09.025  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:09.025 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:09:09.266  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:10.143  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:10.143 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:09:10.150  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a3b766600 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:10.217  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:10.218 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:09:10.448  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a3b766600 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:15.850 19318 19318 E         : getParent() returning Null
+06-07 01:09:19.958  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:20.068  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:20.072 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_WINDOW_FOCUS_CHANGED 0 1
+06-07 01:09:20.073 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:09:20.073 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:09:20.082  4940  8240 D InputDispatcher: Focus left window (19318): eb25cc2 in display 0 0
+06-07 01:09:20.234  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:20.796 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_WINDOW_FOCUS_CHANGED 1 1
+06-07 01:09:20.796 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:09:20.796 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:09:20.816  4940  8240 D InputDispatcher: Focus entered window (19318): eb25cc2 in display 0 0
+06-07 01:09:20.947  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:28.337  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:28.337 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:09:28.346  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:28.503  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:28.503 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:09:28.670  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:28.671 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:09:28.684  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:28.734  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:29.395  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:29.395 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:09:29.634  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:31.655 19318 19330 I twork.parkplan: Background concurrent copying GC freed 22247(976KB) AllocSpace objects, 1(68KB) LOS objects, 52% free, 5643KB/11MB, paused 184us total 198.205ms
+06-07 01:09:52.338  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:52.338 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:09:52.355  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:52.923  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:09:52.923 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:09:53.156  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:53.190  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:53.340 19318 19318 D FirebasePlugin: onActivityPaused: Application has been stopped.
+06-07 01:09:53.347 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_WINDOW_FOCUS_CHANGED 0 1
+06-07 01:09:53.347 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:09:53.347 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:09:53.351  4940  6699 D InputDispatcher: Focus left window (19318): eb25cc2 in display 0 0
+06-07 01:09:53.434 19318 19318 D InputTransport: Input channel destroyed: 'ClientS', fd=89
+06-07 01:09:53.479  4364  4364 I SurfaceFlinger:      CLIENT | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0  217.0  720.0 1399.0 |   14  251  706 1388 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:53.612  4364  4364 I SurfaceFlinger:      CLIENT | 0x7a39bdea00 | 0002 | RGBA_8888 |   0.0  553.0  720.0 1273.0 |  273  970  447 1144 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:09:53.755  4364  4414 E BufferQueueProducer: [uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0] disconnect: not connected (req=1)
+06-07 01:09:53.755 19318 19414 W libEGL  : EGLNativeWindowType 0x730161cd50 disconnect failed
+06-07 01:09:53.767  4940  5789 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION wanim=0x1030305
+06-07 01:09:53.768 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)8 dur=12 res=0x5 s={false 0} ch=true
+06-07 01:09:53.769 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: stopped(true) old=false
+06-07 01:09:53.799  4364  4414 I Layer   : id=135669 removeFromCurrentState uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0 (81)
+06-07 01:09:53.799  4364  4414 I SurfaceFlinger: id=135669 Removed uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0 (81)
+06-07 01:09:53.801  4364  4364 I Layer   : id=135669[1] Destroyed uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:10:45.670 19318 19449 D ConnectivityManager: unregisterNetworkCallback; CallingUid : 10388, CallingPid : 19318
+06-07 01:10:45.689 19318 19386 W DynamiteModule: Local module descriptor class for providerinstaller not found.
+06-07 01:10:45.702 19318 19386 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0
+06-07 01:10:45.702 19318 19386 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.
+06-07 01:10:45.708 19318 19386 D ConnectivityManager: requestNetwork; CallingUid : 10388, CallingPid : 19318, PackageName : uk.org.okonetwork.parkplanr
+06-07 01:11:00.724 19318 19449 D ConnectivityManager: unregisterNetworkCallback; CallingUid : 10388, CallingPid : 19318
+06-07 01:11:00.733 19318 19386 W DynamiteModule: Local module descriptor class for providerinstaller not found.
+06-07 01:11:00.743 19318 19386 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0
+06-07 01:11:00.744 19318 19386 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.
+06-07 01:11:00.749 19318 19386 D ConnectivityManager: requestNetwork; CallingUid : 10388, CallingPid : 19318, PackageName : uk.org.okonetwork.parkplanr
+06-07 01:11:00.754  4940  5529 D ConnectivityService: requestNetwork for uid/pid:10388/19318 NetworkRequest [ TRACK_DEFAULT id=12545, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10388] ]
+06-07 01:11:15.788 19318 19449 D ConnectivityManager: unregisterNetworkCallback; CallingUid : 10388, CallingPid : 19318
+06-07 01:11:15.803 19318 19386 W DynamiteModule: Local module descriptor class for providerinstaller not found.
+06-07 01:11:15.826 19318 19386 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0
+06-07 01:11:15.826 19318 19386 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.
+06-07 01:11:15.841 19318 19386 D ConnectivityManager: requestNetwork; CallingUid : 10388, CallingPid : 19318, PackageName : uk.org.okonetwork.parkplanr
+06-07 01:11:15.844  4940  5529 D ConnectivityService: requestNetwork for uid/pid:10388/19318 NetworkRequest [ TRACK_DEFAULT id=12546, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10388] ]
+06-07 01:11:26.373  4940  6699 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION wanim=0x1030305
+06-07 01:11:26.374 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)4 dur=5 res=0x1 s={false 0} ch=false
+06-07 01:11:26.375 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: stopped(false) old=true
+06-07 01:11:26.495 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: stopped(false) old=false
+06-07 01:11:26.496 19318 19318 D FirebasePlugin: onActivityResumed: Application has been started
+06-07 01:11:26.511 19318 21139 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:11:26.511 19318 21139 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:11:26.519  4364  7284 I SurfaceFlinger: id=135738 createSurf (720x1480),1 flag=404, uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:26.520  4940  7032 D WindowManager: makeSurface duration=2 name=uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318
+06-07 01:11:26.523  4940  7032 V WindowManager: Relayout 19318: mAttrs={(0,0)(fillxfill) sim={adjust=pan forwardNavigation} ty=BASE_APPLICATION wanim=0x1030305
+06-07 01:11:26.524 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: Relayout returned: old=(0,0,720,1480) new=(0,0,720,1480) req=(720,1480)0 dur=11 res=0x7 s={true 491544649728} ch=true
+06-07 01:11:26.524 19318 19414 D OpenGLRenderer: createReliableSurface : 0x72f6c42380, 0x7272582000
+06-07 01:11:26.528 19318 19414 D mali_winsys: EGLint new_window_surface(egl_winsys_display *, void *, EGLSurface, EGLConfig, egl_winsys_surface **, EGLBoolean) returns 0x3000
+06-07 01:11:26.569 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: MSG_WINDOW_FOCUS_CHANGED 1 1
+06-07 01:11:26.570 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:11:26.570 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:11:26.574 19318 19318 D InputMethodManager: prepareNavigationBarInfo() DecorView@e5b12fc[NativeScriptActivity]
+06-07 01:11:26.574 19318 19318 D InputMethodManager: getNavigationBarColor() -855310
+06-07 01:11:26.574 19318 19318 V InputMethodManager: Starting input: tba=uk.org.okonetwork.parkplanr ic=null mNaviBarColor -855310 mIsGetNaviBarColorSuccess true , NavVisible : true , NavTrans : false
+06-07 01:11:26.574 19318 19318 D InputMethodManager: startInputInner - Id : 0
+06-07 01:11:26.574 19318 19318 I InputMethodManager: startInputInner - mService.startInputOrWindowGainedFocus
+06-07 01:11:26.576 19318 21139 V NativeCrypto: Read error: ssl=0x728b419608: I/O error during system call, Connection reset by peer
+06-07 01:11:26.577 19318 21139 V NativeCrypto: SSL shutdown failed: ssl=0x728b419608: I/O error during system call, Broken pipe
+06-07 01:11:26.579 19318 21139 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:11:26.587 19318 21139 I System.out: (HTTPLog)-Static: isSBSettingEnabled false
+06-07 01:11:26.591  4940  6699 D InputDispatcher: Focus entered window (19318): eb25cc2 in display 0 0
+06-07 01:11:26.592  4940  7032 V InputMethodManagerService: Enabling: SessionState{uid 10388 pid 19318 method 7f52a5a session f889182 channel ClientState{e7d9a64 uid=10388 pid=19318 displayId=0} (server)}
+06-07 01:11:26.607  4364  4364 I SurfaceFlinger:      CLIENT | 0x7a39be2240 | 0002 | RGBA_8888 |  52.0   15.0  720.0 1448.0 |    0   99  560 1301 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:26.649  4364  4364 I SurfaceFlinger:      CLIENT | 0x7a39be0440 | 0002 | RGBA_8888 |  25.0    8.0  720.0 1463.0 |    0   53  636 1385 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:26.686  4364  4364 I SurfaceFlinger:      CLIENT | 0x7a39be0440 | 0002 | RGBA_8888 |  15.0    5.0  720.0 1470.0 |    0   33  668 1421 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:26.717  4364  4364 I SurfaceFlinger:      CLIENT | 0x7a39be0440 | 0002 | RGBA_8888 |   8.0    2.0  720.0 1474.0 |    0   17  690 1446 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:26.870  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39be0440 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:26.902 19318 21139 D skia    : --- Failed to create image decoder with message 'unimplemented'
+06-07 01:11:28.014  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:11:28.015 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:11:28.038  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39be1480 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:28.089  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:11:28.090 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:11:28.320  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39be0440 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:30.863 19318 19449 D ConnectivityManager: unregisterNetworkCallback; CallingUid : 10388, CallingPid : 19318
+06-07 01:11:30.886 19318 19386 W DynamiteModule: Local module descriptor class for providerinstaller not found.
+06-07 01:11:30.923 19318 19386 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0
+06-07 01:11:30.924 19318 19386 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.
+06-07 01:11:30.931 19318 19386 D ConnectivityManager: requestNetwork; CallingUid : 10388, CallingPid : 19318, PackageName : uk.org.okonetwork.parkplanr
+06-07 01:11:30.934  4940  7214 D ConnectivityService: requestNetwork for uid/pid:10388/19318 NetworkRequest [ TRACK_DEFAULT id=12547, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED Uid: 10388] ]
+06-07 01:11:31.881  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:11:31.882 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:11:31.900  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39be1480 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:31.956  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:11:31.957 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 1
+06-07 01:11:32.200  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39be1480 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:33.065  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x0, f=0x0, d=0, 'eb25cc2', t=1
+06-07 01:11:33.065 19318 19318 D ViewRootImpl@37326b9[NativeScriptActivity]: ViewPostIme pointer 0
+06-07 01:11:33.087  4364  4364 I SurfaceFlinger:      DEVICE | 0x7a39be1480 | 0002 | RGBA_8888 |   0.0    0.0  720.0 1480.0 |    0    0  720 1480 | uk.org.okonetwork.parkplanr/com.tns.NativeScriptActivity$_19318#0
+06-07 01:11:33.139  4940  5174 I InputDispatcher: Delivering touch to (19318): action: 0x1, f=0x0, d=0, 'eb25cc2', t=
