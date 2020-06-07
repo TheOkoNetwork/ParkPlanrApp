@@ -66,8 +66,8 @@ function onNavigatingTo (args) {
             cmsPage.content = JSON.parse(cmsPage.content)
           }
 
-          page.getViewById('PageContentsHtmlView').html =
-                        cmsPage.rawContent
+          //          page.getViewById('PageContentsHtmlView').html =
+          //                        cmsPage.rawContent
           page.getViewById('PageTitle').text = cmsPage.title
 
           cmsPage.content.blocks.forEach(function (block) {
