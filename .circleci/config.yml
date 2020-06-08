@@ -246,7 +246,7 @@ workflows:
       - appSyncDistributeDebugAndroid:
             requires:
                   - styleCheck
-                  - BuilddDebugAndroid
+                  - BuildDebugAndroid
       - DistributeDebugAndroid:
             requires:
                   - styleCheck
