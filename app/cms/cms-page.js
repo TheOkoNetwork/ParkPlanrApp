@@ -70,6 +70,7 @@ function onNavigatingTo (args) {
           //                        cmsPage.rawContent
           page.getViewById('PageTitle').text = cmsPage.title
 
+          var formattedStringLabel, labelSpan
           cmsPage.content.blocks.forEach(function (block) {
             switch (block.type) {
               case 'paragraph':
@@ -82,10 +83,10 @@ function onNavigatingTo (args) {
                   '\r\n'
                 )
 
-                var labelSpan = new spanModule.Span()
+                labelSpan = new spanModule.Span()
                 labelSpan.text = paragraphText
 
-                var formattedStringLabel = new formattedStringModule.FormattedString()
+                formattedStringLabel = new formattedStringModule.FormattedString()
                 formattedStringLabel.spans.push(labelSpan)
 
                 paragraphLabel.formattedText = formattedStringLabel
@@ -102,7 +103,7 @@ function onNavigatingTo (args) {
                   '\r\n'
                 )
 
-                var labelSpan = new spanModule.Span()
+                labelSpan = new spanModule.Span()
                 labelSpan.text = headerText
                 labelSpan.fontWeight = 'Bolder'
                 switch (block.data.level) {
@@ -126,7 +127,7 @@ function onNavigatingTo (args) {
                     break
                 }
 
-                var formattedStringLabel = new formattedStringModule.FormattedString()
+                formattedStringLabel = new formattedStringModule.FormattedString()
                 formattedStringLabel.spans.push(labelSpan)
 
                 headerLabel.formattedText = formattedStringLabel
