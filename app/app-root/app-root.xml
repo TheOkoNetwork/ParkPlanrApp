@@ -11,9 +11,8 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
     <nsDrawer:RadSideDrawer.drawerContent>
         <GridLayout rows="auto, *" class="sidedrawer sidedrawer-left">
             <StackLayout class="sidedrawer-header">
-<!--		<Image class="sidedrawer-header-image" src="~/images/logo_name.png" visibility="{{ user ? 'collapsed' : 'visible' }}"  />
+		<Image class="sidedrawer-header-image" src="~/images/logo_name.png" visibility="{{ user ? 'collapsed' : 'visible' }}"  />
 		<Image class="sidedrawer-header-image" src="{{user.photoURL}}" visibility="{{ user ? 'visible' : 'collapsed' }}"  />
--->
                 <Label class="sidedrawer-header-brand" text="{{user.displayName}}" visibility="{{ user ? 'visible' : 'collapsed' }}" />
                 <Label class="sidedrawer-header-brand" text="Welcome to ParkPlanr" visibility="{{ user ? 'collapsed' : 'visible' }}" />
                 <Label class="footnote" text="{{user.email}}" visibility="{{ user ? 'visible' : 'collapsed' }}" />
