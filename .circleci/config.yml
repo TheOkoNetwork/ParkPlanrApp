@@ -97,7 +97,57 @@ jobs:
       - store_artifacts:
           path: ./dist
 
-  DistributeAndroid:
+  BuildDebugAndroid:
+    executor: nodeandroiddocker
+    steps:
+      - *fast-checkout
+
+      - run:
+          name: Install npm modules
+          command: |
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
+            npm i --no-progress;
+            tns usage-reporting disable && tns error-reporting disable;
+
+      - run:
+          name: Update android manifest and iOS Info.plist versions
+          command: |
+            node ./scripts/update-version.js
+
+      - run:
+          name: Build setup
+          command: |
+            ./UpdateAll.sh;
+            rm -rf platforms;
+
+      - run:
+          name: Adding platform
+          command: |
+            tns platform add android;
+            cp ./app/App_Resources/Android/gradle.properties ./platforms/android/gradle.properties;
+            echo $ANDROID_KEY_BASE64 | base64 -d > ./key.jks;
+            echo $PLAY_STORE_JWT > ./jwt.json;
+            /usr/local/openjdk-8/bin/keytool -list -v -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|grep "Certificate fingerprints" -A 3
+            /usr/local/openjdk-8/bin/keytool -exportcert -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|openssl sha1 -binary | openssl base64
+
+      - run:
+          name: Build signed app
+          environment:
+            ANDROID_KEY_BASE64: ""
+            PLAY_STORE_JWT: ""
+          command: |
+            sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
+            tns build android --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - NativescriptAppBuild
+
+      - store_artifacts:
+          path: ./dist
+
+  DistributeDebugAndroid:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
@@ -112,7 +162,7 @@ jobs:
             firebase appdistribution:distribute ./dist/build.apk --app ${APP_DIST_ANDROID_ID} --release-notes "$GIT_COMMIT_MESSAGE" --groups ${APP_DIST_ANDROID_GROUP} --token ${FIREBASE_TOOLS_TOKEN}
 
 
-  appSyncDistributeAndroid:
+  appSyncDistributeDebugAndroid:
     executor: nodeandroiddocker
     steps:
       - *fast-checkout
@@ -190,17 +240,17 @@ workflows:
       - styleCheck:
             requires:
                   - CheckoutCode
-      - BuildReleaseAndroid:
+      - BuildDebugAndroid:
             requires:
                   - CheckoutCode
-      - appSyncDistributeAndroid:
+      - appSyncDistributeDebugAndroid:
             requires:
                   - styleCheck
-                  - BuildReleaseAndroid
-      - DistributeAndroid:
+                  - BuilddDebugAndroid
+      - DistributeDebugAndroid:
             requires:
                   - styleCheck
-                  - BuildReleaseAndroid
+                  - BuildDebugAndroid
       #- PrepareiOS:
       #      requires:
       #            - PrepareProject
@@ -210,8 +260,8 @@ workflows:
 
       - Completed:
             requires:
-                  - DistributeAndroid
-                  - appSyncDistributeAndroid
+                  - DistributeDebugAndroid
+                  - appSyncDistributeDebugAndroid
 #                 - buildDebugiOS
 
 #          filters:
