@@ -92,6 +92,47 @@ function onNavigatingTo (args) {
 
                 container.addChild(paragraphLabel)
                 break
+              case 'header':
+                var headerLabel = new labelModule.Label()
+                headerLabel.textWrap = true
+
+                var headerText = block.data.text
+                headerText = headerText.replace(
+                  /<br>/g,
+                  '\r\n'
+                )
+
+                var labelSpan = new spanModule.Span()
+                labelSpan.text = headerText
+                labelSpan.fontWeight = 'Bolder'
+                switch (block.data.level) {
+                  case '1':
+                    labelSpan.fontSize = 23.910336
+                    break
+                  case '2':
+                    labelSpan.fontSize = 17.932752
+                    break
+                  case '3':
+                    labelSpan.fontSize = 13.98754656
+                    break
+                  case '4':
+                    labelSpan.fontSize = 11.955168
+                    break
+                  case '5':
+                    labelSpan.fontSize = 9.92278944
+                    break
+                  case '6':
+                    labelSpan.fontSize = 8.00996256
+                    break
+                }
+
+                var formattedStringLabel = new formattedStringModule.FormattedString()
+                formattedStringLabel.spans.push(labelSpan)
+
+                headerLabel.formattedText = formattedStringLabel
+
+                container.addChild(headerLabel)
+                break
               default:
                 console.log(
                                     `Unknown block type: ${block.type}`
