@@ -105,7 +105,7 @@ function onNavigatingTo (args) {
 
                 labelSpan = new spanModule.Span()
                 labelSpan.text = headerText
-                labelSpan.fontWeight = 600
+                labelSpan.fontWeight = 'bold'
                 switch (block.data.level) {
                   case '1':
                     console.log('H1')
