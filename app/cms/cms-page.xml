@@ -23,7 +23,7 @@
         <Label class="action-bar-title" text="" id="PageTitle" textWrap="true"></Label>
     </ActionBar>
 
-        <StackLayout class="page" id="container">
-<!--      		<HtmlView html="" id="PageContentsHtmlView"></HtmlView> -->
-        </StackLayout>
+  <ScrollView>
+    <StackLayout class="page" id="container"></StackLayout>
+  </ScrollView>
 </Page>
