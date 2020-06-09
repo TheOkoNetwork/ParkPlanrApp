@@ -105,24 +105,30 @@ function onNavigatingTo (args) {
 
                 labelSpan = new spanModule.Span()
                 labelSpan.text = headerText
-                labelSpan.fontWeight = 500
+                labelSpan.fontWeight = 600
                 switch (block.data.level) {
                   case '1':
+                    console.log('H1')
                     labelSpan.fontSize = 23
                     break
                   case '2':
+                    console.log('H2')
                     labelSpan.fontSize = 18
                     break
                   case '3':
+                    console.log('H3')
                     labelSpan.fontSize = 14
                     break
                   case '4':
+                    console.log('H4')
                     labelSpan.fontSize = 12
                     break
                   case '5':
+                    console.log('H5')
                     labelSpan.fontSize = 10
                     break
                   case '6':
+                    console.log('H6')
                     labelSpan.fontSize = 8
                     break
                 }
