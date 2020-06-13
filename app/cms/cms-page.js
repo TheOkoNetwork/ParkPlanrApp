@@ -15,6 +15,7 @@ var color = require('color')
 const labelModule = require('tns-core-modules/ui/label')
 const formattedStringModule = require('tns-core-modules/text/formatted-string')
 const spanModule = require('tns-core-modules/text/span')
+const imageModule = require('tns-core-modules/ui/image')
 
 function onNavigatingTo (args) {
   const page = args.object
@@ -139,6 +140,13 @@ function onNavigatingTo (args) {
                 headerLabel.formattedText = formattedStringLabel
 
                 container.addChild(headerLabel)
+                break
+              case 'image':
+                var image = new imageModule.Image()
+                var imageUrl = block.data.file.url
+                image.src = imageUrl
+                image.loadMode = 'async'
+                container.addChild(image)
                 break
               default:
                 console.log(
