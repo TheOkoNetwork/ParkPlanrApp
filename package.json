@@ -16,7 +16,7 @@
     "lint": "eslint \"app/**/*.js\""
   },
   "dependencies": {
-    "@nativescript/core": "^6.2.3",
+    "@nativescript/core": "^6.5.3",
     "moment": "^2.24.0",
     "nativescript-app-sync": "^2.0.0",
     "nativescript-appversion": "^1.4.2",
