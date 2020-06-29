@@ -89,6 +89,12 @@ jobs:
             sudo npm i -g npm-check-updates nativescript --ignore-scripts --unsafe-perm --no-progress;
             tns build android --release --key-store-path ./key.jks --key-store-password "${KEY_STORE_PASSWORD}" --key-store-alias "${KEY_STORE_ALIAS}" --key-store-alias-password "${KEY_STORE_ALIAS_PASSWORD}" --copy-to ./dist/build.apk;
 
+      - run:
+          name: Key hashes
+          command: |
+            keytool -printcert -jarfile ./dist/build.apk
+            keytool -printcert -jarfile ./dist/build.apk | grep -Po "(?<=SHA1:) .*" |  xxd -r -p | openssl base64
+
       - persist_to_workspace:
           root: ~/
           paths:
@@ -240,17 +246,20 @@ workflows:
       - styleCheck:
             requires:
                   - CheckoutCode
-      - BuildDebugAndroid:
+#      - BuildDebugAndroid:
+#            requires:
+#                  - CheckoutCode
+      - BuildReleaseAndroid:
             requires:
                   - CheckoutCode
       - appSyncDistributeDebugAndroid:
             requires:
                   - styleCheck
-                  - BuildDebugAndroid
+                  - BuildReleaseAndroid
       - DistributeDebugAndroid:
             requires:
                   - styleCheck
-                  - BuildDebugAndroid
+                  - BuildReleaseAndroid
       #- PrepareiOS:
       #      requires:
       #            - PrepareProject
