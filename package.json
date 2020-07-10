@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@nativescript/core": "^6.2.3",
-    "moment": "^2.24.0",
+    "moment": "^2.27.0",
     "nativescript-app-sync": "^2.0.0",
     "nativescript-appversion": "^1.4.2",
     "nativescript-exit": "^1.0.1",
