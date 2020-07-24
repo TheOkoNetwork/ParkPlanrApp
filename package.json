@@ -27,7 +27,7 @@
     "nativescript-sqlite": "^2.6.3",
     "nativescript-theme-core": "^1.0.6",
     "nativescript-ui-sidedrawer": "~7.0.0",
-    "rxjs": "^6.4.0",
+    "rxjs": "^6.6.0",
     "tns-core-modules": "~6.5.1"
   },
   "devDependencies": {
