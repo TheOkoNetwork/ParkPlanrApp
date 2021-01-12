@@ -1,34 +1,34 @@
-const firebase = require('nativescript-plugin-firebase')
-const AuthenticatedStateService = require('../shared/Authenticated-state-service')
+const firebase = require("@nativescript/firebase").firebase;
+const AuthenticatedStateService = require("../shared/Authenticated-state-service");
 
 function AuthenticatedPageState () {
-  console.log('Checking if authenticated')
+  console.log("Checking if authenticated");
 
   firebase
     .getCurrentUser()
-    .then(function (user) {
+    .then((user) => {
       if (user) {
         // console.log("Authenticated");
-        console.log(user)
+        console.log(user);
         // console.log("Updating authenticated state");
         AuthenticatedStateService.getInstance().updateAuthenticatedState(
           user
-        )
+        );
       } else {
         // console.log("Unauthenticated");
         AuthenticatedStateService.getInstance().updateAuthenticatedState(
           false
-        )
+        );
       }
     })
-    .catch(function (error) {
+    .catch((error) => {
       if (error) {
-        console.log('Error getting current user')
+        console.log("Error getting current user");
         AuthenticatedStateService.getInstance().updateAuthenticatedState(
           false
-        )
+        );
       }
-    })
+    });
 }
 
-module.exports = AuthenticatedPageState
+module.exports = AuthenticatedPageState;

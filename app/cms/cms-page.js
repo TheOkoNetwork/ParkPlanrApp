@@ -1,186 +1,186 @@
-const app = require('tns-core-modules/application')
+const app = require("@nativescript/core/application");
 
-const CmsViewModel = require('./cms-view-model')
-const SelectedPageService = require('../shared/selected-page-service')
+const CmsViewModel = require("./cms-view-model");
+const SelectedPageService = require("../shared/selected-page-service");
 
-const firebaseApp = require('nativescript-plugin-firebase/app')
-firebaseApp.initializeApp()
+const firebaseApp = require("@nativescript/firebase/app");
+firebaseApp.initializeApp();
 
-var FeedbackPlugin = require('nativescript-feedback')
-var feedback = new FeedbackPlugin.Feedback()
+const FeedbackPlugin = require("nativescript-feedback");
+const feedback = new FeedbackPlugin.Feedback();
 
-const frameModule = require('tns-core-modules/ui/frame')
-var color = require('color')
+const frameModule = require("@nativescript/core/ui/frame");
+const color = require("tns-core-modules/color");
 
-const labelModule = require('tns-core-modules/ui/label')
-const formattedStringModule = require('tns-core-modules/text/formatted-string')
-const spanModule = require('tns-core-modules/text/span')
-const imageModule = require('tns-core-modules/ui/image')
+const labelModule = require("@nativescript/core/ui/label");
+const formattedStringModule = require("@nativescript/core/text/formatted-string");
+const spanModule = require("@nativescript/core/text/span");
+const imageModule = require("@nativescript/core/ui/image");
 
 function onNavigatingTo (args) {
-  const page = args.object
-  page.bindingContext = new CmsViewModel()
+  const page = args.object;
+  page.bindingContext = new CmsViewModel();
 
-  const container = page.getViewById('container')
+  const container = page.getViewById("container");
 
-  console.log('Fetching cms page')
-  var slug = page.navigationContext.slug
+  console.log("Fetching cms page");
+  const slug = page.navigationContext.slug;
 
-  console.log(`Setting selected page service to: ${slug}`)
-  SelectedPageService.getInstance().updateSelectedPage(slug)
-  console.log('Set')
+  console.log(`Setting selected page service to: ${slug}`);
+  SelectedPageService.getInstance().updateSelectedPage(slug);
+  console.log("Set");
 
   firebaseApp
     .firestore()
-    .collection('cmsPages')
-    .where('slug', '==', slug)
-    .where('public', '==', true)
+    .collection("cmsPages")
+    .where("slug", "==", slug)
+    .where("public", "==", true)
     .get()
     .then((querySnapshot) => {
       if (!querySnapshot.docs.length) {
-        console.log('Empty')
-        frameModule.topmost().navigate({
-          moduleName: 'home/home-page',
+        console.log("Empty");
+        frameModule.Frame.topmost().navigate({
+          moduleName: "home/home-page",
           transition: {
-            name: 'fade'
+            name: "fade"
           }
-        })
+        });
 
         feedback.error({
-          title: 'Page not found',
+          title: "Page not found",
           message:
-                        'Please check your internet connection and try again',
-          titleColor: new color.Color('black')
-        })
+                        "Please check your internet connection and try again",
+          titleColor: new color.Color("black")
+        });
       } else {
-        console.log('Not empty')
+        console.log("Not empty");
 
         querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
+          console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
 
-          var cmsPage = doc.data()
-          cmsPage.id = doc.id
-          cmsPage.content = doc.data().content
-          cmsPage.rawContent = cmsPage.content
+          const cmsPage = doc.data();
+          cmsPage.id = doc.id;
+          cmsPage.content = doc.data().content;
+          cmsPage.rawContent = cmsPage.content;
 
-          if (typeof cmsPage.content === 'string') {
-            cmsPage.content = JSON.parse(cmsPage.content)
+          if (typeof cmsPage.content === "string") {
+            cmsPage.content = JSON.parse(cmsPage.content);
           }
 
           //          page.getViewById('PageContentsHtmlView').html =
           //                        cmsPage.rawContent
-          page.getViewById('PageTitle').text = cmsPage.title
+          page.getViewById("PageTitle").text = cmsPage.title;
 
-          var formattedStringLabel, labelSpan
-          cmsPage.content.blocks.forEach(function (block) {
+          let formattedStringLabel; let labelSpan;
+          cmsPage.content.blocks.forEach((block) => {
             switch (block.type) {
-              case 'paragraph':
-                var paragraphLabel = new labelModule.Label()
-                paragraphLabel.textWrap = true
+              case "paragraph":
+                var paragraphLabel = new labelModule.Label();
+                paragraphLabel.textWrap = true;
 
-                var paragraphText = block.data.text
+                var paragraphText = block.data.text;
                 paragraphText = paragraphText.replace(
                   /<br>/g,
-                  '\r\n'
-                )
+                  "\r\n"
+                );
 
-                labelSpan = new spanModule.Span()
-                labelSpan.text = paragraphText
+                labelSpan = new spanModule.Span();
+                labelSpan.text = paragraphText;
 
-                formattedStringLabel = new formattedStringModule.FormattedString()
-                formattedStringLabel.spans.push(labelSpan)
+                formattedStringLabel = new formattedStringModule.FormattedString();
+                formattedStringLabel.spans.push(labelSpan);
 
-                paragraphLabel.formattedText = formattedStringLabel
+                paragraphLabel.formattedText = formattedStringLabel;
 
-                container.addChild(paragraphLabel)
-                break
-              case 'header':
-                var headerLabel = new labelModule.Label()
-                headerLabel.textWrap = true
+                container.addChild(paragraphLabel);
+                break;
+              case "header":
+                var headerLabel = new labelModule.Label();
+                headerLabel.textWrap = true;
 
-                var headerText = block.data.text
+                var headerText = block.data.text;
                 headerText = headerText.replace(
                   /<br>/g,
-                  '\r\n'
-                )
+                  "\r\n"
+                );
 
-                labelSpan = new spanModule.Span()
-                labelSpan.text = headerText
-                labelSpan.fontWeight = 'bold'
+                labelSpan = new spanModule.Span();
+                labelSpan.text = headerText;
+                labelSpan.fontWeight = "bold";
                 switch (block.data.level) {
                   case 1:
-                    console.log('H1')
-                    labelSpan.fontSize = 23
-                    break
+                    console.log("H1");
+                    labelSpan.fontSize = 23;
+                    break;
                   case 2:
-                    console.log('H2')
-                    labelSpan.fontSize = 18
-                    break
+                    console.log("H2");
+                    labelSpan.fontSize = 18;
+                    break;
                   case 3:
-                    console.log('H3')
-                    labelSpan.fontSize = 14
-                    break
+                    console.log("H3");
+                    labelSpan.fontSize = 14;
+                    break;
                   case 4:
-                    console.log('H4')
-                    labelSpan.fontSize = 12
-                    break
+                    console.log("H4");
+                    labelSpan.fontSize = 12;
+                    break;
                   case 5:
-                    console.log('H5')
-                    labelSpan.fontSize = 10
-                    break
+                    console.log("H5");
+                    labelSpan.fontSize = 10;
+                    break;
                   case 6:
-                    console.log('H6')
-                    labelSpan.fontSize = 8
-                    break
+                    console.log("H6");
+                    labelSpan.fontSize = 8;
+                    break;
                 }
 
-                formattedStringLabel = new formattedStringModule.FormattedString()
-                formattedStringLabel.spans.push(labelSpan)
+                formattedStringLabel = new formattedStringModule.FormattedString();
+                formattedStringLabel.spans.push(labelSpan);
 
-                headerLabel.formattedText = formattedStringLabel
+                headerLabel.formattedText = formattedStringLabel;
 
-                container.addChild(headerLabel)
-                break
-              case 'image':
-                var image = new imageModule.Image()
-                var imageUrl = block.data.file.url
-                image.src = imageUrl
-                image.loadMode = 'async'
-                container.addChild(image)
-                break
+                container.addChild(headerLabel);
+                break;
+              case "image":
+                var image = new imageModule.Image();
+                var imageUrl = block.data.file.url;
+                image.src = imageUrl;
+                image.loadMode = "async";
+                container.addChild(image);
+                break;
               default:
                 console.log(
                                     `Unknown block type: ${block.type}`
-                )
+                );
             }
-          })
-        })
+          });
+        });
       }
     })
-    .catch(function (error) {
-      console.log('Error fetching page document')
-      console.log(error)
-      frameModule.topmost().navigate({
-        moduleName: 'home/home-page',
+    .catch((error) => {
+      console.log("Error fetching page document");
+      console.log(error);
+      frameModule.Frame.topmost().navigate({
+        moduleName: "home/home-page",
         transition: {
-          name: 'fade'
+          name: "fade"
         }
-      })
+      });
 
       feedback.error({
-        title: 'Sorry, could not load page',
-        message: 'Please check your internet connection and try again',
-        titleColor: new color.Color('black')
-      })
-    })
+        title: "Sorry, could not load page",
+        message: "Please check your internet connection and try again",
+        titleColor: new color.Color("black")
+      });
+    });
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView()
-  sideDrawer.showDrawer()
+  const sideDrawer = app.getRootView();
+  sideDrawer.showDrawer();
 }
 
-exports.onNavigatingTo = onNavigatingTo
-exports.onDrawerButtonTap = onDrawerButtonTap
-exports.pageJump = require('../shared/pageJump')
-exports.cmsPage = require('../shared/cmsPage')
+exports.onNavigatingTo = onNavigatingTo;
+exports.onDrawerButtonTap = onDrawerButtonTap;
+exports.pageJump = require("../shared/pageJump");
+exports.cmsPage = require("../shared/cmsPage");
