@@ -1,291 +1,291 @@
-const app = require('tns-core-modules/application')
+const app = require("@nativescript/core/application");
 
-const RidecountRideViewModel = require('./ridecountRide-view-model')
-const fromObject = require('tns-core-modules/data/observable').fromObject
-const frameModule = require('tns-core-modules/ui/frame')
+const RidecountRideViewModel = require("./ridecountRide-view-model");
+const fromObject = require("@nativescript/core/data/observable").fromObject;
+const frameModule = require("@nativescript/core/ui/frame");
 
-const firebaseApp = require('nativescript-plugin-firebase/app')
-firebaseApp.initializeApp()
+const firebaseApp = require("@nativescript/firebase/app");
+firebaseApp.initializeApp();
 
-var FeedbackPlugin = require('nativescript-feedback')
-var feedback = new FeedbackPlugin.Feedback()
+const FeedbackPlugin = require("nativescript-feedback");
+const feedback = new FeedbackPlugin.Feedback();
 
-var color = require('color')
+const color = require("tns-core-modules/color");
 
-const moment = require('moment')
+const moment = require("moment");
 
 function onNavigatingTo (args) {
-  var page = args.object
-  page.bindingContext = new RidecountRideViewModel()
+  const page = args.object;
+  page.bindingContext = new RidecountRideViewModel();
 
-  const tripId = page.navigationContext.tripId
-  const parkId = page.navigationContext.parkId
-  const rideId = page.navigationContext.rideId
-  const userId = page.bindingContext.user.uid
+  const tripId = page.navigationContext.tripId;
+  const parkId = page.navigationContext.parkId;
+  const rideId = page.navigationContext.rideId;
+  const userId = page.bindingContext.user.uid;
 
   console.log(
         `Loading ridecount ride add/edit for ride: ${rideId} in trip: ${tripId} to: ${parkId} for user: ${userId}`
-  )
+  );
 
-  var getPromises = [
+  const getPromises = [
     firebaseApp
       .firestore()
-      .collection('users')
+      .collection("users")
       .doc(userId)
-      .collection('ridecount')
+      .collection("ridecount")
       .doc(tripId)
       .get(),
     firebaseApp
       .firestore()
-      .collection('parks')
+      .collection("parks")
       .doc(parkId)
-      .collection('rides')
+      .collection("rides")
       .doc(rideId)
       .get(),
     firebaseApp
       .firestore()
-      .collection('users')
+      .collection("users")
       .doc(userId)
-      .collection('ridecount')
+      .collection("ridecount")
       .doc(tripId)
-      .collection('rides')
-      .where('ride', '==', rideId)
+      .collection("rides")
+      .where("ride", "==", rideId)
       .get()
-  ]
+  ];
 
   Promise.all(getPromises)
-    .then(function (promiseResults) {
-      var pageContext = {
+    .then((promiseResults) => {
+      const pageContext = {
         count: 0,
         counts: [],
         addEditCount: 1,
         user: page.bindingContext.user,
         parkId: parkId
-      }
-      promiseResults.forEach(function (promiseResult) {
+      };
+      promiseResults.forEach((promiseResult) => {
         if (promiseResult.id) {
-          console.log('Document')
-          switch (promiseResult.ref.path.split('/')[0]) {
-            case 'parks':
-              console.log('Ride doc')
-              var ride = promiseResult.data()
-              ride.id = promiseResult.id
+          console.log("Document");
+          switch (promiseResult.ref.path.split("/")[0]) {
+            case "parks":
+              console.log("Ride doc");
+              var ride = promiseResult.data();
+              ride.id = promiseResult.id;
               if (ride.logo) {
-                ride.hasLogo = true
+                ride.hasLogo = true;
               } else {
-                ride.hasLogo = false
+                ride.hasLogo = false;
               }
-              pageContext.ride = ride
-              break
-            case 'users':
-              console.log('Trip doc')
-              var trip = promiseResult.data()
-              trip.id = promiseResult.id
+              pageContext.ride = ride;
+              break;
+            case "users":
+              console.log("Trip doc");
+              var trip = promiseResult.data();
+              trip.id = promiseResult.id;
               trip.dateHuman = moment(trip.date).format(
-                'dddd DD/MM/YYYY'
-              )
-              pageContext.trip = trip
-              break
+                "dddd DD/MM/YYYY"
+              );
+              pageContext.trip = trip;
+              break;
             default:
-              console.log('Unknown first fragment')
-              console.log(promiseResult.ref.path)
+              console.log("Unknown first fragment");
+              console.log(promiseResult.ref.path);
           }
         } else {
-          console.log('Collection')
-          promiseResult.forEach(function (doc) {
-            console.log(doc)
-            switch (doc.ref.path.split('/')[0]) {
-              case 'users':
-                console.log('Ride count count doc')
+          console.log("Collection");
+          promiseResult.forEach((doc) => {
+            console.log(doc);
+            switch (doc.ref.path.split("/")[0]) {
+              case "users":
+                console.log("Ride count count doc");
                 pageContext.count =
-                                    pageContext.count + doc.data().count
-                var countDoc = doc.data()
-                countDoc.id = doc.id
+                                    pageContext.count + doc.data().count;
+                var countDoc = doc.data();
+                countDoc.id = doc.id;
                 countDoc.timeHuman = moment(
                   doc.data().time
-                ).format('HH:mm:ss')
-                pageContext.counts.push(countDoc)
-                break
+                ).format("HH:mm:ss");
+                pageContext.counts.push(countDoc);
+                break;
               default:
-                console.log('Unknown first fragment')
-                console.log(doc.ref.path)
+                console.log("Unknown first fragment");
+                console.log(doc.ref.path);
             }
-          })
+          });
         }
-      })
-      pageContext.pageTitle = `${pageContext.ride.name.name}\n${pageContext.trip.dateHuman}`
-      console.log(pageContext)
-      const vm = fromObject(pageContext)
-      page.bindingContext = vm
+      });
+      pageContext.pageTitle = `${pageContext.ride.name.name}\n${pageContext.trip.dateHuman}`;
+      console.log(pageContext);
+      const vm = fromObject(pageContext);
+      page.bindingContext = vm;
     })
-    .catch(function (error) {
-      console.log('Ride count get error')
-      console.log(error)
+    .catch((error) => {
+      console.log("Ride count get error");
+      console.log(error);
 
-      frameModule.topmost().navigate({
-        moduleName: 'home/home-page',
+      frameModule.Frame.topmost().navigate({
+        moduleName: "home/home-page",
         backstackVisible: false,
         transition: {
-          name: 'fade'
+          name: "fade"
         }
-      })
-      setTimeout(function () {
+      });
+      setTimeout(() => {
         feedback.error({
-          title: 'Unable to load ride count',
+          title: "Unable to load ride count",
           message: `Please check your internet connection and try again(${JSON.stringify(
                         error
                     )})`,
-          titleColor: new color.Color('black')
-        })
-      }, 125)
-    })
+          titleColor: new color.Color("black")
+        });
+      }, 125);
+    });
 }
 
 function onLoaded (args) {
-  AuthenticatedPageState()
+  AuthenticatedPageState();
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView()
-  sideDrawer.showDrawer()
+  const sideDrawer = app.getRootView();
+  sideDrawer.showDrawer();
 }
 
 function addEditCountAdd () {
-  var frame = require('ui/frame')
-  var page = frame.topmost().currentPage
-  page.bindingContext.addEditCount++
+  const frame = require("tns-core-modules/ui/frame");
+  const page = frame.topmost().currentPage;
+  page.bindingContext.addEditCount++;
 }
 function addEditCountSubtract () {
-  var frame = require('ui/frame')
-  var page = frame.topmost().currentPage
-  var count = page.bindingContext.addEditCount
-  count--
-  page.bindingContext.addEditCount = Math.max(1, count)
+  const frame = require("tns-core-modules/ui/frame");
+  const page = frame.topmost().currentPage;
+  let count = page.bindingContext.addEditCount;
+  count--;
+  page.bindingContext.addEditCount = Math.max(1, count);
 }
 function addEditCountSave () {
-  var frame = require('ui/frame')
-  var page = frame.topmost().currentPage
-  var count = page.bindingContext.addEditCount
-  var userId = page.bindingContext.user.uid
-  var rideId = page.bindingContext.ride.id
-  var parkId = page.bindingContext.parkId
-  var tripId = page.bindingContext.trip.id
+  const frame = require("tns-core-modules/ui/frame");
+  const page = frame.topmost().currentPage;
+  const count = page.bindingContext.addEditCount;
+  const userId = page.bindingContext.user.uid;
+  const rideId = page.bindingContext.ride.id;
+  const parkId = page.bindingContext.parkId;
+  const tripId = page.bindingContext.trip.id;
   console.log(
         `Adding ${count} rides on ride: ${rideId} for trip: ${tripId} to: ${parkId} for user: ${userId}`
-  )
+  );
   firebaseApp
     .firestore()
-    .collection('users')
+    .collection("users")
     .doc(userId)
-    .collection('ridecount')
+    .collection("ridecount")
     .doc(tripId)
-    .collection('rides')
+    .collection("rides")
     .doc()
     .set({
       ride: rideId,
       count: count,
       time: moment().toDate()
     })
-    .then(function () {
-      console.log('Server confirmed ride count write')
+    .then(() => {
+      console.log("Server confirmed ride count write");
     })
-    .catch(function (error) {
-      console.log('Ride count add error')
-      console.log(error)
-      setTimeout(function () {
+    .catch((error) => {
+      console.log("Ride count add error");
+      console.log(error);
+      setTimeout(() => {
         feedback.error({
-          title: 'Unable to add ride count',
+          title: "Unable to add ride count",
           message:
-                        'Please check your internet connection and try again',
-          titleColor: new color.Color('black')
-        })
-      }, 130)
-    })
-  console.log('Assuming write succeeded')
-  console.log(`Switching to trip: ${tripId} park: ${parkId}`)
-  frameModule.topmost().navigate({
-    moduleName: 'ridecountCount/ridecountCount-page',
+                        "Please check your internet connection and try again",
+          titleColor: new color.Color("black")
+        });
+      }, 130);
+    });
+  console.log("Assuming write succeeded");
+  console.log(`Switching to trip: ${tripId} park: ${parkId}`);
+  frameModule.Frame.topmost().navigate({
+    moduleName: "ridecountCount/ridecountCount-page",
     backstackVisible: false,
     transition: {
-      name: 'fade'
+      name: "fade"
     },
     context: {
       tripId: tripId,
       parkId: parkId
     }
-  })
-  setTimeout(function () {
+  });
+  setTimeout(() => {
     feedback.success({
-      title: 'Added count',
-      message: 'Saved ride count',
-      titleColor: new color.Color('black')
-    })
-  }, 125)
+      title: "Added count",
+      message: "Saved ride count",
+      titleColor: new color.Color("black")
+    });
+  }, 125);
 }
 
 function deleteTripCount (args) {
-  var frame = require('ui/frame')
-  var page = frame.topmost().currentPage
-  const userId = page.bindingContext.user.uid
-  const tripId = page.bindingContext.trip.id
-  const parkId = page.bindingContext.parkId
+  const frame = require("tns-core-modules/ui/frame");
+  const page = frame.topmost().currentPage;
+  const userId = page.bindingContext.user.uid;
+  const tripId = page.bindingContext.trip.id;
+  const parkId = page.bindingContext.parkId;
 
-  const countId = args.object.countId
-  console.log(`Deleting count: ${countId}`)
+  const countId = args.object.countId;
+  console.log(`Deleting count: ${countId}`);
 
   firebaseApp
     .firestore()
-    .collection('users')
+    .collection("users")
     .doc(userId)
-    .collection('ridecount')
+    .collection("ridecount")
     .doc(tripId)
-    .collection('rides')
+    .collection("rides")
     .doc(countId)
     .delete()
-    .then(function () {
-      console.log('Server confirmed ride count delete')
+    .then(() => {
+      console.log("Server confirmed ride count delete");
     })
-    .catch(function (error) {
-      console.log('Ride count delete error')
-      console.log(error)
-      setTimeout(function () {
+    .catch((error) => {
+      console.log("Ride count delete error");
+      console.log(error);
+      setTimeout(() => {
         feedback.error({
-          title: 'Unable to delete ride count',
+          title: "Unable to delete ride count",
           message:
-                        'Please check your internet connection and try again',
-          titleColor: new color.Color('black')
-        })
-      }, 130)
-    })
-  console.log('Assuming delete succeeded')
-  frameModule.topmost().navigate({
-    moduleName: 'ridecountCount/ridecountCount-page',
+                        "Please check your internet connection and try again",
+          titleColor: new color.Color("black")
+        });
+      }, 130);
+    });
+  console.log("Assuming delete succeeded");
+  frameModule.Frame.topmost().navigate({
+    moduleName: "ridecountCount/ridecountCount-page",
     backstackVisible: false,
     transition: {
-      name: 'fade'
+      name: "fade"
     },
     context: {
       tripId: tripId,
       parkId: parkId
     }
-  })
-  setTimeout(function () {
+  });
+  setTimeout(() => {
     feedback.success({
-      title: 'Removed count',
-      message: 'Saved ride count',
-      titleColor: new color.Color('black')
-    })
-  }, 125)
+      title: "Removed count",
+      message: "Saved ride count",
+      titleColor: new color.Color("black")
+    });
+  }, 125);
 }
 
-exports.onNavigatingTo = onNavigatingTo
-exports.onDrawerButtonTap = onDrawerButtonTap
-exports.pageJump = require('../shared/pageJump')
-var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
-exports.cmsPage = require('../shared/cmsPage')
-exports.AuthenticatedPageState = AuthenticatedPageState
-exports.onLoaded = onLoaded
-exports.addEditCountAdd = addEditCountAdd
-exports.addEditCountSubtract = addEditCountSubtract
-exports.addEditCountSave = addEditCountSave
-exports.deleteTripCount = deleteTripCount
+exports.onNavigatingTo = onNavigatingTo;
+exports.onDrawerButtonTap = onDrawerButtonTap;
+exports.pageJump = require("../shared/pageJump");
+var AuthenticatedPageState = require("../shared/AuthenticatedPageState");
+exports.cmsPage = require("../shared/cmsPage");
+exports.AuthenticatedPageState = AuthenticatedPageState;
+exports.onLoaded = onLoaded;
+exports.addEditCountAdd = addEditCountAdd;
+exports.addEditCountSubtract = addEditCountSubtract;
+exports.addEditCountSave = addEditCountSave;
+exports.deleteTripCount = deleteTripCount;
