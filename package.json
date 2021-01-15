@@ -6,34 +6,32 @@
   "scripts": {
     "lint": "eslint \"app/**/*.js\"",
     "lintFix": "eslint --fix \"app/**/*.js\"",
-    "buildDebugAndroid": "tns build android",
+    "buildDebugAndroid": "ns build android",
     "distributeDebugAndroid": "firebase appdistribution:distribute platforms/android/app/build/outputs/apk/debug/app-debug.apk --app 1:996445637278:android:d38122f504c9f8f1 --release-notes 'Manual Dev build' --groups 'devteamandroid'",
     "buildDistributeDebugAndroid": "npm run buildDebugAndroid && npm run distributeDebugAndroid"
   },
   "dependencies": {
     "@nativescript/core": "^7.1.0",
     "@nativescript/firebase": "^11.1.3",
+    "@nativescript/webpack": "3.0.0",
     "moment": "^2.24.0",
     "nativescript-app-sync": "^2.0.0",
     "nativescript-appversion": "^1.4.2",
     "nativescript-exit": "^1.0.1",
     "nativescript-feedback": "^1.3.11",
-    "nativescript-pdf-view": "^2.0.1",
+    "nativescript-pdf-view": "^3.0.0-1",
     "nativescript-theme-core": "^1.0.6",
-    "nativescript-ui-sidedrawer": "~7.0.0",
+    "nativescript-ui-sidedrawer": "^9.0.3",
     "rxjs": "^6.4.0"
   },
   "devDependencies": {
     "@nativescript/android": "7.0.1",
-    "@nativescript/webpack": "^4.0.0",
-    "eslint": "^7.17.0",
-    "eslint-plugin-nativescript": "0.0.0",
+    "eslint": "~5.8.0",
     "manifest-android": "^0.1.1",
-    "nativescript-dev-webpack": "~1.4.0",
-    "node-sass": "^4.14.1",
-    "tns-android": "6.3.1"
+    "node-sass": "^4.14.1"
   },
   "gitHead": "42f2a6a9c94eaf9c68d2a41e0daaa1a2544bc28f",
   "readme": "NativeScript Application",
-  "author": "The Oko network"
+  "author": "The Oko network",
+  "main": "app.js"
 }
