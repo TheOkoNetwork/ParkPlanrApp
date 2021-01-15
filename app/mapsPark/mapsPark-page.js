@@ -29,7 +29,7 @@ function onNavigatingTo (args) {
       const mapUrl = parkSnapshot.data().map;
       const vm = fromObject({
         mapUrl: mapUrl,
-        parkName: parkSnapshot.data().name
+        parkName: parkSnapshot.data().name.name
       });
       page.bindingContext = vm;
     })
