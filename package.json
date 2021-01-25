@@ -6,9 +6,13 @@
   "scripts": {
     "lint": "eslint \"app/**/*.js\"",
     "lintFix": "eslint --fix \"app/**/*.js\"",
-    "buildDebugAndroid": "ns build android",
+    "bumpVersionCode": "sudo bundle exec fastlane bumpVersionCode",
+    "buildDebugAndroid": "npm run bumpVersionCode  && sudo chmod 777 -R app && ns build android",
     "distributeDebugAndroid": "firebase appdistribution:distribute platforms/android/app/build/outputs/apk/debug/app-debug.apk --app 1:996445637278:android:d38122f504c9f8f1 --release-notes 'Manual Dev build' --groups 'devteamandroid'",
-    "buildDistributeDebugAndroid": "npm run buildDebugAndroid && npm run distributeDebugAndroid"
+    "buildDistributeDebugAndroid": "npm run buildDebugAndroid && npm run distributeDebugAndroid 'Manually triggered build'",
+    "buildReleaseAndroid": "npm run bumpVersionCode && tns build android --release --key-store-path ./key.jks --key-store-password $KEY_STORE_ALIAS_PASSWORD --key-store-alias $KEY_STORE_ALIAS --key-store-alias-password $KEY_STORE_ALIAS_PASSWORD --copy-to ./release.apk",
+    "distributeReleaseApptestingAndroid": "firebase appdistribution:distribute release.apk --app 1:996445637278:android:d38122f504c9f8f1 --groups 'devteamandroid' --release-notes"
+ 
   },
   "dependencies": {
     "@nativescript/core": "^7.1.0",
