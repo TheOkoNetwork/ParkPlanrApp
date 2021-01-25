@@ -1,0 +1,5 @@
+{
+    "name": "Nativescript android dev container",
+    "image": "scratchy/nativescript-cli:20.04-12.x-7.0.11-29.0.3",
+    "postCreateCommand": "bash scripts/install-dev-tools.sh"
+}

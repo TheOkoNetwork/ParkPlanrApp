@@ -1,14 +1,14 @@
-const frameModule = require('tns-core-modules/ui/frame')
+const frameModule = require("@nativescript/core/ui/frame");
 
 function pageJump (args) {
-  console.log('Page jump')
-  console.log(args)
-  frameModule.topmost().navigate({
+  console.log("Page jump");
+  console.log(args);
+  frameModule.Frame.topmost().navigate({
     moduleName: args.object.route,
     transition: {
-      name: 'fade'
+      name: "fade"
     }
-  })
+  });
 }
 
-module.exports = pageJump
+module.exports = pageJump;
