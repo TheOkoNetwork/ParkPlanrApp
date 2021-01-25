@@ -1,16 +1,16 @@
-const observableModule = require('tns-core-modules/data/observable')
+const observableModule = require("@nativescript/core/data/observable");
 
-const SelectedPageService = require('../shared/selected-page-service')
+const SelectedPageService = require("../shared/selected-page-service");
 
 function CmsViewModel (args) {
-  SelectedPageService.getInstance().updateSelectedPage('cms')
+  SelectedPageService.getInstance().updateSelectedPage("cms");
 
   const viewModel = observableModule.fromObject({
     /* Add your view model properties here */
     Authenticated: false
-  })
+  });
 
-  return viewModel
+  return viewModel;
 }
 
-module.exports = CmsViewModel
+module.exports = CmsViewModel;
