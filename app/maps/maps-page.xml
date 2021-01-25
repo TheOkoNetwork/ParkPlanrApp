@@ -31,7 +31,7 @@
 	        <!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
 		<GridLayout rows="*" columns="*,*,*,*" verticalAlignment="middle" class="list-group-item" tap="parkSelected" parkId="{{id}}">
 		<Image row="0" column="0" colSpan="1" src="{{logo || '~/images/logo_name.png' }}" />
-	            <Label row="0" column="1" colSpan="3" text="{{name}}" textWrap="true" class="title" />
+	            <Label row="0" column="1" colSpan="3" text="{{name.name}}" textWrap="true" class="title" />
 	        </GridLayout>
 	    </ListView.itemTemplate>
 	</ListView>
