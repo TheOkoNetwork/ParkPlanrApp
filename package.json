@@ -23,8 +23,9 @@
     "nativescript-app-sync": "^2.0.0",
     "nativescript-appversion": "^1.4.2",
     "nativescript-exit": "^1.0.1",
-    "nativescript-feedback": "^1.3.11",
+    "nativescript-feedback": "^1.5.0",
     "nativescript-pdf-view": "^3.0.0-1",
+    "nativescript-sqlite": "^2.6.3",
     "nativescript-theme-core": "^1.0.6",
     "nativescript-ui-sidedrawer": "^9.0.3",
     "rxjs": "^6.6.0"
