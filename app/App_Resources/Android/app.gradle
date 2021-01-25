@@ -18,7 +18,7 @@ android {
     // Defines the version number of your app.
     versionCode 10900
     // Defines a user-friendly version name for your app.
-    versionName 1.9.0"
+    versionName "1.9.0"
   }
   aaptOptions {
     additionalParameters "--no-version-vectors"
