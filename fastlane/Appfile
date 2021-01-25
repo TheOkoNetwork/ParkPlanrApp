@@ -1,0 +1,2 @@
+json_key_file("googlePlayKey.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("uk.org.okonetwork.parkplanr") # e.g. com.krausefx.app
