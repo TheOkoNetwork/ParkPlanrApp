@@ -1,11 +1,11 @@
-const app = require('tns-core-modules/application')
+const app = require('@nativescript/core/application')
 
 const SignoutViewModel = require('./signout-view-model')
-const frameModule = require('tns-core-modules/ui/frame')
+const frameModule = require('@nativescript/core/ui/frame')
 
-const firebaseApp = require('nativescript-plugin-firebase/app')
+const firebaseApp = require('@nativescript/firebase/app')
 firebaseApp.initializeApp()
-const firebase = require('nativescript-plugin-firebase')
+const firebase = require('@nativescript/firebase').firebase
 
 const config = require('../shared/config')
 
@@ -20,7 +20,7 @@ function onDrawerButtonTap (args) {
   const sideDrawer = app.getRootView()
   sideDrawer.showDrawer()
 }
-async function SignOut (args) {
+function SignOut (args) {
   console.log('Sign out called')
   firebase.logout()
   firebaseApp
@@ -31,7 +31,7 @@ async function SignOut (args) {
 
       AuthenticatedPageState()
       setTimeout(function () {
-        frameModule.topmost().navigate({
+        frameModule.Frame.topmost().navigate({
           moduleName: 'signoutExit/signoutExit-page',
           transition: {
             name: 'fade'
