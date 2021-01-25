@@ -1,0 +1,9 @@
+android-pixel-2-virtual-portrait:
+  type: robo
+  app: release.apk
+  results-bucket: apptestingresultsparkplanr
+  device:
+    - model: Pixel2
+      version: 28
+      locale: 'en'
+      orientation: portrait

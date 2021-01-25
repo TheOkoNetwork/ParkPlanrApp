@@ -1,27 +1,28 @@
-const observableModule = require('tns-core-modules/data/observable')
-const SelectedPageService = require('../shared/selected-page-service')
-const appversion = require('nativescript-appversion')
-const platform = require('tns-core-modules/platform')
-const appSettings = require('tns-core-modules/application-settings')
+const observableModule = require("@nativescript/core/data/observable");
+const SelectedPageService = require("../shared/selected-page-service");
+const appversion = require("nativescript-appversion");
+const platform = require("@nativescript/core/platform");
 
-const AuthenticatedStateService = require('../shared/Authenticated-state-service')
+const appSettings = require("@nativescript/core/application-settings");
+
+const AuthenticatedStateService = require("../shared/Authenticated-state-service");
 
 function PageViewModel () {
-  SelectedPageService.getInstance().updateSelectedPage('Debug')
+  SelectedPageService.getInstance().updateSelectedPage("Debug");
 
   const viewModel = observableModule.fromObject({
-    versionName: '',
-    versionCode: '',
-    DeploymentID: 'APP',
+    versionName: "",
+    versionCode: "",
+    DeploymentID: "APP",
     user: false,
-    lastSubmittedTimestamp: 'NONSET',
-    lastSubmittedType: 'NONSET',
-    FCMToken: 'Not registered',
-    AppID: '',
-    platform: ''
-  })
+    lastSubmittedTimestamp: "NONSET",
+    lastSubmittedType: "NONSET",
+    FCMToken: "Not registered",
+    AppID: "",
+    platform: ""
+  });
 
-  viewModel.platform = platform
+  viewModel.platform = platform;
 
   // viewModel.lastSubmittedTimestamp = JSON.parse(secureStorage.getSync({
   //              key: "pushNotificationTokenLastSubmittedTimestamp"
@@ -30,39 +31,39 @@ function PageViewModel () {
   //              key: "pushNotificationTokenLastSubmittedType"
   //      }));
 
-  var AppsyncCurrentPackageInfo = JSON.parse(
-    appSettings.getString('APPSYNC_CURRENT_PACKAGE', '{}')
-  )
-  console.log(AppsyncCurrentPackageInfo)
+  const AppsyncCurrentPackageInfo = JSON.parse(
+    appSettings.getString("APPSYNC_CURRENT_PACKAGE", "{}")
+  );
+  console.log(AppsyncCurrentPackageInfo);
   if (AppsyncCurrentPackageInfo.label) {
-    console.log(`Deployment version: ${AppsyncCurrentPackageInfo.label}`)
-    viewModel.DeploymentID = AppsyncCurrentPackageInfo.label
+    console.log(`Deployment version: ${AppsyncCurrentPackageInfo.label}`);
+    viewModel.DeploymentID = AppsyncCurrentPackageInfo.label;
   }
 
   appversion.getVersionName().then((versionName) => {
-    console.log(`Your app's version is: ${versionName}`)
-    viewModel.versionName = versionName
-  })
+    console.log(`Your app's version is: ${versionName}`);
+    viewModel.versionName = versionName;
+  });
   appversion.getVersionCode().then((versionCode) => {
-    console.log(`Your app's version code is: ${versionCode}`)
-    viewModel.versionCode = versionCode
-  })
+    console.log(`Your app's version code is: ${versionCode}`);
+    viewModel.versionCode = versionCode;
+  });
   appversion.getVersionCode().then((versionCode) => {
-    console.log(`Your app's version code is: ${versionCode}`)
-    viewModel.versionCode = versionCode
-  })
+    console.log(`Your app's version code is: ${versionCode}`);
+    viewModel.versionCode = versionCode;
+  });
   appversion.getAppId().then((AppID) => {
-    console.log(`Your app's app ID is: ${AppID}`)
-    viewModel.AppID = AppID
-  })
+    console.log(`Your app's app ID is: ${AppID}`);
+    viewModel.AppID = AppID;
+  });
 
   AuthenticatedStateService.getInstance().AuthenticatedState$.subscribe(
     (user) => {
-      viewModel.user = user
+      viewModel.user = user;
     }
-  )
+  );
 
-  return viewModel
+  return viewModel;
 }
 
-module.exports = PageViewModel
+module.exports = PageViewModel;
