@@ -1,0 +1,179 @@
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ code
+bash: code: command not found
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ cat 
+/.s^C
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ cat ~/.ssh/id_ed25519
+id_ed25519      id_ed25519.pub  
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ cat ~/.ssh/id_ed25519
+id_ed25519      id_ed25519.pub  
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ cat ~/.ssh/id_ed25519.pub package
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMUez5LrwciNy2AXxcDNrDtaoTwLQyaTBouQewyfF8Rk gregory@okonetwork.org.uk
+cat: package: No such file or directory
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMUez5LrwciNy2AXxcDNrDtaoTwLQyaTBouQewyfF8Rk gregory@okonetwork.org.uk
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ cat ~/.ssh/id_ed25519.pub > out
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ ssh -p 64535 3.235.98.174
+The authenticity of host '[3.235.98.174]:64535 ([3.235.98.174]:64535)' can't be established.
+RSA key fingerprint is SHA256:f744kqF1uuMCw/eUatszfQsTaPV5hrj3Cpirc6I95/I.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? 
+Host key verification failed.
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ 
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ 
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ 
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ 
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ ssh -p 64535 3.235.98.174
+The authenticity of host '[3.235.98.174]:64535 ([3.235.98.174]:64535)' can't be established.
+RSA key fingerprint is SHA256:f744kqF1uuMCw/eUatszfQsTaPV5hrj3Cpirc6I95/I.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[3.235.98.174]:64535' (RSA) to the list of known hosts.
+Enter passphrase for key '/home/nsuser/.ssh/id_ed25519': 
+circleci@08ebc2b81d22:~$ echo $ANDROID_KEY_BASE64
+
+circleci@08ebc2b81d22:~$ echo $
+$BASH                              $COMP_WORDBREAKS
+$BASHOPTS                          $DEBIAN_FRONTEND
+$BASHPID                           $DIRSTACK
+$BASH_ALIASES                      $EUID
+$BASH_ARGC                         $FIREBASE_PROJECT_ID
+$BASH_ARGV                         $FIREBASE_TOOLS_TOKEN
+$BASH_CMDS                         $GROUPS
+$BASH_COMMAND                      $HISTCMD
+$BASH_ENV                          $HISTCONTROL
+$BASH_LINENO                       $HISTFILE
+$BASH_SOURCE                       $HISTFILESIZE
+$BASH_SUBSHELL                     $HISTSIZE
+$BASH_VERSINFO                     $HOME
+$BASH_VERSION                      $HOSTNAME
+$CI                                $HOSTTYPE
+$CIRCLECI                          $IFS
+$CIRCLE_BRANCH                     $LANG
+$CIRCLE_BUILD_NUM                  $LINENO
+$CIRCLE_BUILD_URL                  $LINES
+$CIRCLE_COMPARE_URL                $LS_COLORS
+$CIRCLE_INTERNAL_CONFIG            $MACHTYPE
+$CIRCLE_INTERNAL_SCRATCH           $MAILCHECK
+$CIRCLE_INTERNAL_TASK_DATA         $NODE_VERSION
+$CIRCLE_JOB                        $NO_PROXY
+$CIRCLE_NODE_INDEX                 $OPTERR
+$CIRCLE_NODE_TOTAL                 $OPTIND
+$CIRCLE_PREVIOUS_BUILD_NUM         $OSTYPE
+$CIRCLE_PROJECT_REPONAME           $PATH
+$CIRCLE_PROJECT_USERNAME           $PIPESTATUS
+$CIRCLE_PULL_REQUEST               $PPID
+$CIRCLE_PULL_REQUESTS              $PS1
+$CIRCLE_REPOSITORY_URL             $PS2
+$CIRCLE_SHA1                       $PS4
+$CIRCLE_SHELL_ENV                  $PWD
+$CIRCLE_STAGE                      $RANDOM
+$CIRCLE_TOKEN                      $SECONDS
+--More--                               ^C
+circleci@08ebc2b81d22:~$ 
+circleci@08ebc2b81d22:~$ exit
+logout
+Connection to 3.235.98.174 closed.
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ ssh -p 64536 54.237.249.5
+The authenticity of host '[54.237.249.5]:64536 ([54.237.249.5]:64536)' can't be established.
+RSA key fingerprint is SHA256:JLyPESkzu+t6iOZtpJKDkPLs40wXY72ksDMzWQfqsfY.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[54.237.249.5]:64536' (RSA) to the list of known hosts.
+Enter passphrase for key '/home/nsuser/.ssh/id_ed25519': 
+circleci@e8af0a8daa62:~$ echo $ANDROID_
+$ANDROID_HOME        $ANDROID_KEY_BASE64  $ANDROID_SDK_ROOT    
+circleci@e8af0a8daa62:~$ echo $ANDROID_
+$ANDROID_HOME        $ANDROID_KEY_BASE64  $ANDROID_SDK_ROOT    
+circleci@e8af0a8daa62:~$ echo $ANDROID_KEY_BASE64 
+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
+circleci@e8af0a8daa62:~$ echo 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
+circleci@e8af0a8daa62:~$ 
+
+
+circleci@e8af0a8daa62:~$ 
+
+
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+
+
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$      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|base64 ^C
+circleci@e8af0a8daa62:~$ ^C
+circleci@e8af0a8daa62:~$ ^C
+circleci@e8af0a8daa62:~$ ^C
+circleci@e8af0a8daa62:~$ ^C
+circleci@e8af0a8daa62:~$ ^C
+circleci@e8af0a8daa62:~$ ^C
+^C
+circleci@e8af0a8daa62:~$ ^C
+circleci@e8af0a8daa62:~$ ^C
+circleci@e8af0a8daa62:~$ xit
+-bash: xit: command not found
+circleci@e8af0a8daa62:~$ exit
+logout
+Connection to 54.237.249.5 closed.
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ firebase loginci
+Error: loginci is not a Firebase command
+
+Did you mean login:ci?
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ firebase login:ci
+
+Visit this URL on this device to log in:
+https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=46652296&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+
+Waiting for authentication...
+
+✔  Success! Use this token to login on a CI server:
+
+1//09oVyA9Sk_1a9CgYIARAAGAkSNwF-L9IrTSkc67IfB_ZSEOYMn0jX448vyNipcPwEPMTrVgSM1UsWMbuFG-Dw6HgU3RRokQ6lkdk
+
+Example: firebase deploy --token "$FIREBASE_TOKEN"
+
+nsuser@codespaces_2c4ed3:~/workspace/ParkPlanrApp$ ssh -p 64536 54.237.249.5
+Enter passphrase for key '/home/nsuser/.ssh/id_ed25519': 
+circleci@e8af0a8daa62:~$ echo $GROUPS 
+.android/             .cache/               .gnupg/               .rubies/
+.bash_history         .config/              .local/               .wget-hsts
+.bash_logout          .gem/                 .npm/                 NativescriptAppBuild/
+.bashrc               .gemrc                .profile              src/
+circleci@e8af0a8daa62:~$ echo $GROUPS 
+.android/             .cache/               .gnupg/               .rubies/
+.bash_history         .config/              .local/               .wget-hsts
+.bash_logout          .gem/                 .npm/                 NativescriptAppBuild/
+.bashrc               .gemrc                .profile              src/
+circleci@e8af0a8daa62:~$ echo $PLAY_STORE_JWT 
+{ "type": "service_account", "project_id": "api-7302419265402205870-967636", "private_key_id": "6353c7628faed141375572d3546edeb0a38e2850", "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCznirj5alSI2kH\n6Psee1/laEsKTz4BqXDRu1WtoZrlnLAws7dQrJGpNk/4N2EIzOqtsRAoQsuIhmgJ\ngqCec6xrSUsdocwYxdFjLwyWbLxK+IKRaAc3s15ca4cpfgUcP4lF+7HdXfT0Baf5\nPrBEAvKXKp7sFtKkSFHCPCimvhat9vy21tjnkppce53oZ6s8ibCRqgK0YwOaGJTT\nYLMKZ1tjA3Mt0PTvUzxznBmPSEPOom5agQ8oAReaf5PaA0Dz0VslGhJNZB7qsv4Y\nc//GgitA0Nvu9VtJqG6NakJ7mL5uYuSBPqJ9510gd51R8IO54RdvzTkTLLTuy6Jy\ndPJ7s+jbAgMBAAECggEAGTir+B1PFdAQFwLBhEm5sPpgkx2GbPBQfbrK8JshJ33F\nhckug/7/Yx3Tw9xu3S/9Ag+7X5PlhZGt+SvlBuriOpxrlkkaYh4g5Ub9gv/YvsQ/\nfVB4tvsSVHLq40olSI6pZXDOzHE9jKhgqlCBqsMpMk3TS/52bIgVJuuQn71QbPPl\nEx/5C2Z8mtoccWdvIWQN5lV3PrS10tkYxQeGdQunSxV0OQcTUjanmQtknLgCi4gJ\n+wwzgP3ZzLJnl4RV4WBEkHCERkOt59Hll146+a+h4FHEmJgiTL8INenbiU/FxRm+\n1J06nMdfRz/HQcufmc/vA2lB7lcRjbiVD3QHwE6FXQKBgQD7bnyw0IOO5TsEd9D8\nKkkZ3PAYNXwzxnGj1ozc7SQIpgfcKH7rQltk/bDLJ125fwFg3rQiCXMMyFjRw+Uo\nQPlZet2GgM8dQktdV4f+SRb0tEIM27sXCSC0kxG1FzTTPyPOgZ5rXSmvOLXUeQuh\nv8S3tJqrxCZaX0gZv+Om36YRDwKBgQC24aUUwn1UyTo/oJQ4kbm+hHNvgVZEFCpd\n4TWa327nyIVE6jeH7AiNSneFbYg45iOQHfMbEfiUQcud2t26LeUYxsMcvWFpi9AW\nx74N0NuDxk4a98c53XyreNlIsIjxYLGE9OZv2YMT99WiBkFo99tIkA6rpF9ANVml\nNeV0YdYTdQKBgF31lR1SXseIvHxX9j414ymKGiNB4Y9Lqm4KoItzB1NAEJHihEOQ\nga0E7QuOQ4UthCtaLkDF/Tuapy6EoV9goI4izyQTgNKzUoyoSEbrs2tw7Xn2pzzd\niV5R0300FeaXot7qK3R91TUI4VJshb9FddMc5+wmmhqNntkYj49t5pZbAoGAdQuF\nc/vl6tW/Cenj8zCRCHYMy1ijtX6SfvMcM7q8aGvVn32nfL572rHGPQcVIBVqvVnt\ntW2TAo/5mVXygq3M6kaLqWErbzmkPHAqGv2JAJVyd6ANSeOPXs9BgVw6yQFxm/6B\nXSSA187OU5xdUKkRFyfbu86/h4CdlzcfW5UiReECgYAOmPNQW5QeGgpUDfe5CxtV\nHhuUtM91tvYSk+04yfRrx/vhbN9Gka1SRmN9A65jf1uT5yrUJdKlTpyN+irJF8WQ\nkDDzc6kpjtdxYdmXqve4rgYyyVK13NxvDCSGB2lGE8E55RBAw0oG1x0CSDsgNIuQ\nynn/l+T9ylJc4wgKkopu/Q==\n-----END PRIVATE KEY-----\n", "client_email": "upload-automation@api-7302419265402205870-967636.iam.gserviceaccount.com", "client_id": "112581758274181607935", "auth_uri": "https://accounts.google.com/o/oauth2/auth", "token_uri": "https://oauth2.googleapis.com/token", "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs", "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/upload-automation%40api-7302419265402205870-967636.iam.gserviceaccount.com" }
+circleci@e8af0a8daa62:~$ 
+circleci@e8af0a8daa62:~$ PLAY_STORE_SERVICE_ACCOUNT
+-bash: PLAY_STORE_SERVICE_ACCOUNT: command not found
+circleci@e8af0a8daa62:~$ echo $!!
+!
+circleci@e8af0a8daa62:~$ echo $PLAY_STORE_SERVICE_ACCOUNT
+
+circleci@e8af0a8daa62:~$ echo $KEY_STORE_
+$KEY_STORE_ALIAS           $KEY_STORE_ALIAS_PASSWORD  $KEY_STORE_PASSWORD
+circleci@e8af0a8daa62:~$ echo $KEY_STORE_
+$KEY_STORE_ALIAS           $KEY_STORE_ALIAS_PASSWORD  $KEY_STORE_PASSWORD
+circleci@e8af0a8daa62:~$ echo $KEY_STORE_
+$KEY_STORE_ALIAS           $KEY_STORE_ALIAS_PASSWORD  $KEY_STORE_PASSWORD
+circleci@e8af0a8daa62:~$ echo $KEY_STORE_
+$KEY_STORE_ALIAS           $KEY_STORE_ALIAS_PASSWORD  $KEY_STORE_PASSWORD
+circleci@e8af0a8daa62:~$ echo $KEY_STORE_ALIAS
+GPlayUpload
+circleci@e8af0a8daa62:~$ echo $KEY_STORE_ALIAS_PASSWORD
+LVSFe9UMqrJyDRtC3YWnsSjB
+circleci@e8af0a8daa62:~$ 

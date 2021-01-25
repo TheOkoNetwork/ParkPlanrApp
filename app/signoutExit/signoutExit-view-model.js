@@ -1,17 +1,17 @@
-const observableModule = require('tns-core-modules/data/observable')
+const observableModule = require("@nativescript/core/data/observable");
 
-const SelectedPageService = require('../shared/selected-page-service')
+const SelectedPageService = require("../shared/selected-page-service");
 
 function SignoutExitViewModel () {
-  SelectedPageService.getInstance().updateSelectedPage('SignoutExit')
+  SelectedPageService.getInstance().updateSelectedPage("SignoutExit");
 
   const viewModel = observableModule.fromObject({
     /* Add your view model properties here */
     Authenticated: false,
     user: false
-  })
+  });
 
-  return viewModel
+  return viewModel;
 }
 
-module.exports = SignoutExitViewModel
+module.exports = SignoutExitViewModel;

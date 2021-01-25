@@ -1,24 +1,24 @@
-const app = require('tns-core-modules/application')
+const app = require("@nativescript/core/application");
 
-const HomeViewModel = require('./home-view-model')
+const HomeViewModel = require("./home-view-model");
 function onNavigatingTo (args) {
-  const page = args.object
-  page.bindingContext = new HomeViewModel()
+  const page = args.object;
+  page.bindingContext = new HomeViewModel();
 }
 
 function onLoaded (args) {
-  AuthenticatedPageState()
+  AuthenticatedPageState();
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView()
-  sideDrawer.showDrawer()
+  const sideDrawer = app.getRootView();
+  sideDrawer.showDrawer();
 }
 
-exports.onNavigatingTo = onNavigatingTo
-exports.onDrawerButtonTap = onDrawerButtonTap
-exports.pageJump = require('../shared/pageJump')
-var AuthenticatedPageState = require('../shared/AuthenticatedPageState')
-exports.cmsPage = require('../shared/cmsPage')
-exports.AuthenticatedPageState = AuthenticatedPageState
-exports.onLoaded = onLoaded
+exports.onNavigatingTo = onNavigatingTo;
+exports.onDrawerButtonTap = onDrawerButtonTap;
+exports.pageJump = require("../shared/pageJump");
+var AuthenticatedPageState = require("../shared/AuthenticatedPageState");
+exports.cmsPage = require("../shared/cmsPage");
+exports.AuthenticatedPageState = AuthenticatedPageState;
+exports.onLoaded = onLoaded;

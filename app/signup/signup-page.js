@@ -1,153 +1,156 @@
-const app = require('tns-core-modules/application')
+const app = require("@nativescript/core/application");
 
-const SignupViewModel = require('./signup-view-model')
-const frameModule = require('tns-core-modules/ui/frame')
-const config = require('../shared/config')
+const SignupViewModel = require("./signup-view-model");
+const frameModule = require("@nativescript/core/ui/frame");
+const config = require("../shared/config");
 
-const firebase = require('nativescript-plugin-firebase')
+const firebase = require("@nativescript/firebase").firebase;
 
 function onNavigatingTo (args) {
-  const page = args.object
-  page.bindingContext = new SignupViewModel()
+  const page = args.object;
+  page.bindingContext = new SignupViewModel();
 
-  page.getViewById('pageTitle').text = `Sign up to ${config('appName')}`
+  page.getViewById("pageTitle").text = `Sign up to ${config("appName")}`;
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView()
-  sideDrawer.showDrawer()
+  const sideDrawer = app.getRootView();
+  sideDrawer.showDrawer();
 }
 function SignUpEmail (args) {
-  console.log('Sign up with email called')
+  console.log("Sign up with email called");
 
-  var page = frameModule.topmost().currentPage
+  const page = frameModule.Frame.topmost().currentPage;
 
-  var FeedbackPlugin = require('nativescript-feedback')
-  var feedback = new FeedbackPlugin.Feedback()
-  var color = require('color')
+  const FeedbackPlugin = require("nativescript-feedback");
+  const feedback = new FeedbackPlugin.Feedback();
+  const color = require("tns-core-modules/color");
 
-  var Email = page.getViewById('Email').text
+  const Email = page.getViewById("Email").text;
   if (!Email) {
     feedback.error({
       title:
-                'Please enter your email address or try one of the other sign in options',
-      titleColor: new color.Color('black')
-    })
-    return
+                "Please enter your email address or try one of the other sign in options",
+      titleColor: new color.Color("black")
+    });
+
+    return;
   }
 
-  var Password = page.getViewById('Password').text
+  const Password = page.getViewById("Password").text;
   if (!Password) {
     feedback.error({
-      title: 'Please enter your password',
-      titleColor: new color.Color('black')
-    })
-    return
+      title: "Please enter your password",
+      titleColor: new color.Color("black")
+    });
+
+    return;
   }
   console.log(
         `Attempting sign up with email: ${Email} and provided password.`
-  )
+  );
 
   firebase
     .createUser({
       email: Email,
       password: Password
     })
-    .then(function (result) {
-      console.log(result)
+    .then((result) => {
+      console.log(result);
 
-      setTimeout(function () {
-        frameModule.topmost().navigate({
-          moduleName: 'home/home-page',
+      setTimeout(() => {
+        frameModule.Frame.topmost().navigate({
+          moduleName: "home/home-page",
           transition: {
-            name: 'fade'
+            name: "fade"
           }
-        })
+        });
 
-        var successFeedbackTitle
+        let successFeedbackTitle;
         if (result.displayName) {
           successFeedbackTitle = `Welcome ${
                         result.displayName
-                    } to ${config('appName')}`
+                    } to ${config("appName")}`;
         } else {
-          successFeedbackTitle = `Welcome to ${config('appName')}`
+          successFeedbackTitle = `Welcome to ${config("appName")}`;
         }
         feedback.success({
           title: successFeedbackTitle,
-          titleColor: new color.Color('black')
-        })
-      }, 125)
+          titleColor: new color.Color("black")
+        });
+      }, 125);
     })
-    .catch(function (error) {
-      console.log('Error signing up')
-      console.log(error)
-      var errorCode, errorMessage
+    .catch((error) => {
+      console.log("Error signing up");
+      console.log(error);
+      let errorCode;
+      let errorMessage;
 
       if (
         error ===
-                'Creating a user failed. Password should be at least 6 characters'
+                "Creating a user failed. Password should be at least 6 characters"
       ) {
-        errorMessage = 'PASSWORD_SHORT'
+        errorMessage = "PASSWORD_SHORT";
       } else {
-        errorMessage = error.split('. ')[1].split(':')[0]
-        errorMessage = error.split(':')[1].trim()
-        console.log(errorMessage)
+        errorMessage = error.split(". ")[1].split(":")[0];
+        errorMessage = error.split(":")[1].trim();
+        console.log(errorMessage);
       }
-      console.log(errorMessage)
+      console.log(errorMessage);
 
-      setTimeout(function () {
-        var userErrorMessage
+      setTimeout(() => {
+        let userErrorMessage;
         switch (errorCode) {
-          case 'com.google.firebase.auth.FirebaseAuthInvalidCredentialsException':
+          case "com.google.firebase.auth.FirebaseAuthInvalidCredentialsException":
             switch (errorMessage) {
-              case 'The email address is badly formatted.':
+              case "The email address is badly formatted.":
                 userErrorMessage =
-                                    "That email address doesn't look quite right"
-                break
+                                    "That email address doesn't look quite right";
+                break;
               default:
                 userErrorMessage =
-                                    'Invalid email address or password'
-                break
+                                    "Invalid email address or password";
+                break;
             }
-            break
-          case 'com.google.firebase.auth.FirebaseAuthInvalidUserException':
+            break;
+          case "com.google.firebase.auth.FirebaseAuthInvalidUserException":
             switch (errorMessage) {
-              case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+              case "There is no user record corresponding to this identifier. The user may have been deleted.":
                 userErrorMessage =
-                                    'Account not found, to sign up just tap sign up'
-                break
+                                    "Account not found, to sign up just tap sign up";
+                break;
               default:
                 userErrorMessage =
-                                    'Invalid email address or password'
-                break
+                                    "Invalid email address or password";
+                break;
             }
-            break
-          case 'com.google.firebase.auth.FirebaseAuthUserCollisionException':
+            break;
+          case "com.google.firebase.auth.FirebaseAuthUserCollisionException":
             userErrorMessage =
-                            'You already have an account with that email, please sign in'
-            break
-          case 'PASSWORD_SHORT':
-            userErrorMessage = 'Your password is too short'
-            break
+                            "You already have an account with that email, please sign in";
+            break;
+          case "PASSWORD_SHORT":
+            userErrorMessage = "Your password is too short";
+            break;
           default:
             userErrorMessage =
-                            'Failed to sign up, please try again'
+                            "Failed to sign up, please try again";
         }
 
-        console.log(userErrorMessage)
+        console.log(userErrorMessage);
 
         feedback.error({
           title: userErrorMessage,
-          titleColor: new color.Color('black')
-        })
-      }, 25)
-    })
+          titleColor: new color.Color("black")
+        });
+      }, 25);
+    });
 }
 
-exports.onNavigatingTo = onNavigatingTo
-exports.onDrawerButtonTap = onDrawerButtonTap
-exports.SignUpEmail = SignUpEmail
-exports.pageJump = require('../shared/pageJump')
-exports.cmsPage = require('../shared/cmsPage')
-exports.SignInGoogle = require('../shared/GoogleSignin')
-exports.SignInFacebook = require('../shared/FacebookSignin')
+exports.onNavigatingTo = onNavigatingTo;
+exports.onDrawerButtonTap = onDrawerButtonTap;
+exports.SignUpEmail = SignUpEmail;
+exports.pageJump = require("../shared/pageJump");
+exports.cmsPage = require("../shared/cmsPage");
+exports.SignInGoogle = require("../shared/GoogleSignin");
+exports.SignInFacebook = require("../shared/FacebookSignin");
