@@ -57,12 +57,11 @@ jobs:
           KEY_STORE_ALIAS: ${{ secrets.KEY_STORE_ALIAS }}
           KEY_STORE_ALIAS_PASSWORD: ${{ secrets.KEY_STORE_ALIAS_PASSWORD }}
 
-# @todo renable build artifact upload after upgrading github
-#      - name: Upload build artifact to github
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: release.apk
-#          path: debug.apk
+      - name: Upload build artifact to github
+        uses: actions/upload-artifact@v2
+        with:
+          name: release.apk
+          path: release.apk
 
       - name: Run tests on Firebase Test Lab
         uses: asadmansr/Firebase-Test-Lab-Action@v1.0
