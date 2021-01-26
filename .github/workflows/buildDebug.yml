@@ -38,15 +38,14 @@ jobs:
       - name: Install fastlane
         run: bundle install
 
-
       - name: Build debug apk for android
         run: npm run buildDebugAndroid
 
-     - name: Upload build artifact to github
-       uses: actions/upload-artifact@v2
-       with:
-         name: debug.apk
-         path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+      - name: Upload build artifact to github
+        uses: actions/upload-artifact@v2
+        with:
+          name: debug.apk
+          path: debug.apk
 
       - name: Distribute to firebase app testing
         env:
