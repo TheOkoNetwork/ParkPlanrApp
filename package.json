@@ -7,8 +7,8 @@
     "lint": "eslint \"app/**/*.js\"",
     "lintFix": "eslint --fix \"app/**/*.js\"",
     "bumpVersionCode": "bundle exec fastlane bumpVersionCode",
-    "buildDebugAndroid": "npm run bumpVersionCode && ns build android",
-    "distributeDebugAndroid": "firebase appdistribution:distribute platforms/android/app/build/outputs/apk/debug/app-debug.apk --app 1:996445637278:android:d38122f504c9f8f1 --groups 'devteamandroid' --release-notes",
+    "buildDebugAndroid": "npm run bumpVersionCode && ns build android --copy-to ./debug.apk",
+    "distributeDebugAndroid": "firebase appdistribution:distribute debug.apk --app 1:996445637278:android:d38122f504c9f8f1 --groups 'devteamandroid' --release-notes",
     "buildDistributeDebugAndroid": "npm run buildDebugAndroid && npm run distributeDebugAndroid 'Manually triggered build'",
     "buildReleaseAndroid": "npm run bumpVersionCode && tns build android --release --key-store-path ./key.jks --key-store-password $KEY_STORE_ALIAS_PASSWORD --key-store-alias $KEY_STORE_ALIAS --key-store-alias-password $KEY_STORE_ALIAS_PASSWORD --copy-to ./release.apk",
     "distributeReleaseApptestingAndroid": "firebase appdistribution:distribute release.apk --app 1:996445637278:android:d38122f504c9f8f1 --groups 'devteamandroid' --release-notes"
