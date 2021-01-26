@@ -2,6 +2,7 @@ android-pixel-2-virtual-portrait:
   type: robo
   app: release.apk
   results-bucket: apptestingresultsparkplanr
+  timeout: 300s
   device:
     - model: Pixel2
       version: 28
