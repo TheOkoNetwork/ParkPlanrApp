@@ -40,7 +40,7 @@ jobs:
         
       - name: Prepare signing keys and API
         run: |
-            echo $ANDROID_KEY_BASE64 | base64 -d > ./key.jks;
+            echo "$ANDROID_KEY_BASE64" | base64 -d > ./key.jks;
             echo $PLAY_STORE_SERVICE_ACCOUNT > googlePlayKey.json;
             keytool -list -v -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|grep "Certificate fingerprints" -A 3
             keytool -exportcert -keystore ./key.jks -alias "${KEY_STORE_ALIAS}" -storepass "${KEY_STORE_ALIAS_PASSWORD}" -keypass "${KEY_STORE_ALIAS_PASSWORD}"|openssl sha1 -binary | openssl base64
