@@ -4,7 +4,7 @@ name: Debug build app
 on: push
 
 jobs:
-  android:
+  buildAndroidDebug:
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 1.8
