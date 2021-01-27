@@ -51,3 +51,12 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}            
         run: npm run distributeDebugAndroid "CI Build-$GITHUB_REF $GITHUB_SHA"
+      
+      - uses: LouisBrunner/checks-action@v1.1.1
+        if: always()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Build debug app
+          conclusion: ${{ job.status }}
+          output: |
+           {"summary":"Built debug app"}:  
