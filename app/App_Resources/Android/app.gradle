@@ -16,9 +16,9 @@ android {
     multiDexEnabled true
     ndkVersion "21.3.6528147"
     // Defines the version number of your app.
-    versionCode 10950
+    versionCode 10966
     // Defines a user-friendly version name for your app.
-    versionName "1.9.2"
+    versionName "1.9.3"
   }
   aaptOptions {
     additionalParameters "--no-version-vectors"
