@@ -16,7 +16,7 @@ android {
     multiDexEnabled true
     ndkVersion "21.3.6528147"
     // Defines the version number of your app.
-    versionCode 10966
+    versionCode 10967
     // Defines a user-friendly version name for your app.
     versionName "1.9.3"
   }
