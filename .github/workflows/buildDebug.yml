@@ -59,4 +59,4 @@ jobs:
           name: Build debug app
           conclusion: ${{ job.status }}
           output: |
-           {"summary":"Built debug app"}:  
+            {"summary":"Debug signed app build"}
