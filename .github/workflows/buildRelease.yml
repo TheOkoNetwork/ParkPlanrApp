@@ -15,6 +15,21 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Setup NPM registry (user)
+        run: |
+          echo 'registry=https://npm.okonetwork.org.uk/' > `npm config get userconfig`
+          echo '//npm.okonetwork.org.uk/:_authToken='$NPM_OKONETWORK_TOKEN'"' >> `npm config get userconfig`
+        env:
+          NPM_OKONETWORK_TOKEN: ${{ secrets.NPM_OKONETWORK_TOKEN }}
+
+      - name: Setup NPM registry (sudo)
+        run: |
+          echo 'registry=https://npm.okonetwork.org.uk/' | sudo tee $(sudo npm config get userconfig)
+          echo '//npm.okonetwork.org.uk/:_authToken='$NPM_OKONETWORK_TOKEN'"' | sudo tee -a $(sudo npm config get userconfig)
+        env:
+          NPM_OKONETWORK_TOKEN: ${{ secrets.NPM_OKONETWORK_TOKEN }}
+
+
       - name: Install NPM dependancies
         run: sudo npm i -g nativescript@latest firebase-tools
 
