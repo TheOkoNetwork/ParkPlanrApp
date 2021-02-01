@@ -15,6 +15,16 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Setup NPM registry (user)
+        run: echo $NPM_CONFIG | base64 -d > ~/.npm_config
+        env:
+          NPM_CONFIG: ${{ secrets.NPM_CONFIG }}
+
+      - name: Setup NPM registry (user)
+        run: echo $NPM_CONFIG | base64 -d > ~/.npm_config
+        env:
+          NPM_CONFIG: ${{ secrets.NPM_CONFIG }}
+
       - name: Install NPM dependancies
         run: sudo npm i -g nativescript@latest firebase-tools
 
