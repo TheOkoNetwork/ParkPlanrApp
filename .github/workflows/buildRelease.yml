@@ -16,22 +16,14 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Setup NPM registry (user)
-        run: |
-          npm config set registry https://npm.okonetwork.org.uk
-          echo -e "$NPM_OKONETWORK_USER\n$NPM_OKONETWORK_PASS\n$NPM_OKONETWORK_EMAIL" | npm login -e $NPM_OKONETWORK_EMAIL
+        run: echo $NPM_CONFIG | base64 -d > ~/.npm_config
         env:
-          NPM_OKONETWORK_EMAIL: ${{ secrets.NPM_OKONETWORK_EMAIL }}
-          NPM_OKONETWORK_PASS: ${{ secrets.NPM_OKONETWORK_PASS }}
-          NPM_OKONETWORK_USER: ${{ secrets.NPM_OKONETWORK_USER }}
+          NPM_CONFIG: ${{ secrets.NPM_CONFIG }}
 
-      - name: Setup NPM registry (sudo)
-        run: |
-          sudo npm config set registry https://npm.okonetwork.org.uk
-          echo -e "$NPM_OKONETWORK_USER\n$NPM_OKONETWORK_PASS\n$NPM_OKONETWORK_EMAIL" | sudo npm login -e $NPM_OKONETWORK_EMAIL
+      - name: Setup NPM registry (user)
+        run: echo $NPM_CONFIG | base64 -d > ~/.npm_config
         env:
-          NPM_OKONETWORK_EMAIL: ${{ secrets.NPM_OKONETWORK_EMAIL }}
-          NPM_OKONETWORK_PASS: ${{ secrets.NPM_OKONETWORK_PASS }}
-          NPM_OKONETWORK_USER: ${{ secrets.NPM_OKONETWORK_USER }}
+          NPM_CONFIG: ${{ secrets.NPM_CONFIG }}
 
       - name: Install NPM dependancies
         run: sudo npm i -g nativescript@latest firebase-tools
