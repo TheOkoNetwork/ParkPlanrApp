@@ -12,14 +12,13 @@
     "buildDistributeDebugAndroid": "npm run buildDebugAndroid && npm run distributeDebugAndroid 'Manually triggered build'",
     "buildReleaseAndroid": "npm run bumpVersionCode && tns build android --release --key-store-path ./key.jks --key-store-password $KEY_STORE_ALIAS_PASSWORD --key-store-alias $KEY_STORE_ALIAS --key-store-alias-password $KEY_STORE_ALIAS_PASSWORD --copy-to ./release.apk",
     "distributeReleaseApptestingAndroid": "firebase appdistribution:distribute release.apk --app 1:996445637278:android:d38122f504c9f8f1 --groups 'devteamandroid' --release-notes"
- 
   },
   "dependencies": {
-    "@nativescript/core": "^6.2.3",
-    "moment": "^2.29.0",
     "@nativescript/core": "^7.1.0",
     "@nativescript/firebase": "^11.1.3",
     "@nativescript/webpack": "3.0.0",
+    "mkdirp": "^1.0.4",
+    "moment": "^2.29.0",
     "nativescript-app-sync": "^2.0.0",
     "nativescript-appversion": "^1.4.2",
     "nativescript-exit": "^1.0.1",
@@ -28,6 +27,7 @@
     "nativescript-sqlite": "^2.6.3",
     "nativescript-theme-core": "^1.0.6",
     "nativescript-ui-sidedrawer": "^9.0.3",
+    "netmask": "^2.0.1",
     "rxjs": "^6.6.0"
   },
   "devDependencies": {
