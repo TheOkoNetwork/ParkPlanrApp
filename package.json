@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@nativescript/core": "^7.1.0",
-    "@nativescript/firebase": "^11.1.3",
+    "@nativescript/firebase": "^11.1.2",
     "@nativescript/webpack": "3.0.0",
     "mkdirp": "^1.0.4",
     "moment": "^2.29.0",

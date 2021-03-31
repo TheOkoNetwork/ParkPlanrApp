@@ -49,13 +49,13 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
                         <Label row="0" col="0" text="&#xf1ec;" class="fa" />
                         <Label row="0" col="1" text="Discount calculator" class="p-r-10" />
                     </GridLayout>
-<!--
+
                     <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Tickets' ? ' Tickets': '') }}"
-                        route="ticketPkpass/ticketPkpass-page" title="Tickets" tap="onNavigationItemTap">
+                        route="discountcalculator/discountcalculator-page" title="Tickets" tap="onNavigationItemTap">
                         <Label row="0" col="0" text="&#xf3ff;" class="fa" />
                         <Label row="0" col="1" text="Tickets" class="p-r-10" />
                     </GridLayout>
--->
+
                     <StackLayout class="hr-light"></StackLayout>
 
                     <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'About' ? ' selected': '') }}"
