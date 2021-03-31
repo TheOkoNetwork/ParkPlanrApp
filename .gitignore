@@ -32,3 +32,4 @@ typings/
 !.vscode/extensions.json
 private/
 release.apk
+debug.apk
