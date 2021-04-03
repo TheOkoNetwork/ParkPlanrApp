@@ -1,7 +1,9 @@
 <Page
     class="page"
     navigatingTo="onNavigatingTo"  
-    xmlns="http://schemas.nativescript.org/tns.xsd">
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:lv="nativescript-ui-listview"
+    >
 
     <ActionBar class="action-bar">
         <!-- 
@@ -22,17 +24,53 @@
         <Label class="action-bar-title" text="Tickets" textWrap="true"></Label>
     </ActionBar>
 
-	<ListView items="{{ parks }}" 
-	          itemTap="onItemTap" 
-	          loaded="{{ onListViewLoaded }}" 
-	          separatorColor="orangered" rowHeight="100"
-	          class="list-group" id="listView" row="2">
-	    <ListView.itemTemplate>
-	        <!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
-		<GridLayout rows="*" columns="*,*,*,*" verticalAlignment="middle" class="list-group-item" tap="parkSelected" parkId="{{id}}">
-		<Image row="0" column="0" colSpan="1" src="{{logo || '~/images/logo_name.png' }}" />
-	            <Label row="0" column="1" colSpan="3" text="{{name.name}}" textWrap="true" class="title" />
-	        </GridLayout>
-	    </ListView.itemTemplate>
-	</ListView>
+ <GridLayout class="page-content">
+<!--    <ScrollView> -->
+      <StackLayout width="90%" height="100%" backgroundColor="white">
+        
+
+        <lv:RadListView items="{{items}}" class="listItem" loadOnDemandMode="Auto" loadMoreDataRequested="loadMoreItems"> 
+
+          <lv:RadListView.listViewLayout>
+            <lv:ListViewGridLayout scrollDirection="Vertical" itemHeight="250" spanCount="2"/>
+          </lv:RadListView.listViewLayout>
+
+		
+		      <lv:RadListView.headerItemTemplate>
+			      <GridLayout rows="auto,auto,auto" columns="*,*">
+              <ListPicker row="0" col="0" colSpan="2" items="{{locations}}" textField="name" valueField="location" selectedValue="{{location}}" class="p-15 picker" id="locations" />
+              
+              <ListPicker row="1" col="0" items="{{itemTypes}}" textField="name" valueField="type" selectedValue="{{itemType}}" class="p-15 picker" id="itemTypes" />
+              <ListPicker row="1" col="1" items="{{years}}" textField="name" valueField="year" selectedValue="{{year}}" class="p-15 picker" id="years" />
+
+              <ListPicker row="2" col="0" items="{{categories}}" textField="name" valueField="category" selectedValue="{{category}}" class="p-15 picker" id="categories" /> 
+              <ListPicker row="2" col="1" items="{{sort}}" selectedIndex="sortIndex" class="p-15 picker" id="sort"/>
+            </GridLayout>
+		      </lv:RadListView.headerItemTemplate>
+		
+          <lv:RadListView.itemTemplate>
+            <GridLayout class="itemStyle" rows="auto,auto,auto,auto,auto,auto,auto" columns="*,*,*,*">
+              <Label row="0" col="0" rowSpan="2" colSpan="4" text="{{name}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
+              <Image row="2" col="1" colSpan="2" src="{{images[0].url}}" horizontalAlignment="center" verticalAlignment="center" class="itemImage"></Image>
+              <Label row="3" col="0" colSpan="4" text="{{locationName}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
+              <Label row="4" col="0" colSpan="4" text="{{yearName}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
+              <Label row="5" col="0" colSpan="4" text="{{code}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
+            </GridLayout>
+          </lv:RadListView.itemTemplate>
+
+          <lv:RadListView.groupTemplate>
+            <GridLayout ios:height="50">
+              <Label text="{{grouping}}" class="groupLabel" />
+            </GridLayout>
+          </lv:RadListView.groupTemplate>
+          
+        </lv:RadListView>
+
+
+
+		  </StackLayout>
+<!--    </ScrollView> -->
+  </GridLayout>
+
+
 </Page>
