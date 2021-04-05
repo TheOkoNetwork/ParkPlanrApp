@@ -15,7 +15,7 @@ async function onNavigatingTo (args) {
   //todo actually lookup tickets
   let user;
   try {
-    user = firebaseWebApi.auth().currentUser;
+    user = firebaseApp.auth().currentUser;
   } catch (error) {
     console.log("Got error getting current user");
     console.log(error);
