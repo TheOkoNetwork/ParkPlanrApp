@@ -15,6 +15,7 @@ async function onNavigatingTo (args) {
 
   //todo actually lookup tickets
   const user = await firebase.getCurrentUser();
+  console.log(user);
   const uid = user.uid;
   console.log("Got UID");
   console.log(`Looking up tickets for user: ${uid}`);
