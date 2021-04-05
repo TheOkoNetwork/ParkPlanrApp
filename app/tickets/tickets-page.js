@@ -1,17 +1,12 @@
 const app = require("@nativescript/core/application");
 
 const ticketsViewModal = require("./tickets-view-model");
-const fromObject = require("@nativescript/core/data/observable").fromObject;
-const frameModule = require("@nativescript/core/ui/frame");
 
 const firebaseApp = require("@nativescript/firebase/app");
 firebaseApp.initializeApp();
 
-const FeedbackPlugin = require("nativescript-feedback");
-const feedback = new FeedbackPlugin.Feedback();
-const color = require("tns-core-modules/color");
-
 async function onNavigatingTo (args) {
+  console.log("On tickets list page");
   const page = args.object;
   page.bindingContext = new ticketsViewModal();
 

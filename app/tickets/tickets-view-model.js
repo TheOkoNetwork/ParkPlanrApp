@@ -3,8 +3,8 @@ const observableModule = require("@nativescript/core/data/observable");
 const SelectedPageService = require("../shared/selected-page-service");
 const AuthenticatedStateService = require("../shared/Authenticated-state-service");
 
-function MapsViewModel () {
-  SelectedPageService.getInstance().updateSelectedPage("Maps");
+function TicketsViewModel () {
+  SelectedPageService.getInstance().updateSelectedPage("Tickets");
 
   const viewModel = observableModule.fromObject({
     /* Add your view model properties here */
@@ -27,4 +27,4 @@ function MapsViewModel () {
   return viewModel;
 }
 
-module.exports = MapsViewModel;
+module.exports = TicketsViewModel;
