@@ -57,6 +57,9 @@ jobs:
 
       - name: Build debug apk for android
         run: npm run buildDebugAndroid
+        env:
+          FL_ANDROID_SET_VERSION_CODE_VERSION_CODE: $BUILD_NUMBER
+        
 
       - name: Upload build artifact to github
         uses: actions/upload-artifact@v2
