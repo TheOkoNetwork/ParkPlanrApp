@@ -37,14 +37,8 @@
 
 		
 		      <lv:RadListView.headerItemTemplate>
-			      <GridLayout rows="auto,auto,auto" columns="*,*">
-              <ListPicker row="0" col="0" colSpan="2" items="{{locations}}" textField="name" valueField="location" selectedValue="{{location}}" class="p-15 picker" id="locations" />
-              
-              <ListPicker row="1" col="0" items="{{itemTypes}}" textField="name" valueField="type" selectedValue="{{itemType}}" class="p-15 picker" id="itemTypes" />
-              <ListPicker row="1" col="1" items="{{years}}" textField="name" valueField="year" selectedValue="{{year}}" class="p-15 picker" id="years" />
-
-              <ListPicker row="2" col="0" items="{{categories}}" textField="name" valueField="category" selectedValue="{{category}}" class="p-15 picker" id="categories" /> 
-              <ListPicker row="2" col="1" items="{{sort}}" selectedIndex="sortIndex" class="p-15 picker" id="sort"/>
+			      <GridLayout rows="auto" columns="*,*">
+      	      <Button row="0" col="0" colSpan="2" text="&#xf067; Add ticket" class="fa btn btn-primary" route="ticketsAdd/ticketsAdd-page" tap="pageJump" />
             </GridLayout>
 		      </lv:RadListView.headerItemTemplate>
 		
