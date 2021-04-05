@@ -2,6 +2,7 @@ const app = require("@nativescript/core/application");
 
 const ticketsViewModal = require("./tickets-view-model");
 
+const firebase = require("@nativescript/firebase");
 const firebaseApp = require("@nativescript/firebase/app");
 firebaseApp.initializeApp();
 
@@ -11,9 +12,11 @@ async function onNavigatingTo (args) {
   console.log("Got page object");
   page.bindingContext = new ticketsViewModal();
   console.log("Got VM");
-  
+
   //todo actually lookup tickets
-  const uid = firebaseApp.auth().currentUser.uid;
+  const user = await firebase.getCurrentUser();
+  const uid = user.uid;
+  console.log("Got UID");
   console.log(`Looking up tickets for user: ${uid}`);
   //the query is seperate from the .get call
   //to make chaining query params a LOT easier
