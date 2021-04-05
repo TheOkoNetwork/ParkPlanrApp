@@ -14,7 +14,14 @@ async function onNavigatingTo (args) {
   console.log("Got VM");
 
   //todo actually lookup tickets
-  const user = await firebase.getCurrentUser();
+  let user;
+  try {
+      user = await firebase.getCurrentUser();
+  } catch (error) {
+    console.log("Got error getting current user");
+    console.log(user);
+  }
+      console.log("Got user");
   console.log(user);
   const uid = user.uid;
   console.log("Got UID");
