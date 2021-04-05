@@ -16,7 +16,7 @@ async function onNavigatingTo (args) {
   page.bindingContext = new ticketsViewModal();
 
   //todo actually lookup tickets
-  const uid = firebaseApp.auth().currentUser;
+  const uid = firebaseApp.auth().currentUser.uid;
   console.log(`Looking up tickets for user: ${uid}`);
   const ticketsQuery = firebaseApp.firestore().collection('tickets')
   .where('user', '==', uid)
