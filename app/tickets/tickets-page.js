@@ -2,7 +2,6 @@ const app = require("@nativescript/core/application");
 
 const ticketsViewModal = require("./tickets-view-model");
 
-const firebase = require("@nativescript/firebase");
 const firebaseApp = require("@nativescript/firebase/app");
 firebaseApp.initializeApp();
 
@@ -16,7 +15,7 @@ async function onNavigatingTo (args) {
   //todo actually lookup tickets
   let user;
   try {
-      user = await firebase.getCurrentUser();
+    user = firebaseWebApi.auth().currentUser;
   } catch (error) {
     console.log("Got error getting current user");
     console.log(error);
