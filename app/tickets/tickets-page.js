@@ -8,8 +8,10 @@ firebaseApp.initializeApp();
 async function onNavigatingTo (args) {
   console.log("On tickets list page");
   const page = args.object;
+  console.log("Got page object");
   page.bindingContext = new ticketsViewModal();
-
+  console.log("Got VM");
+  
   //todo actually lookup tickets
   const uid = firebaseApp.auth().currentUser.uid;
   console.log(`Looking up tickets for user: ${uid}`);
