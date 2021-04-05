@@ -48,6 +48,13 @@ jobs:
       - name: Install fastlane
         run: bundle install
 
+      - name: Generate build number
+        uses: einaregilsson/build-number@v3
+        with:
+          token: ${{secrets.github_token}}        
+      - name: Print new build number
+        run: echo "Build number is $BUILD_NUMBER"
+
       - name: Build debug apk for android
         run: npm run buildDebugAndroid
 
