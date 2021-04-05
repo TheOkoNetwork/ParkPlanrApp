@@ -19,7 +19,7 @@ async function onNavigatingTo (args) {
       user = await firebase.getCurrentUser();
   } catch (error) {
     console.log("Got error getting current user");
-    console.log(user);
+    console.log(error);
   }
       console.log("Got user");
   console.log(user);
