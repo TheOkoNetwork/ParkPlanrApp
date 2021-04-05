@@ -29,7 +29,7 @@
       <StackLayout width="90%" height="100%" backgroundColor="white">
         
 
-        <lv:RadListView items="{{items}}" class="listItem" loadOnDemandMode="Auto" loadMoreDataRequested="loadMoreItems"> 
+        <lv:RadListView items="{{tickets}}" class="listItem" loadOnDemandMode="Auto" loadMoreDataRequested="loadMoreItems"> 
 
           <lv:RadListView.listViewLayout>
             <lv:ListViewGridLayout scrollDirection="Vertical" itemHeight="250" spanCount="2"/>
@@ -43,12 +43,8 @@
 		      </lv:RadListView.headerItemTemplate>
 		
           <lv:RadListView.itemTemplate>
-            <GridLayout class="itemStyle" rows="auto,auto,auto,auto,auto,auto,auto" columns="*,*,*,*">
-              <Label row="0" col="0" rowSpan="2" colSpan="4" text="{{name}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
-              <Image row="2" col="1" colSpan="2" src="{{images[0].url}}" horizontalAlignment="center" verticalAlignment="center" class="itemImage"></Image>
-              <Label row="3" col="0" colSpan="4" text="{{locationName}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
-              <Label row="4" col="0" colSpan="4" text="{{yearName}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
-              <Label row="5" col="0" colSpan="4" text="{{code}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
+            <GridLayout class="itemStyle" rows="auto" columns="*">
+              <Label row="0" col="0" rowSpan="0" colSpan="1" text="{{attraction}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
             </GridLayout>
           </lv:RadListView.itemTemplate>
 

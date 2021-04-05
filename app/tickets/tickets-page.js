@@ -11,12 +11,27 @@ const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
 const color = require("tns-core-modules/color");
 
+const firebaseApp = require('@nativescript/firebase/app')
+firebaseApp.initializeApp()
+
 function onNavigatingTo (args) {
   const page = args.object;
   page.bindingContext = new ticketsViewModal();
 
   //todo actually lookup tickets
-  console.log("Looking up tickets");
+  const uid = firebaseApp.auth().currentUser;
+  console.log(`Looking up tickets for user: ${uid}`);
+  const ticketsQuery = firebaseApp.firestore().collection('tickets')
+  .where('user', '==', uid)
+
+  const ticketDocs = await ticketsQuery.get()
+  console.log(`Fetched: ${ticketDocs.docs.length} tickets for user`)
+
+  ticketDocs.forEach(function (ticketDoc) {
+    const ticketData = ticketDoc.data();
+    ticketData.id = ticketDoc.id;
+    console.log(ticketData);
+  });
 }
 
 function onDrawerButtonTap (args) {
