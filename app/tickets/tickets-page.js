@@ -11,7 +11,7 @@ const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
 const color = require("tns-core-modules/color");
 
-function onNavigatingTo (args) {
+async function onNavigatingTo (args) {
   const page = args.object;
   page.bindingContext = new ticketsViewModal();
 
