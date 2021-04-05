@@ -11,9 +11,6 @@ const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
 const color = require("tns-core-modules/color");
 
-const firebaseApp = require('@nativescript/firebase/app')
-firebaseApp.initializeApp()
-
 function onNavigatingTo (args) {
   const page = args.object;
   page.bindingContext = new ticketsViewModal();
