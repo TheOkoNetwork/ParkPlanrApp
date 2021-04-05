@@ -9,7 +9,8 @@ function MapsViewModel () {
   const viewModel = observableModule.fromObject({
     /* Add your view model properties here */
     Authenticated: false,
-    user: false
+    user: false,
+    hasTickets: false
   });
 
   SelectedPageService.getInstance().selectedPage$.subscribe(

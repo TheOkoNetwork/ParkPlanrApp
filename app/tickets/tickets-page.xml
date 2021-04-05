@@ -37,8 +37,12 @@
 
 		
 		      <lv:RadListView.headerItemTemplate>
-			      <GridLayout rows="auto" columns="*,*">
+			      <GridLayout rows="auto" columns="*,*" visibility="{{ hasTickets ? 'visible' : 'collapsed' }}">
       	      <Button row="0" col="0" colSpan="2" text="&#xf067; Add ticket" class="fa btn btn-primary" route="ticketsAdd/ticketsAdd-page" tap="pageJump" />
+            </GridLayout>
+			      <GridLayout rows="auto,auto" columns="*" visibility="{{ hasTickets ? 'collapsed' : 'visible' }}">
+      	       <Label row="0" col="0" rowSpan="0" text="No tickets, why not" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
+      	      <Button row="0" col="0" colSpan="2" text="&#xf067; Add a ticket" class="fa btn btn-primary" route="ticketsAdd/ticketsAdd-page" tap="pageJump" />
             </GridLayout>
 		      </lv:RadListView.headerItemTemplate>
 		
