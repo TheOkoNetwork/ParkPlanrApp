@@ -24,11 +24,16 @@ async function onNavigatingTo (args) {
   const ticketDocs = await ticketsQuery.get()
   console.log(`Fetched: ${ticketDocs.docs.length} tickets for user`)
 
+  const tickets = [];
+
   ticketDocs.forEach(function (ticketDoc) {
     const ticketData = ticketDoc.data();
     ticketData.id = ticketDoc.id;
+    tickets.push(ticketData);
     console.log(ticketData);
   });
+
+  page.bindingContext.set('tickets', tickets)
 }
 
 function onDrawerButtonTap (args) {
