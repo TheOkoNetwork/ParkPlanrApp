@@ -37,6 +37,8 @@ async function onNavigatingTo (args) {
     // fid is the ID for this order within firestore
     // not to be confused with orderId which is the merchants order ID
     ticketData.fid = ticketDoc.id;
+
+    ticketData.orderIdHuman = `#${ticketData.orderId}`;
     tickets.push(ticketData);
     console.log(ticketData);
   });
