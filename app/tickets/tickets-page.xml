@@ -26,13 +26,13 @@
 
  <GridLayout class="page-content">
 <!--    <ScrollView> -->
-      <StackLayout width="90%" height="100%" backgroundColor="white">
+      <StackLayout width="100%" height="100%" backgroundColor="white">
         
         <!-- loadOnDemandMode="Auto" loadMoreDataRequested="loadMoreItems" for lazy loading -->
         <lv:RadListView items="{{tickets}}" class="listItem"> 
 
           <lv:RadListView.listViewLayout>
-            <lv:ListViewGridLayout scrollDirection="Vertical" itemHeight="250" spanCount="2"/>
+            <lv:ListViewGridLayout scrollDirection="Vertical"/>
           </lv:RadListView.listViewLayout>
 
 		

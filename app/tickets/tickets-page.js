@@ -32,6 +32,7 @@ async function onNavigatingTo (args) {
 
   const tickets = [];
 
+  let hasTickets = false;
   ticketDocs.forEach(function (ticketDoc) {
     const ticketData = ticketDoc.data();
     // fid is the ID for this order within firestore
@@ -41,10 +42,11 @@ async function onNavigatingTo (args) {
     ticketData.orderIdHuman = `#${ticketData.orderId}`;
     tickets.push(ticketData);
     console.log(ticketData);
+    hasTickets = true;
   });
 
   page.bindingContext.set('tickets', tickets);
-  page.bindingContext.set('hasTickets',Boolean(tickets.length))
+  page.bindingContext.set('hasTickets',hasTickets)
 }
 
 function onDrawerButtonTap (args) {
