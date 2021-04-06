@@ -19,17 +19,6 @@ firebase
     }
   );
 
-global.appSyncKeys = {
-  android: {
-    production: "96ZQKTZ73NUzbZA6L5Vipj9ffEusgfbzyisjA",
-    staging: "CjVsIwxbUsadcbXTNYsnxbzqMvdjgfbzyisjA"
-  },
-  ios: {
-    production: "xgAx3pieU0VcMjdP2TL1ClOAYVBqgfbzyisjA",
-    staging: "wGrs4cnVT3kyyUR0lPF5ga0FveVegfbzyisjA"
-  }
-};
-global.appSyncInit = false;
 global.DebugMode = true;
 
 application.run({ moduleName: "app-root/app-root" });

@@ -31,14 +31,6 @@ function PageViewModel () {
   //              key: "pushNotificationTokenLastSubmittedType"
   //      }));
 
-  const AppsyncCurrentPackageInfo = JSON.parse(
-    appSettings.getString("APPSYNC_CURRENT_PACKAGE", "{}")
-  );
-  console.log(AppsyncCurrentPackageInfo);
-  if (AppsyncCurrentPackageInfo.label) {
-    console.log(`Deployment version: ${AppsyncCurrentPackageInfo.label}`);
-    viewModel.DeploymentID = AppsyncCurrentPackageInfo.label;
-  }
 
   appversion.getVersionName().then((versionName) => {
     console.log(`Your app's version is: ${versionName}`);
