@@ -1,5 +1,7 @@
-const app = require("@nativescript/core/application");
-
+const {
+  Application,
+  Color
+} = require('@nativescript/core');
 const CmsViewModel = require("./cms-view-model");
 const SelectedPageService = require("../shared/selected-page-service");
 
@@ -10,8 +12,6 @@ const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
 
 const frameModule = require("@nativescript/core/ui/frame");
-const color = require("tns-core-modules/color");
-
 const labelModule = require("@nativescript/core/ui/label");
 const formattedStringModule = require("@nativescript/core/text/formatted-string");
 const spanModule = require("@nativescript/core/text/span");
@@ -50,7 +50,7 @@ function onNavigatingTo (args) {
           title: "Page not found",
           message:
                         "Please check your internet connection and try again",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       } else {
         console.log("Not empty");
@@ -170,13 +170,13 @@ function onNavigatingTo (args) {
       feedback.error({
         title: "Sorry, could not load page",
         message: "Please check your internet connection and try again",
-        titleColor: new color.Color("black")
+        titleColor: new Color("black")
       });
     });
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 

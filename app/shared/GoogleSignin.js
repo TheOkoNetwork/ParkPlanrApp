@@ -2,14 +2,18 @@ const firebase = require("@nativescript/firebase").firebase;
 
 const config = require("../shared/config");
 
+const {
+  Application,
+  Color,
+  Frame
+} = require('@nativescript/core');
+
+
 function SignInGoogle (args) {
   console.log("Sign in with google called");
 
-  const frameModule = require("@nativescript/core/ui/frame");
-
   const FeedbackPlugin = require("nativescript-feedback");
   const feedback = new FeedbackPlugin.Feedback();
-  const color = require("tns-core-modules/color");
 
   console.log("Attempting sign in with google");
 
@@ -21,7 +25,7 @@ function SignInGoogle (args) {
       console.log(result);
 
       setTimeout(() => {
-        frameModule.Frame.topmost().navigate({
+        Frame.topmost().navigate({
           moduleName: "home/home-page",
           transition: {
             name: "fade"
@@ -38,7 +42,7 @@ function SignInGoogle (args) {
         }
         feedback.success({
           title: successMessageTitle,
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     })
@@ -52,7 +56,7 @@ function SignInGoogle (args) {
       setTimeout(() => {
         feedback.error({
           title: userErrorMessage,
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 25);
     });

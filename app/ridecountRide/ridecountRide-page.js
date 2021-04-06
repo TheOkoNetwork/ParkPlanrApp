@@ -1,8 +1,11 @@
-const app = require("@nativescript/core/application");
+const {
+  Application,
+  Color,
+  Frame
+} = require('@nativescript/core');
 
 const RidecountRideViewModel = require("./ridecountRide-view-model");
 const fromObject = require("@nativescript/core/data/observable").fromObject;
-const frameModule = require("@nativescript/core/ui/frame");
 
 const firebaseApp = require("@nativescript/firebase/app");
 firebaseApp.initializeApp();
@@ -10,7 +13,6 @@ firebaseApp.initializeApp();
 const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
 
-const color = require("tns-core-modules/color");
 
 const moment = require("moment");
 
@@ -122,7 +124,7 @@ function onNavigatingTo (args) {
       console.log("Ride count get error");
       console.log(error);
 
-      frameModule.Frame.topmost().navigate({
+      Frame.topmost().navigate({
         moduleName: "home/home-page",
         backstackVisible: false,
         transition: {
@@ -135,7 +137,7 @@ function onNavigatingTo (args) {
           message: `Please check your internet connection and try again(${JSON.stringify(
                         error
                     )})`,
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     });
@@ -146,25 +148,22 @@ function onLoaded (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 
 function addEditCountAdd () {
-  const frame = require("tns-core-modules/ui/frame");
-  const page = frame.topmost().currentPage;
+  const page = Frame.topmost().currentPage;
   page.bindingContext.addEditCount++;
 }
 function addEditCountSubtract () {
-  const frame = require("tns-core-modules/ui/frame");
-  const page = frame.topmost().currentPage;
+  const page = Frame.topmost().currentPage;
   let count = page.bindingContext.addEditCount;
   count--;
   page.bindingContext.addEditCount = Math.max(1, count);
 }
 function addEditCountSave () {
-  const frame = require("tns-core-modules/ui/frame");
-  const page = frame.topmost().currentPage;
+  const page = Frame.topmost().currentPage;
   const count = page.bindingContext.addEditCount;
   const userId = page.bindingContext.user.uid;
   const rideId = page.bindingContext.ride.id;
@@ -197,13 +196,13 @@ function addEditCountSave () {
           title: "Unable to add ride count",
           message:
                         "Please check your internet connection and try again",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 130);
     });
   console.log("Assuming write succeeded");
   console.log(`Switching to trip: ${tripId} park: ${parkId}`);
-  frameModule.Frame.topmost().navigate({
+  Frame.topmost().navigate({
     moduleName: "ridecountCount/ridecountCount-page",
     backstackVisible: false,
     transition: {
@@ -218,14 +217,13 @@ function addEditCountSave () {
     feedback.success({
       title: "Added count",
       message: "Saved ride count",
-      titleColor: new color.Color("black")
+      titleColor: new Color("black")
     });
   }, 125);
 }
 
 function deleteTripCount (args) {
-  const frame = require("tns-core-modules/ui/frame");
-  const page = frame.topmost().currentPage;
+  const page = Frame.topmost().currentPage;
   const userId = page.bindingContext.user.uid;
   const tripId = page.bindingContext.trip.id;
   const parkId = page.bindingContext.parkId;
@@ -253,12 +251,12 @@ function deleteTripCount (args) {
           title: "Unable to delete ride count",
           message:
                         "Please check your internet connection and try again",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 130);
     });
   console.log("Assuming delete succeeded");
-  frameModule.Frame.topmost().navigate({
+  Frame.topmost().navigate({
     moduleName: "ridecountCount/ridecountCount-page",
     backstackVisible: false,
     transition: {
@@ -273,7 +271,7 @@ function deleteTripCount (args) {
     feedback.success({
       title: "Removed count",
       message: "Saved ride count",
-      titleColor: new color.Color("black")
+      titleColor: new Color("black")
     });
   }, 125);
 }

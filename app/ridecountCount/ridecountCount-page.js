@@ -1,4 +1,7 @@
-const app = require("@nativescript/core/application");
+const {
+  Application,
+  Color
+} = require('@nativescript/core');
 
 const RidecountCountViewModel = require("./ridecountCount-view-model");
 const fromObject = require("@nativescript/core/data/observable").fromObject;
@@ -9,8 +12,6 @@ firebaseApp.initializeApp();
 
 const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
-
-const color = require("tns-core-modules/color");
 
 const moment = require("moment");
 
@@ -141,7 +142,7 @@ function onNavigatingTo (args) {
           message: `Please check your internet connection and try again ${JSON.stringify(
                         error
                     )}`,
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     });
@@ -152,7 +153,7 @@ function onLoaded (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 

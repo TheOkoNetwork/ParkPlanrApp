@@ -1,4 +1,8 @@
-const app = require("@nativescript/core/application");
+const {
+  Application,
+  Color
+} = require('@nativescript/core');
+
 const frameModule = require("@nativescript/core/ui/frame");
 
 const RidecountViewModel = require("./ridecount-view-model");
@@ -9,8 +13,6 @@ firebaseApp.initializeApp();
 
 const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
-
-const color = require("tns-core-modules/color");
 
 const moment = require("moment");
 
@@ -84,7 +86,7 @@ function onNavigatingTo (args) {
           title: "Unable to load trip",
           message:
                         "Please check your internet connection and try again",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     });
@@ -130,7 +132,7 @@ function onLoaded (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 

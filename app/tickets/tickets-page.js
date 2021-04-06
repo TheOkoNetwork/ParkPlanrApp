@@ -1,4 +1,7 @@
-const app = require("@nativescript/core/application");
+const {
+  Application,
+  Color
+} = require('@nativescript/core');
 
 const ticketsViewModal = require("./tickets-view-model");
 
@@ -50,7 +53,7 @@ async function onNavigatingTo (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 
