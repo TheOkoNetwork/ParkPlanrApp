@@ -14,8 +14,9 @@
     "distributeReleaseApptestingAndroid": "firebase appdistribution:distribute release.apk --app 1:996445637278:android:d38122f504c9f8f1 --groups 'devteamandroid' --release-notes"
   },
   "dependencies": {
-    "@nativescript/core": "~8.0.0",
+    "@nativescript/core": "^7.1.0",
     "@nativescript/firebase": "^11.1.2",
+    "@nativescript/webpack": "3.0.0",
     "mkdirp": "^1.0.4",
     "moment": "^2.29.0",
     "nativescript-app-sync": "^2.0.0",
@@ -31,8 +32,7 @@
     "rxjs": "^6.6.0"
   },
   "devDependencies": {
-    "@nativescript/android": "8.0.0",
-    "@nativescript/webpack": "~5.0.0-beta.0",
+    "@nativescript/android": "7.0.1",
     "eslint": "~5.8.0",
     "manifest-android": "^0.1.1",
     "node-sass": "^4.14.1"
@@ -40,5 +40,5 @@
   "gitHead": "42f2a6a9c94eaf9c68d2a41e0daaa1a2544bc28f",
   "readme": "NativeScript Application",
   "author": "The Oko network",
-  "main": "./app/app.js"
+  "main": "app.js"
 }
