@@ -47,8 +47,10 @@
 		      </lv:RadListView.headerItemTemplate>
 		
           <lv:RadListView.itemTemplate>
-            <GridLayout class="itemStyle" rows="auto" columns="*">
+            <GridLayout class="itemStyle" rows="auto,auto" columns="*">
               <Label row="0" col="0" rowSpan="0" colSpan="1" text="{{attraction}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
+              <Label row="0" col="1" rowSpan="0" colSpan="1" text="{{orderDate}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
+              <Label row="1" col="0" rowSpan="0" colSpan="1" text="{{orderId}}" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
             </GridLayout>
           </lv:RadListView.itemTemplate>
 
