@@ -14,16 +14,8 @@ async function onNavigatingTo (args) {
   page.bindingContext = new ticketsViewModal();
   console.log("Got VM");
 
-  //todo actually lookup tickets
-  let user;
-  try {
-    user = await firebase.getCurrentUser()
-    console.log("Got user");
-    console.log(user);
-    } catch (error) {
-    console.log("Got error getting current user");
-    console.log(error);
-  }
+  const user = await firebase.getCurrentUser()
+  console.log("Got user");
   const uid = user.uid;
   console.log("Got UID");
   console.log(`Looking up tickets for user: ${uid}`);

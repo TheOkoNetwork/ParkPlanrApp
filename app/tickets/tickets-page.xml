@@ -28,8 +28,8 @@
 <!--    <ScrollView> -->
       <StackLayout width="90%" height="100%" backgroundColor="white">
         
-
-        <lv:RadListView items="{{tickets}}" class="listItem" loadOnDemandMode="Auto" loadMoreDataRequested="loadMoreItems"> 
+        <!-- loadOnDemandMode="Auto" loadMoreDataRequested="loadMoreItems" for lazy loading -->
+        <lv:RadListView items="{{tickets}}" class="listItem"> 
 
           <lv:RadListView.listViewLayout>
             <lv:ListViewGridLayout scrollDirection="Vertical" itemHeight="250" spanCount="2"/>
