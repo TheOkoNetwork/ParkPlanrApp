@@ -34,7 +34,9 @@ async function onNavigatingTo (args) {
 
   ticketDocs.forEach(function (ticketDoc) {
     const ticketData = ticketDoc.data();
-    ticketData.id = ticketDoc.id;
+    // fid is the ID for this order within firestore
+    // not to be confused with orderId which is the merchants order ID
+    ticketData.fid = ticketDoc.id;
     tickets.push(ticketData);
     console.log(ticketData);
   });
