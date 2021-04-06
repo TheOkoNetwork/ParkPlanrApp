@@ -16,12 +16,12 @@ async function onNavigatingTo (args) {
   let user;
   try {
     user = firebaseApp.auth().currentUser;
-  } catch (error) {
+    console.log("Got user");
+    console.log(user);
+    } catch (error) {
     console.log("Got error getting current user");
     console.log(error);
   }
-      console.log("Got user");
-  console.log(user);
   const uid = user.uid;
   console.log("Got UID");
   console.log(`Looking up tickets for user: ${uid}`);
