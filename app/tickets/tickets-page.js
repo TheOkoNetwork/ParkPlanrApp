@@ -1,7 +1,10 @@
 const {
   Application,
-  Color
+  Color,
+  Frame
 } = require('@nativescript/core');
+
+const moment = require("moment");
 
 const ticketsViewModal = require("./tickets-view-model");
 
@@ -26,11 +29,12 @@ async function onNavigatingTo (args) {
   //to make chaining query params a LOT easier
   const ticketsQuery = firebaseApp.firestore().collection('tickets')
   .where('user', '==', uid)
+  .orderBy("orderDate", "desc")
 
   const ticketDocs = await ticketsQuery.get()
   //strictly speaking what we call a "ticket" is actually an order
   //but functionally speaking each ticket within an order is accessed
-  //together so it makes sense to bundle them up here.
+  //together so it makes sense to bundle them up here for the list of "tickets"	
   console.log(`Fetched: ${ticketDocs.docs.length} tickets for user`)
 
   const tickets = [];
@@ -42,7 +46,16 @@ async function onNavigatingTo (args) {
     // not to be confused with orderId which is the merchants order ID
     ticketData.fid = ticketDoc.id;
 
-    ticketData.orderIdHuman = `#${ticketData.orderId}`;
+    let ticketDataLoaded = true;
+    if (!ticketData['attractionName']) {
+	ticketData['attractionName']="(Ticket loading)";
+	ticketDataLoaded = false;
+    };
+
+    ticketData['orderDate']=moment(ticketData['orderDate']).format("DD/MM/YYYY");
+
+    //@todo don't set this here and instead let BOH functions handle it
+    ticketData['ticketDataLoaded'] = ticketDataLoaded;
     tickets.push(ticketData);
     console.log(ticketData);
     hasTickets = true;
@@ -57,6 +70,19 @@ function onDrawerButtonTap (args) {
   sideDrawer.showDrawer();
 }
 
+function openTicket (args) {
+ const fid = args.object.fid;
+  console.log(`Switching to ticket: ${fid}`);
+  Frame.topmost().navigate({
+    moduleName: "ticketOrderView/ticketOrderView-page",
+    transition: {
+      name: "fade"
+    },
+    context: {
+      fid: fid
+    }
+  });
+};
 
 exports.onNavigatingTo = onNavigatingTo;
 exports.onDrawerButtonTap = onDrawerButtonTap;
@@ -64,3 +90,4 @@ exports.pageJump = require("../shared/pageJump");
 const AuthenticatedPageState = require("../shared/AuthenticatedPageState");
 exports.cmsPage = require("../shared/cmsPage");
 exports.AuthenticatedPageState = AuthenticatedPageState;
+exports.openTicket = openTicket;

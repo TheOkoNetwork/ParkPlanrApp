@@ -1,4 +1,6 @@
-const app = require("@nativescript/core/application");
+const {
+	Application
+} = require("@nativescript/core");
 
 const HomeViewModel = require("./home-view-model");
 function onNavigatingTo (args) {

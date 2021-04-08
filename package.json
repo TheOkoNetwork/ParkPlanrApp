@@ -14,13 +14,14 @@
     "distributeReleaseApptestingAndroid": "firebase appdistribution:distribute release.apk --app 1:996445637278:android:d38122f504c9f8f1 --groups 'devteamandroid' --release-notes"
   },
   "dependencies": {
+    "@nativescript/appversion": "^2.0.0",
     "@nativescript/core": "~8.0.0",
-    "@nativescript/firebase": "^11.1.2",
+    "@nativescript/firebase": "^11.1.0",
+    "chalk": "^4.1.0",
     "mkdirp": "^1.0.4",
     "moment": "^2.29.0",
-    "nativescript-appversion": "^1.4.2",
     "nativescript-exit": "^1.0.1",
-    "nativescript-feedback": "^1.5.0",
+    "nativescript-feedback": "^2.0.0",
     "nativescript-pdf-view": "^3.0.0-1",
     "nativescript-sqlite": "^2.6.3",
     "nativescript-theme-core": "^1.0.6",

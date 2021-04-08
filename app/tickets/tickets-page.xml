@@ -1,9 +1,10 @@
 <Page
     class="page"
     navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
     xmlns="http://schemas.nativescript.org/tns.xsd"
     xmlns:lv="nativescript-ui-listview"
-    >
+>
 
     <ActionBar class="action-bar">
         <!-- 
@@ -21,53 +22,30 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="Tickets" textWrap="true"></Label>
+        <Label class="action-bar-title" text="My tickets" textWrap="true"></Label>
     </ActionBar>
 
- <GridLayout class="page-content">
-<!--    <ScrollView> -->
-      <StackLayout width="100%" height="100%" backgroundColor="white">
-        
-        <!-- loadOnDemandMode="Auto" loadMoreDataRequested="loadMoreItems" for lazy loading -->
-        <lv:RadListView items="{{tickets}}" class="listItem"> 
+    <StackLayout class="page-content">
+	<Label visibility="{{ hasTickets ? 'collapsed' : 'visible' }}" text="No tickets found, why not" style="font-size: 25;" horizontalAlignment="center"></Label>
+	<Button text="&#xf3ff; &nbsp;Add a ticket" class="fa btn btn-primary" route="ticketAdd/ticketAdd-page" tap="pageJump" visibility="{{ hasTickets ? 'collapsed' : 'visible' }}" style="height:150px;"></Button>
+	<Button text="&#xf3ff; &nbsp;Add ticket" class="fa btn btn-primary" route="ticketAdd/ticketAdd-page" tap="pageJump" visibility="{{ hasTickets ? 'visible' : 'collapsed' }}" style="height:75px;"></Button>
+<ListView
+  items="{{tickets}}"
+  itemTap="onTicketTap"
+  class="list-group"
+  id="listView"
+>
+<!--  rowHeight="50" -->
+  <ListView.itemTemplate>
+		<GridLayout columns="*,*" rows="auto,auto,auto" class="list-group-item">
+                        <Label row="0" col="0" colSpan="2" text="{{attractionName}}"></Label>
+                        <Label row="1" col="0" text="{{orderId}}"></Label>
+                        <Label row="1" col="1" text="{{orderDate}}"></Label>
+                        <Button row="2" col="0" colSpan="2" text="&#xf3ff; &nbsp;View tickets" class="fa btn btn-primary" fid="{{fid}}" tap="openTicket" style="height:75px;" visibility="{{ ticketDataLoaded ? 'visible' : 'collapsed' }}"></Button>
+               </GridLayout>
 
-          <lv:RadListView.listViewLayout>
-            <lv:ListViewGridLayout scrollDirection="Vertical"/>
-          </lv:RadListView.listViewLayout>
-
-		
-		      <lv:RadListView.headerItemTemplate>
-			      <GridLayout rows="auto" columns="*,*" visibility="{{ hasTickets ? 'visible' : 'collapsed' }}">
-      	      <Button row="0" col="0" colSpan="2" text="&#xf067; Add ticket" class="fa btn btn-primary" route="ticketsAdd/ticketsAdd-page" tap="pageJump" />
-            </GridLayout>
-			      <GridLayout rows="auto,auto" columns="*" visibility="{{ hasTickets ? 'collapsed' : 'visible' }}">
-      	       <Label row="0" col="0" rowSpan="0" text="No tickets, why not" textWrap="true" horizontalAlignment="center" verticalAlignment="center" />
-      	      <Button row="0" col="0" colSpan="2" text="&#xf067; Add a ticket" class="fa btn btn-primary" route="ticketsAdd/ticketsAdd-page" tap="pageJump" />
-            </GridLayout>
-		      </lv:RadListView.headerItemTemplate>
-		
-          <lv:RadListView.itemTemplate>
-            <GridLayout class="itemStyle" rows="auto,auto,auto" columns="">
-              <Label row="0" col="0" rowSpan="0" colSpan="1" text="{{attraction}}" textWrap="true" />
-              <Label row="0" col="1" rowSpan="0" colSpan="1" text="{{orderDate}}" textWrap="true" />
-              <Label row="1" col="0" rowSpan="0" colSpan="1" text="{{orderIdHuman}}" textWrap="true" />
-              <Button row="2" col="0" colSpan="2" text="&#xf3ff; Open tickets" class="fa btn btn-primary" fid="{{fid}}" tap="viewTickets" />
-            </GridLayout>
-          </lv:RadListView.itemTemplate>
-
-          <lv:RadListView.groupTemplate>
-            <GridLayout ios:height="50">
-              <Label text="{{grouping}}" class="groupLabel" />
-            </GridLayout>
-          </lv:RadListView.groupTemplate>
-          
-        </lv:RadListView>
-
-
-
-		  </StackLayout>
-<!--    </ScrollView> -->
-   </GridLayout>
-
-
+  </ListView.itemTemplate>
+</ListView>
+	    
+    </StackLayout>
 </Page>

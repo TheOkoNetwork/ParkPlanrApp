@@ -1,6 +1,6 @@
 const observableModule = require("@nativescript/core/data/observable");
 const SelectedPageService = require("../shared/selected-page-service");
-const appversion = require("nativescript-appversion");
+const appversion = require("@nativescript/appversion");
 const platform = require("@nativescript/core/platform");
 
 const appSettings = require("@nativescript/core/application-settings");
