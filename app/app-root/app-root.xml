@@ -107,13 +107,13 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
                     </GridLayout>
 
                     <StackLayout class="hr-light"></StackLayout>
-
+<!--
                     <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'Settings' ? ' selected': '') }}"
                         route="settings/settings-page" title="Settings" tap="onNavigationItemTap">
                         <Label row="0" col="0" text="&#xf013;" class="fa" />
                         <Label row="0" col="1" text="Settings" class="p-r-10" />
                     </GridLayout>
-
+-->
                     <GridLayout columns="auto, *" class="{{ 'sidedrawer-list-item' + (selectedPage === 'About' ? ' selected': '') }}"
                         route="about/about-page" title="About" tap="onNavigationItemTap">
                         <Label row="0" col="0" text="&#xf128;" class="fa" />
