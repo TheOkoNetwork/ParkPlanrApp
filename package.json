@@ -28,7 +28,7 @@
     "nativescript-theme-core": "^1.0.6",
     "nativescript-ui-sidedrawer": "^9.0.3",
     "netmask": "^2.0.1",
-    "rxjs": "^6.6.0"
+    "rxjs": "^6.6.7"
   },
   "devDependencies": {
     "@nativescript/android": "7.0.1",
