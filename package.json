@@ -16,7 +16,7 @@
   "dependencies": {
     "@nativescript/core": "^7.1.0",
     "@nativescript/firebase": "^11.1.3",
-    "@nativescript/webpack": "3.0.0",
+    "@nativescript/webpack": "3.0.9",
     "mkdirp": "^1.0.4",
     "moment": "^2.29.0",
     "nativescript-app-sync": "^2.0.0",
