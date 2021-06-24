@@ -14,7 +14,8 @@ android {
     minSdkVersion 17
     generatedDensities = []
     multiDexEnabled true
-    ndkVersion "22.0.7026061"
+    //@todo automate updating this
+    ndkVersion "21.4.7075529"
     // Defines the version number of your app.
     versionCode 10967
     // Defines a user-friendly version name for your app.
