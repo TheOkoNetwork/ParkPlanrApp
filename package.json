@@ -35,7 +35,8 @@
     "eslint": "~5.8.0",
     "manifest-android": "^0.1.1",
     "node-sass": "^4.14.1",
-    "webpack": "^5.40.0"
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2"
   },
   "gitHead": "42f2a6a9c94eaf9c68d2a41e0daaa1a2544bc28f",
   "readme": "NativeScript Application",
