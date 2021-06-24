@@ -1,16 +1,17 @@
-const app = require("@nativescript/core/application");
+const {
+  Application,
+  Color,
+  Frame
+} = require('@nativescript/core');
 
 const RidecountDeleteViewModel = require("./ridecountDelete-view-model");
 const fromObject = require("@nativescript/core/data/observable").fromObject;
-const frameModule = require("@nativescript/core/ui/frame");
 
 const firebaseApp = require("@nativescript/firebase/app");
 firebaseApp.initializeApp();
 
 const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
-
-const color = require("tns-core-modules/color");
 
 const moment = require("moment");
 
@@ -87,7 +88,7 @@ function onNavigatingTo (args) {
       console.log("Ride count get error");
       console.log(error);
 
-      frameModule.Frame.topmost().navigate({
+      Frame.topmost().navigate({
         moduleName: "ridecount/ridecount-page",
         backstackVisible: false,
         transition: {
@@ -99,7 +100,7 @@ function onNavigatingTo (args) {
           title: "Unable to load ride count",
           message:
                         "Please check your internet connection and try again",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     });
@@ -110,20 +111,18 @@ function onLoaded (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 
 function returnToRidecount () {
   console.log("Cancelling, returning to ride count");
-
-  const frame = require("tns-core-modules/ui/frame");
-  const page = frame.topmost().currentPage;
+  const page = Frame.topmost().currentPage;
 
   const parkId = page.bindingContext.parkId;
   const tripId = page.bindingContext.trip.id;
 
-  frameModule.Frame.topmost().navigate({
+  Frame.topmost().navigate({
     moduleName: "ridecount/ridecount-page",
     backstackVisible: false,
     transition: {
@@ -136,8 +135,7 @@ function returnToRidecount () {
   });
 }
 function deleteRidecount () {
-  const frame = require("tns-core-modules/ui/frame");
-  const page = frame.topmost().currentPage;
+  const page = Frame.topmost().currentPage;
   const userId = page.bindingContext.user.uid;
   const parkId = page.bindingContext.parkId;
   const tripId = page.bindingContext.trip.id;
@@ -161,12 +159,12 @@ function deleteRidecount () {
           title: "Unable to delete ride count",
           message:
                         "Please check your internet connection and try again",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 130);
     });
   console.log("Assuming delete succeeded, switching to ride count list");
-  frameModule.Frame.topmost().navigate({
+  Frame.topmost().navigate({
     moduleName: "ridecount/ridecount-page",
     backstackVisible: false,
     transition: {
@@ -181,7 +179,7 @@ function deleteRidecount () {
     feedback.success({
       title: "Deleted count",
       message: "Ride count deleted",
-      titleColor: new color.Color("black")
+      titleColor: new Color("black")
     });
   }, 125);
 }

@@ -1,0 +1,36 @@
+<Page
+    class="page"
+    navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <!-- 
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!-- 
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu" 
+            android:visibility="collapsed" 
+            tap="onDrawerButtonTap"
+            ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="View ticket" textWrap="true"></Label>
+    </ActionBar>
+
+    <GridLayout class="page-content" rows="auto,auto,auto,auto" cols="*,*,*" width="100%" height="100%" flexDirection="column">
+	<Image row="0" col="1" src="{{receiptLogo}}" width="250px" />
+	<Label row="1" col="0" text="{{'Order ID: ' + orderId}}"></Label>
+	<Label row="2" col="0" text="{{'Order Date: ' + orderDateTime}}"></Label>
+        <!-- @todo a list view for the items in this order -->
+
+	<!-- @todo don't hardcode currency symbol, not everyone uses £ -->
+	<Label row="3"  col="0" text="{{'Total: £' + orderTotal}}"></Label>
+	<!-- @todo payment information here -->
+    </GridLayout>
+</Page>

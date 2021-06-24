@@ -1,0 +1,1 @@
+export PATH=$PATH:$(ls -td /vscode/bin/x64/*/bin | grep -v insider | head -1)

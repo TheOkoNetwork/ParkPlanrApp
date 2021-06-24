@@ -1,5 +1,5 @@
 const configStore = {
-  appName: "*ParkPlanr*"
+  appName: "ParkPlanr"
 };
 
 function config (key) {

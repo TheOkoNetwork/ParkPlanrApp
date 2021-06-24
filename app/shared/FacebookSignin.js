@@ -1,14 +1,19 @@
 const firebase = require("@nativescript/firebase").firebase;
-const frameModule = require("@nativescript/core/ui/frame");
 
 const config = require("../shared/config");
+
+const {
+  Application,
+  Color,
+  Frame
+} = require('@nativescript/core');
+
 
 function SignInFacebook (args) {
   console.log("Sign in with facebook called");
 
   const FeedbackPlugin = require("nativescript-feedback");
   const feedback = new FeedbackPlugin.Feedback();
-  const color = require("tns-core-modules/color");
 
   console.log("Attempting sign in with facebook");
 
@@ -20,7 +25,7 @@ function SignInFacebook (args) {
       console.log(result);
 
       setTimeout(() => {
-        frameModule.Frame.topmost().navigate({
+        Frame.topmost().navigate({
           moduleName: "home/home-page",
           transition: {
             name: "fade"
@@ -37,7 +42,7 @@ function SignInFacebook (args) {
         }
         feedback.success({
           title: successMessageTitle,
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     })
@@ -49,7 +54,7 @@ function SignInFacebook (args) {
         setTimeout(() => {
           feedback.error({
             title: "Facebook login cancelled",
-            titleColor: new color.Color("black")
+            titleColor: new Color("black")
           });
         }, 25);
 
@@ -100,7 +105,7 @@ function SignInFacebook (args) {
       setTimeout(() => {
         feedback.error({
           title: userErrorMessage,
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 25);
     });

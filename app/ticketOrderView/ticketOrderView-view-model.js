@@ -3,9 +3,8 @@ const observableModule = require("@nativescript/core/data/observable");
 const SelectedPageService = require("../shared/selected-page-service");
 const AuthenticatedStateService = require("../shared/Authenticated-state-service");
 
-const application = require("@nativescript/core/application");
-function HomeViewModel () {
-  SelectedPageService.getInstance().updateSelectedPage("Home");
+function ticketOrderViewViewModel () {
+  SelectedPageService.getInstance().updateSelectedPage("Tickets");
 
   const viewModel = observableModule.fromObject({
     /* Add your view model properties here */
@@ -23,7 +22,8 @@ function HomeViewModel () {
       viewModel.user = user;
     }
   );
+
   return viewModel;
 }
 
-module.exports = HomeViewModel;
+module.exports = ticketOrderViewViewModel;

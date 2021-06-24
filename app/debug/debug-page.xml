@@ -22,7 +22,7 @@
     </ActionBar>
 
   <GridLayout class="page-content">
-    <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" width="100%" height="100%" backgroundColor="white">
+    <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" width="100%" height="100%" backgroundColor="white">
             <Image row="0" column="0" height="100" class="logo" src="~/images/logo_name.png" SLUG="ABitOfEverything" tap="cmsPage" />
 
       <Label row="1" column="0" colSpan="2" visibility="{{ user ? 'visible' : 'collapsed' }}">
@@ -45,65 +45,59 @@
       </Label>
       <Label row="4" column="0" colSpan="2">
           <FormattedString>
-              <Span text="Deployment ID: "></Span>
-              <Span text="{{DeploymentID}}"></Span>
-          </FormattedString>
-      </Label>
-      <Label row="5" column="0" colSpan="2">
-          <FormattedString>
               <Span text="App ID: "></Span>
               <Span text="{{AppID}}"></Span>
           </FormattedString>
       </Label>
-      <Label row="6" column="0" colSpan="2">
+      <Label row="5" column="0" colSpan="2">
           <FormattedString>
               <Span text="Manufacturer: "></Span>
               <Span text="{{platform.device.manufacturer}}"></Span>
           </FormattedString>
       </Label>
-      <Label row="7" column="0" colSpan="2">
+      <Label row="6" column="0" colSpan="2">
           <FormattedString>
               <Span text="Device type: "></Span>
               <Span text="{{platform.device.deviceType}}"></Span>
           </FormattedString>
       </Label>
-      <Label row="8" column="0" colSpan="2">
+      <Label row="7" column="0" colSpan="2">
           <FormattedString>
               <Span text="Device model: "></Span>
               <Span text="{{platform.device.model}}"></Span>
           </FormattedString>
       </Label>
-      <Label row="9" column="0" colSpan="2">
+      <Label row="8" column="0" colSpan="2">
           <FormattedString>
               <Span text="OS: "></Span>
               <Span text="{{platform.device.os}}"></Span>
           </FormattedString>
       </Label>
-      <Label row="10" column="0" colSpan="2">
+      <Label row="9" column="0" colSpan="2">
           <FormattedString>
               <Span text="OS version: "></Span>
               <Span text="{{platform.device.osVersion}}"></Span>
           </FormattedString>
       </Label>
-      <Label row="11" column="0" colSpan="2">
+      <Label row="10" column="0" colSpan="2">
           <FormattedString>
               <Span text="SDK version: "></Span>
               <Span text="{{platform.device.sdkVersion}}"></Span>
           </FormattedString>
       </Label>
-      <Label row="12" column="0" colSpan="2">
+      <Label row="11" column="0" colSpan="2">
           <FormattedString>
               <Span text="FCM last submitted timestamp: "></Span>
               <Span text="{{lastSubmittedTimestamp}}"></Span>
           </FormattedString>
       </Label>
-      <Label row="13" column="0" colSpan="2">
+      <Label row="12" column="0" colSpan="2">
           <FormattedString>
               <Span text="FCM last submitted type: "></Span>
               <Span text="{{lastSubmittedType}}"></Span>
           </FormattedString>
       </Label>
-      <Label row="14" column="0" colSpan="2" textWrap="true">
+      <Label row="13" column="0" colSpan="2" textWrap="true">
           <FormattedString>
               <Span text="FCM token: "></Span>
               <Span text="{{FCMToken}}"></Span>

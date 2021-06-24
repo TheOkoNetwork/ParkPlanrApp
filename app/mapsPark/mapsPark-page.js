@@ -1,4 +1,7 @@
-const app = require("@nativescript/core/application");
+const {
+  Application,
+  Color
+} = require('@nativescript/core');
 
 const MapsParkViewModel = require("./mapsPark-view-model");
 const fromObject = require("@nativescript/core/data/observable").fromObject;
@@ -9,7 +12,6 @@ firebaseApp.initializeApp();
 
 const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
-const color = require("tns-core-modules/color");
 
 function onNavigatingTo (args) {
   const page = args.object;
@@ -48,14 +50,14 @@ function onNavigatingTo (args) {
           title: "Unable to load map",
           message:
                         "Please check your internet connection and try again",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     });
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 

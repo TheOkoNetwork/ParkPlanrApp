@@ -1,4 +1,7 @@
-const app = require("@nativescript/core/application");
+const {
+  Application,
+  Color
+} = require("@nativescript/core");
 
 const ForgotpasswordViewModel = require("./forgotpassword-view-model");
 const frameModule = require("@nativescript/core/ui/frame");
@@ -11,7 +14,7 @@ function onNavigatingTo (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 function ResetPassword (args) {
@@ -21,13 +24,12 @@ function ResetPassword (args) {
 
   const FeedbackPlugin = require("nativescript-feedback");
   const feedback = new FeedbackPlugin.Feedback();
-  const color = require("tns-core-modules/color");
 
   const Email = page.getViewById("Email").text;
   if (!Email) {
     feedback.error({
       title: "Please enter your email address",
-      titleColor: new color.Color("black")
+      titleColor: new Color("black")
     });
 
     return;
@@ -43,7 +45,7 @@ function ResetPassword (args) {
           title: "Sent password reset email",
           message:
                         "Please check your emails for a link to reset your password",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 25);
     })
@@ -54,7 +56,7 @@ function ResetPassword (args) {
       setTimeout(() => {
         feedback.error({
           title: "Could not reset password",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 25);
     });

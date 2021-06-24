@@ -1,0 +1,51 @@
+<Page
+    class="page"
+    navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:lv="nativescript-ui-listview"
+>
+
+    <ActionBar class="action-bar">
+        <!-- 
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <!-- 
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem icon="res://navigation/menu" 
+            android:visibility="collapsed" 
+            tap="onDrawerButtonTap"
+            ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="My tickets" textWrap="true"></Label>
+    </ActionBar>
+
+    <StackLayout class="page-content">
+	<Label visibility="{{ hasTickets ? 'collapsed' : 'visible' }}" text="No tickets found, why not" style="font-size: 25;" horizontalAlignment="center"></Label>
+	<Button text="&#xf3ff; &nbsp;Add a ticket" class="fa btn btn-primary" route="ticketAdd/ticketAdd-page" tap="pageJump" visibility="{{ hasTickets ? 'collapsed' : 'visible' }}" style="height:150px;"></Button>
+	<Button text="&#xf3ff; &nbsp;Add ticket" class="fa btn btn-primary" route="ticketAdd/ticketAdd-page" tap="pageJump" visibility="{{ hasTickets ? 'visible' : 'collapsed' }}" style="height:75px;"></Button>
+<ListView
+  items="{{tickets}}"
+  itemTap="onTicketTap"
+  class="list-group"
+  id="listView"
+>
+<!--  rowHeight="50" -->
+  <ListView.itemTemplate>
+		<GridLayout columns="*,*" rows="auto,auto,auto" class="list-group-item">
+                        <Label row="0" col="0" colSpan="2" text="{{attractionName}}"></Label>
+                        <Label row="1" col="0" text="{{orderId}}"></Label>
+                        <Label row="1" col="1" text="{{orderDate}}"></Label>
+                        <Button row="2" col="0" colSpan="2" text="&#xf3ff; &nbsp;View tickets" class="fa btn btn-primary" fid="{{fid}}" tap="openTicket" style="height:75px;" visibility="{{ ticketDataLoaded ? 'visible' : 'collapsed' }}"></Button>
+               </GridLayout>
+
+  </ListView.itemTemplate>
+</ListView>
+	    
+    </StackLayout>
+</Page>

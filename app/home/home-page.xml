@@ -5,7 +5,7 @@
     xmlns="http://schemas.nativescript.org/tns.xsd">
 
     <ActionBar class="action-bar">
-        <!-- 
+        <!-- f
         Use the NavigationButton as a side-drawer button in Android
         because ActionItems are shown on the right side of the ActionBar
         -->
@@ -20,24 +20,22 @@
             tap="onDrawerButtonTap"
             ios.position="left">
         </ActionItem>
-        <Label class="action-bar-title" text="ParkPlanr (CI 6)" textWrap="true"></Label>
+        <Label class="action-bar-title" text="ParkPlanr" textWrap="true"></Label>
     </ActionBar>
 
     <GridLayout class="page-content">
-		<GridLayout columns="*,*" rows="*,*,*,*,*,*,*" width="100%" height="100%" backgroundColor="white"  visibility="{{ user ? 'visible' : 'collapsed' }}">
-	        	<Button row="0" col="0" colSpan="2" text="&#xf12a; &nbsp;Coronavirus Info" class="fa btn btn-primary" slug="ABitOfEverything" tap="cmsPage" />
-	        	<Button row="1" col="0" text="&#xf017; &nbsp;Queue times" class="fa btn btn-primary" route="queuetimes/queuetimes-page" tap="pageJump"/>
-	        	<Button row="1" col="1" text="&#xf0cb; &nbsp;Ride count" class="fa btn btn-primary" route="ridecount/ridecount-page" tap="pageJump"/>
-	        	<Button row="2" col="0" text="&#xf1ec; &nbsp;Discounts" class="fa btn btn-primary" route="discountcalculator/discountcalculator-page" tap="pageJump" />
-	        	<Button row="2" col="1" text="&#xf279; &nbsp;Maps" class="fa btn btn-primary" route="maps/maps-page" tap="pageJump" />
+		<GridLayout columns="*,*" rows="*,*,*,*,*,*" width="100%" height="100%" backgroundColor="white"  visibility="{{ user ? 'visible' : 'collapsed' }}">
+	        	<Button row="0" col="0" text="&#xf017; &nbsp;Queue times" class="fa btn btn-primary" route="queuetimes/queuetimes-page" tap="pageJump"/>
+	        	<Button row="0" col="1" text="&#xf0cb; &nbsp;Ride count" class="fa btn btn-primary" route="ridecount/ridecount-page" tap="pageJump"/>
+	        	<Button row="1" col="0" text="&#xf1ec; &nbsp;Discounts" class="fa btn btn-primary" route="discountcalculator/discountcalculator-page" tap="pageJump" />
+	        	<Button row="1" col="1" text="&#xf279; &nbsp;Maps" class="fa btn btn-primary" route="maps/maps-page" tap="pageJump" />
 		</GridLayout>
 
 		<!-- N.B visiblity is swapped around so this is visible when the previous grid is not -->
-		<GridLayout columns="*,*" rows="*,*,*,*,*,*,*" width="100%" height="100%" backgroundColor="white"  visibility="{{ user ? 'collapsed' : 'visible' }}">
-	        	<Button row="0" col="0" colSpan="2" text="&#xf12a; &nbsp;Coronavirus Info" class="fa btn btn-primary" slug="coronavirus " tap="cmsPage"/>
-	        	<Button row="1" col="0" text="&#xf017; &nbsp;Queue times" class="fa btn btn-primary" route="queuetimes/queuetimes-page" tap="pageJump"/>
-	        	<Button row="1" col="1" text="&#xf1ec; &nbsp;Discounts" class="fa btn btn-primary" route="discountcalculator/discountcalculator-page" tap="pageJump" />
-	        	<Button row="2" col="0" colSpan="2" text="&#xf2f6; &nbsp;Sign in" class="fa btn btn-primary" route="signin/signin-page" tap="pageJump" />
+		<GridLayout columns="*,*" rows="*,*,*,*,*,*" width="100%" height="100%" backgroundColor="white"  visibility="{{ user ? 'collapsed' : 'visible' }}">
+	        	<Button row="0" col="0" text="&#xf017; &nbsp;Queue times" class="fa btn btn-primary" route="queuetimes/queuetimes-page" tap="pageJump"/>
+	        	<Button row="0" col="1" text="&#xf1ec; &nbsp;Discounts" class="fa btn btn-primary" route="discountcalculator/discountcalculator-page" tap="pageJump" />
+	        	<Button row="1" col="0" colSpan="2" text="&#xf2f6; &nbsp;Sign in" class="fa btn btn-primary" route="signin/signin-page" tap="pageJump" />
 		</GridLayout>
 
 	    </GridLayout>

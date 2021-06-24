@@ -1,4 +1,7 @@
-const app = require("@nativescript/core/application");
+const {
+  Application,
+  Color
+} = require('@nativescript/core');
 
 const SigninViewModel = require("./signin-view-model");
 const frameModule = require("@nativescript/core/ui/frame");
@@ -14,7 +17,7 @@ function onNavigatingTo (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 function SignInEmail (args) {
@@ -24,14 +27,13 @@ function SignInEmail (args) {
 
   const FeedbackPlugin = require("nativescript-feedback");
   const feedback = new FeedbackPlugin.Feedback();
-  const color = require("tns-core-modules/color");
-
+  
   const Email = page.getViewById("Email").text;
   if (!Email) {
     feedback.error({
       title:
                 "Please enter your email address or try one of the other sign in options",
-      titleColor: new color.Color("black")
+      titleColor: new Color("black")
     });
 
     return;
@@ -41,7 +43,7 @@ function SignInEmail (args) {
   if (!Password) {
     feedback.error({
       title: "Please enter your password",
-      titleColor: new color.Color("black")
+      titleColor: new Color("black")
     });
 
     return;
@@ -80,7 +82,7 @@ function SignInEmail (args) {
         }
         feedback.success({
           title: successMessageTitle,
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     })
@@ -128,7 +130,7 @@ function SignInEmail (args) {
 
         feedback.error({
           title: userErrorMessage,
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 25);
     });

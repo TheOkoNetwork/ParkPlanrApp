@@ -1,16 +1,17 @@
-const app = require("@nativescript/core/application");
+const {
+  Application,
+  Color,
+  Frame
+} = require('@nativescript/core');
 
 const RidecountNewViewModel = require("./ridecountNew-view-model");
 const fromObject = require("@nativescript/core/data/observable").fromObject;
-const frameModule = require("@nativescript/core/ui/frame");
 
 const firebaseApp = require("@nativescript/firebase/app");
 firebaseApp.initializeApp();
 
 const FeedbackPlugin = require("nativescript-feedback");
 const feedback = new FeedbackPlugin.Feedback();
-
-const color = require("tns-core-modules/color");
 
 function onNavigatingTo (args) {
   const page = args.object;
@@ -25,7 +26,7 @@ function onNavigatingTo (args) {
     .then((querySnapshot) => {
       if (!querySnapshot.docs.length) {
         console.log("Empty");
-        frameModule.Frame.topmost().navigate({
+        Frame.topmost().navigate({
           moduleName: "home/home-page",
           transition: {
             name: "fade"
@@ -37,7 +38,7 @@ function onNavigatingTo (args) {
             title: "Unable to load parks(empty)",
             message:
                             "Please check your internet connection and try again",
-            titleColor: new color.Color("black")
+            titleColor: new Color("black")
           });
         }, 125);
       } else {
@@ -68,7 +69,7 @@ function onNavigatingTo (args) {
     .catch((error) => {
       console.log("Error fetching parks");
       console.log(error);
-      frameModule.Frame.topmost().navigate({
+      Frame.topmost().navigate({
         moduleName: "home/home-page",
         transition: {
           name: "fade"
@@ -80,7 +81,7 @@ function onNavigatingTo (args) {
           title: "Unable to load parks",
           message:
                         "Please check your internet connection and try again",
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     });
@@ -91,12 +92,12 @@ function onLoaded (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 
 function createTrip () {
-  const page = frameModule.Frame.topmost().currentPage;
+  const page = Frame.topmost().currentPage;
 
   const userId = page.bindingContext.user.uid;
   const trip = {};
@@ -124,10 +125,10 @@ function createTrip () {
       feedback.error({
         title: "Trip created",
         message: `parkId: ${trip.park} tripId: ${tripDocRef.id}`,
-        titleColor: new color.Color("black")
+        titleColor: new Color("black")
       });
 
-      frameModule.Frame.topmost().navigate({
+      Frame.topmost().navigate({
         moduleName: "ridecountCount/ridecountCount-page",
         transition: {
           name: "fade"
@@ -147,7 +148,7 @@ function createTrip () {
           message: `Please check your internet connection and try again ${JSON.stringify(
                         error
                     )}`,
-          titleColor: new color.Color("black")
+          titleColor: new Color("black")
         });
       }, 125);
     });

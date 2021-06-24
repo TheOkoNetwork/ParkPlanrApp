@@ -17,7 +17,7 @@ function onNavigatingTo (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView()
+  const sideDrawer = Application.getRootView()
   sideDrawer.showDrawer()
 }
 function SignOut (args) {

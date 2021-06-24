@@ -1,4 +1,6 @@
-const app = require("@nativescript/core/application");
+const {
+	Application
+} = require("@nativescript/core");
 
 const HomeViewModel = require("./home-view-model");
 function onNavigatingTo (args) {
@@ -11,7 +13,7 @@ function onLoaded (args) {
 }
 
 function onDrawerButtonTap (args) {
-  const sideDrawer = app.getRootView();
+  const sideDrawer = Application.getRootView();
   sideDrawer.showDrawer();
 }
 
