@@ -1,4 +1,4 @@
 source "https://rubygems.org"
 
-gem "fastlane"
+gem "fastlane", ">= 2.179.0"
 eval_gemfile("fastlane/Pluginfile")
